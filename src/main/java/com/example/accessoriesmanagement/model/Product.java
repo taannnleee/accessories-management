@@ -1,4 +1,4 @@
-package model;
+package com.example.accessoriesmanagement.model;
 
 public class Product {
     private int id;
@@ -35,7 +35,7 @@ public class Product {
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", image=" + image + ", price=" + price + ", title=" + title
-				+ ", description=" + description + ", model=" + model + ", color=" + color + ", delivery=" + delivery
+				+ ", description=" + description + ", com.example.accessoriesmanagement.model=" + model + ", color=" + color + ", delivery=" + delivery
 				+ ", image2=" + image2 + ", image3=" + image3 + ", image4=" + image4 + "]";
 	}
 	public int getId() {

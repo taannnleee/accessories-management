@@ -1,4 +1,4 @@
-package model;
+package com.example.accessoriesmanagement.model;
 
 public class Supplier {
 	 private int idSupplier;

@@ -1,4 +1,4 @@
-package model;
+package com.example.accessoriesmanagement.model;
 
 public class Cart {
 	 private int accountID;
