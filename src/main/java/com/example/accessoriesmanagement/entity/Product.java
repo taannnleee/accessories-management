@@ -33,6 +33,10 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<ShoppingCartItem> shoppingCartItems;
 
+    public Product() {
+
+    }
+
     public Long getProductID() {
         return productID;
     }

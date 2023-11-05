@@ -19,6 +19,10 @@ public class ProductCategory implements Serializable {
     @OneToMany(mappedBy = "product_category",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Product> products;
 
+    public ProductCategory() {
+
+    }
+
     public Long getProductCategoryID() {
         return productCategoryID;
     }

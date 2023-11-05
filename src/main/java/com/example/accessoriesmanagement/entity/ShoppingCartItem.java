@@ -20,6 +20,10 @@ public class ShoppingCartItem {
     @JoinColumn(name = "shopping_cart_id")
     private ShoppingCart shopping_cart;
 
+    public ShoppingCartItem() {
+
+    }
+
     public Long getShoppingCartItemId() {
         return shoppingCartItemId;
     }

@@ -52,6 +52,10 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<ShoppingCart> shoppingCarts;
 
+    public User() {
+        
+    }
+
 
     public Long getUserID() {
         return userID;

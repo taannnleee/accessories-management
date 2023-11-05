@@ -25,6 +25,10 @@ public class Payment {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public Payment() {
+
+    }
+
     public Long getPaymentId() {
         return paymentId;
     }
