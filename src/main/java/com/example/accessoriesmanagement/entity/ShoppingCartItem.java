@@ -20,4 +20,42 @@ public class ShoppingCartItem {
     @JoinColumn(name = "shopping_cart_id")
     private ShoppingCart shopping_cart;
 
+    public Long getShoppingCartItemId() {
+        return shoppingCartItemId;
+    }
+
+    public String getShoppingCartItemQuantity() {
+        return shoppingCartItemQuantity;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public ShoppingCart getShopping_cart() {
+        return shopping_cart;
+    }
+
+    public void setShoppingCartItemId(Long shoppingCartItemId) {
+        this.shoppingCartItemId = shoppingCartItemId;
+    }
+
+    public void setShoppingCartItemQuantity(String shoppingCartItemQuantity) {
+        this.shoppingCartItemQuantity = shoppingCartItemQuantity;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public void setShopping_cart(ShoppingCart shopping_cart) {
+        this.shopping_cart = shopping_cart;
+    }
+
+    public ShoppingCartItem(Long shoppingCartItemId, String shoppingCartItemQuantity, Product product, ShoppingCart shopping_cart) {
+        this.shoppingCartItemId = shoppingCartItemId;
+        this.shoppingCartItemQuantity = shoppingCartItemQuantity;
+        this.product = product;
+        this.shopping_cart = shopping_cart;
+    }
 }

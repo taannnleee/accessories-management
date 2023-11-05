@@ -1,6 +1,7 @@
 package com.example.accessoriesmanagement.DAO;
 
 import com.example.accessoriesmanagement.JPAConfig.DBUtil;
+import com.example.accessoriesmanagement.entity.Product;
 import com.example.accessoriesmanagement.entity.User;
 
 import javax.persistence.EntityManager;
@@ -16,12 +17,15 @@ import java.util.List;
 
 public class ProductDaoImpl implements IProductDao{
 
-    public static void insert(User user) {
+
+
+    @Override
+    public void insertProduct(Product product) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         trans.begin();
         try {
-            em.persist(user);
+            em.persist(product);
             trans.commit();
         } catch (Exception e) {
             System.out.println(e);
@@ -97,4 +101,6 @@ public class ProductDaoImpl implements IProductDao{
         }
         return users;
     }
+
+
 }
