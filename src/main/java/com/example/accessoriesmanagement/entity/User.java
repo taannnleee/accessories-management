@@ -52,12 +52,97 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<ShoppingCart> shoppingCarts;
 
-    public void setEmail(String email) {
+
+    public Long getUserID() {
+        return userID;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public Date getDateJoin() {
+        return dateJoin;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setUserID(Long userID) {
+        this.userID = userID;
     }
 
     public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setDateJoin(Date dateJoin) {
+        this.dateJoin = dateJoin;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public User(Long userID, String firstName, String lastName, Date dateOfBirth, Date dateJoin, String email, String phone, String userName, String passWord, String role) {
+        this.userID = userID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.dateJoin = dateJoin;
+        this.email = email;
+        this.phone = phone;
+        this.userName = userName;
+        this.passWord = passWord;
+        this.role = role;
     }
 }

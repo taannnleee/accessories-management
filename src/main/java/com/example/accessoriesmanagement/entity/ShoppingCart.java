@@ -33,4 +33,51 @@ public class ShoppingCart implements Serializable {
     @OneToMany(mappedBy = "shopping_cart",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<ShoppingCartItem> shoppingCartItems;
 
+    public Long getShopOrderId() {
+        return shopOrderId;
+    }
+
+    public String getTransactionIdCustomer() {
+        return transactionIdCustomer;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public ShopOrder getShop_order() {
+        return shop_order;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setShopOrderId(Long shopOrderId) {
+        this.shopOrderId = shopOrderId;
+    }
+
+    public void setTransactionIdCustomer(String transactionIdCustomer) {
+        this.transactionIdCustomer = transactionIdCustomer;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public void setShop_order(ShopOrder shop_order) {
+        this.shop_order = shop_order;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public ShoppingCart(Long shopOrderId, String transactionIdCustomer, double totalPrice, ShopOrder shop_order, User user) {
+        this.shopOrderId = shopOrderId;
+        this.transactionIdCustomer = transactionIdCustomer;
+        this.totalPrice = totalPrice;
+        this.shop_order = shop_order;
+        this.user = user;
+    }
 }
