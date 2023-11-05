@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <servlet>
-        <servlet-name>UsersServlet</servlet-name>
-        <servlet-class>com.example.accessoriesmanagement.admin.UsersServlet</servlet-class>
+        <servlet-name>ProductController</servlet-name>
+        <servlet-class>com.example.accessoriesmanagement.controller.ProductController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>UsersServlet</servlet-name>
-        <url-pattern>/userAdmin</url-pattern>
+        <servlet-name>ProductController</servlet-name>
+        <url-pattern>/productAdmin</url-pattern>
     </servlet-mapping>
 </web-app>

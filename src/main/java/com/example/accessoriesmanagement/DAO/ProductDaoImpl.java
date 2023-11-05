@@ -1,15 +1,20 @@
-package com.example.accessoriesmanagement.JPAConfig;
+package com.example.accessoriesmanagement.DAO;
+
+import com.example.accessoriesmanagement.JPAConfig.DBUtil;
 import com.example.accessoriesmanagement.entity.User;
 
-
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.List;
 
-
-public class UserDB {
+public class ProductDaoImpl implements IProductDao{
 
     public static void insert(User user) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();

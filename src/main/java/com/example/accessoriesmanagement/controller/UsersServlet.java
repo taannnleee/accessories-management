@@ -1,9 +1,9 @@
-package com.example.accessoriesmanagement.admin;
+package com.example.accessoriesmanagement.controller;
 
 
 
 import com.example.accessoriesmanagement.entity.User;
-import com.example.accessoriesmanagement.JPAConfig.UserDB;
+import com.example.accessoriesmanagement.DAO.UserDB;
 
 import java.io.*;
 import java.util.*;
