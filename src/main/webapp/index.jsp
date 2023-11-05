@@ -35,7 +35,7 @@
 
 </table>
 
-<p><a href="userAdmin">Refresh</a></p>
+<p><a href="productAdmin">Refresh</a></p>
 
 </body>
 </html>

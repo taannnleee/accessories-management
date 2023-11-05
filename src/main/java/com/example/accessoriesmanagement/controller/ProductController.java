@@ -1,6 +1,6 @@
 package com.example.accessoriesmanagement.controller;
 
-import com.example.accessoriesmanagement.DAO.UserDB;
+import com.example.accessoriesmanagement.DAO.ProductDaoImpl;
 import com.example.accessoriesmanagement.entity.User;
 
 import javax.servlet.ServletException;
@@ -30,12 +30,12 @@ public class ProductController extends HttpServlet {
         // perform action and set URL to appropriate page
         if (action.equals("display_users")) {
             // get list of users
-            List<User> users = UserDB.selectUsers();
+            List<User> users = ProductDaoImpl.selectUsers();
             request.setAttribute("users", users);
         }
         else if (action.equals("display_user")) {
             String emailAddress = request.getParameter("email");
-            User user = UserDB.selectUser(emailAddress);
+            User user = ProductDaoImpl.selectUser(emailAddress);
             session.setAttribute("user", user);
             url = "/user.jsp";
         }
@@ -50,22 +50,22 @@ public class ProductController extends HttpServlet {
             user.setEmail(email);
             user.setFirstName(firstName);
             user.setLastName(lastName);
-            UserDB.update(user);
+            ProductDaoImpl.update(user);
 
             // get and set updated users
-            List<User> users = UserDB.selectUsers();
+            List<User> users = ProductDaoImpl.selectUsers();
             request.setAttribute("users", users);
         }
         else if (action.equals("delete_user")) {
             // get the user
             String email = request.getParameter("email");
-            User user = UserDB.selectUser(email);
+            User user = ProductDaoImpl.selectUser(email);
 
             // delte the user
-            UserDB.delete(user);
+            ProductDaoImpl.delete(user);
 
             // get and set updated users
-            List<User> users = UserDB.selectUsers();
+            List<User> users = ProductDaoImpl.selectUsers();
             request.setAttribute("users", users);
         }
 
