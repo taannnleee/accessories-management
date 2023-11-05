@@ -1,5 +1,6 @@
 package com.example.accessoriesmanagement.controller;
 
+import com.example.accessoriesmanagement.DAO.IProductDao;
 import com.example.accessoriesmanagement.DAO.ProductDaoImpl;
 import com.example.accessoriesmanagement.entity.User;
 
@@ -12,6 +13,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class ProductController extends HttpServlet {
+    IProductDao productDao = new ProductDaoImpl();
+
     @Override
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response)
@@ -35,7 +38,7 @@ public class ProductController extends HttpServlet {
         }
         else if (action.equals("display_user")) {
             String emailAddress = request.getParameter("email");
-            User user = ProductDaoImpl.selectUser(emailAddress);
+            User user = productDao.selectUser(emailAddress);
             session.setAttribute("user", user);
             url = "/user.jsp";
         }
@@ -59,7 +62,7 @@ public class ProductController extends HttpServlet {
         else if (action.equals("delete_user")) {
             // get the user
             String email = request.getParameter("email");
-            User user = ProductDaoImpl.selectUser(email);
+            User user = productDao.selectUser(email);
 
             // delte the user
             ProductDaoImpl.delete(user);

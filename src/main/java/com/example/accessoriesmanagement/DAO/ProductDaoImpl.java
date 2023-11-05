@@ -63,7 +63,8 @@ public class ProductDaoImpl implements IProductDao{
         }
     }
 
-    public static User selectUser(String email) {
+    @Override
+    public User selectUser(String email) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         String qString = "SELECT u FROM User u " +
                 "WHERE u.email = :email";
@@ -79,10 +80,10 @@ public class ProductDaoImpl implements IProductDao{
         }
     }
 
-    public static boolean emailExists(String email) {
-        User u = selectUser(email);
-        return u != null;
-    }
+//    public static boolean emailExists(String email) {
+//        User u = selectUser(email);
+//        return u != null;
+//    }
 
     public static List<User> selectUsers() {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
