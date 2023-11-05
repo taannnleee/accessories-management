@@ -18,9 +18,7 @@ import java.util.List;
 public class ProductDaoImpl implements IProductDao{
 
 
-
-    @Override
-    public void insertProduct(Product product) {
+    public static void insertProduct(Product product) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         trans.begin();
