@@ -1,5 +1,7 @@
 package com.example.accessoriesmanagement.controller.DTO;
 
+import com.example.accessoriesmanagement.entity.ProductCategory;
+
 public class ProductDTO {
 
     private Long productID;
@@ -17,13 +19,15 @@ public class ProductDTO {
     private String productImage;  // Đây có thể là URL hoặc đường dẫn tới hình ảnh
 
     private int productQuantity;
+    private String productCategoryId;
 
-    public ProductDTO(String productName, String productDescription, double productPrice, String productImage, int productQuantity) {
+    public ProductDTO(String productName, String productDescription, double productPrice, String productImage, int productQuantity,String productCategoryId) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productPrice = productPrice;
         this.productImage = productImage;
         this.productQuantity = productQuantity;
+        this.productCategoryId = productCategoryId;
     }
     public ProductDTO() {
     }
@@ -74,5 +78,14 @@ public class ProductDTO {
 
     public void setProductQuantity(int productQuantity) {
         this.productQuantity = productQuantity;
+    }
+
+
+    public String getProductCategoryId() {
+        return productCategoryId;
+    }
+
+    public void setProductCategoryId(String productCategoryId) {
+        this.productCategoryId = productCategoryId;
     }
 }

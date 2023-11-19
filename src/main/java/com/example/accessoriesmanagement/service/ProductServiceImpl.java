@@ -16,4 +16,11 @@ public class ProductServiceImpl implements IProductService{
         return Mappers.mapperEntityToDto(productRepository.selectProduct(),ProductDTO.class);
     }
 
+    @Override
+    public void insertProduct(ProductDTO productDTO)
+    {
+        productRepository.insertProduct(Mappers.convertToEntity(productDTO, Product.class));
+    }
+
+
 }

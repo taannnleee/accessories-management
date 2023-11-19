@@ -1,6 +1,7 @@
 package com.example.accessoriesmanagement.controller.admin;
 
 import com.example.accessoriesmanagement.controller.DTO.ProductCategoryDTO;
+import com.example.accessoriesmanagement.controller.DTO.ProductDTO;
 import com.example.accessoriesmanagement.entity.Product;
 import com.example.accessoriesmanagement.entity.ProductCategory;
 import com.example.accessoriesmanagement.service.IProductCategoryService;
@@ -47,11 +48,16 @@ public class AddProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+
         String name = req.getParameter("name");
         String description = req.getParameter("description");
-        String price = req.getParameter("price");
-        String quantity = req.getParameter("quantity");
-        
+        Double price = Double.valueOf(req.getParameter("price"));
+        Integer quantity = Integer.valueOf(req.getParameter("quantity"));
+        String categoryId = req.getParameter("categoryId");
+
         Part file = req.getPart("image_multipart");
         String imageFileName = file.getSubmittedFileName();
         String uploadPath = "C:/Users/Admin/Downloads/DoAnLTWeb/accessories-management/src/main/webapp/static/"+ imageFileName;
@@ -66,14 +72,20 @@ public class AddProductController extends HttpServlet {
         }catch (Exception e){
             e.printStackTrace();
         }
+        try {
+            ProductDTO productDTO = new ProductDTO(name, description, price, imageFileName, quantity, categoryId);
+            productService.insertProduct(productDTO);
 
+            RequestDispatcher rd = req.getRequestDispatcher("/success.jsp");
+            rd.forward(req, resp);
+        } catch (Exception e) {
+            // Xử lý exception ở đây, ví dụ:
+            e.printStackTrace(); // In ra stack trace để ghi nhận lỗi
 
-
-
-
-
-        RequestDispatcher rd = req.getRequestDispatcher("/success.jsp");
-        rd.forward(req, resp);
+            // Forward hoặc redirect tới một trang lỗi để thông báo cho người dùng về sự cố
+            RequestDispatcher errorDispatcher = req.getRequestDispatcher("/error.jsp");
+            errorDispatcher.forward(req, resp);
+        }
 
     }
 }

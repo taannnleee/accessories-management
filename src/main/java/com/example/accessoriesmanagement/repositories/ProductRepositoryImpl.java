@@ -4,6 +4,7 @@ import com.example.accessoriesmanagement.JPAConfig.DBUtil;
 import com.example.accessoriesmanagement.entity.Product;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -24,6 +25,22 @@ public class ProductRepositoryImpl implements IProductRepository {
             em.close();
         }
         return products;
+    }
+
+    @Override
+    public void insertProduct(Product product) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        try {
+            em.persist(product);
+            trans.commit();
+        } catch (Exception e) {
+            System.out.println(e);
+            trans.rollback();
+        } finally {
+            em.close();
+        }
     }
 
 
