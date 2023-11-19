@@ -1,5 +1,6 @@
 package com.example.accessoriesmanagement.controller.admin;
 
+import com.example.accessoriesmanagement.controller.DTO.ProductDTO;
 import com.example.accessoriesmanagement.entity.Product;
 import com.example.accessoriesmanagement.service.IProductService;
 import com.example.accessoriesmanagement.service.ProductServiceImpl;
@@ -18,7 +19,7 @@ public class ProductListController extends HttpServlet {
     IProductService productService = new ProductServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Product> products = productService.selectProduct();
+        List<ProductDTO> products = productService.selectProduct();
         req.setAttribute("products", products);
         RequestDispatcher rd =  req.getRequestDispatcher("/manager_product_list.jsp");
         rd.forward(req,resp);

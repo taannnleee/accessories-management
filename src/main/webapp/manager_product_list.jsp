@@ -27,42 +27,63 @@
                 <c:forEach var="product" items="${products}">
                     <div class="card rounded-3 mb-4">
                         <div class="card-body p-4">
-                            <div class="row d-flex justify-content-between align-items-center">
+                            <div class="row align-items-center">
                                 <div class="col-md-2 col-lg-2 col-xl-2">
-                                    <img src="${pageContext.request.contextPath}/static/${product.productImage}"
-                                         alt="Example Image"/>
+                                    <img src="${pageContext.request.contextPath}/static/${product.productImage}" alt="Example Image"/>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-3">
-                                    <a>Name</a>
-                                    <h5 style="position: relative;margin-top: 10px" class="mb-0">
-                                        <p><c:out value="${product.productName}"/></p>
-                                    </h5>
+                                    <div class="row align-items-center">
+                                        <div class="col-12">
+                                            <a>Name</a>
+                                        </div>
+                                        <div class="col-12">
+                                            <h5 style="position: relative; margin-top: 10px" class="mb-0">
+                                                <p><c:out value="${product.productName}"/></p>
+                                            </h5>
+                                        </div>
+                                    </div>
                                 </div>
-
                                 <div class="col-md-3 col-lg-3 col-xl-3">
-                                    <a>Name</a>
-                                    <h5 style="position: relative;margin-top: 10px" class="mb-0">
-                                        <p><c:out value="${product.productDescription}"/></p>
-                                    </h5>
+                                    <div class="row align-items-center">
+                                        <div class="col-12">
+                                            <a>Description</a>
+                                        </div>
+                                        <div class="col-12">
+                                            <h5 style="position: relative; margin-top: 10px" class="mb-0">
+                                                <p><c:out value="${product.productDescription}"/></p>
+                                            </h5>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                    <a>Quantity</a>
-                                    <h5 style="position: relative;margin-top: 10px" class="mb-0">
-                                        <p><c:out value="${product.productQuantity}"/></p>
-                                    </h5>
+                                <div class="col-md-2 col-lg-2 col-xl-2">
+                                    <div class="row align-items-center">
+                                        <div class="col-12">
+                                            <a>Quantity</a>
+                                        </div>
+                                        <div class="col-12">
+                                            <h5 style="position: relative; margin-top: 10px" class="mb-0">
+                                                <p><c:out value="${product.productQuantity}"/></p>
+                                            </h5>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                    <a>Price</a>
-                                    <h5 style="position: relative; margin-top: 10px" class="mb-0">
-                                        <p><c:out value="${product.productPrice}"/> VNĐ</p>
-                                    </h5>
+                                <div class="col-md-2 col-lg-2 col-xl-2">
+                                    <div class="row align-items-center">
+                                        <div class="col-12">
+                                            <a>Price</a>
+                                        </div>
+                                        <div class="col-12">
+                                            <h5 style="position: relative; margin-top: 10px" class="mb-0">
+                                                <p><c:out value="${product.productPrice}"/> VNĐ</p>
+                                            </h5>
+                                        </div>
+                                    </div>
                                 </div>
-                                    <%--                                teem xóa sửa--%>
+                                    <%-- teem xóa sửa --%>
                             </div>
                         </div>
                     </div>
+
                 </c:forEach>
 
 

@@ -16,7 +16,7 @@
 </head>
 <body>
 <h1>Thêm sản phẩm</h1>
-<form action="add_product" method="post"  enctype="multipart/form-data">
+<form action="add_product" method="post" enctype="multipart/form-data">
 
     <div class="form-group">
         <label for="productCategory">Danh mục sản phẩm:</label>

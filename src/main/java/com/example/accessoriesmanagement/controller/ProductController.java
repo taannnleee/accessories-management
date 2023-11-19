@@ -1,5 +1,6 @@
 package com.example.accessoriesmanagement.controller;
 
+import com.example.accessoriesmanagement.controller.DTO.ProductDTO;
 import com.example.accessoriesmanagement.entity.Product;
 import com.example.accessoriesmanagement.service.IProductService;
 import com.example.accessoriesmanagement.service.ProductServiceImpl;
@@ -34,7 +35,7 @@ public class ProductController extends HttpServlet {
         // perform action and set URL to appropriate page
         if (action.equals("display_users")) {
             // get list of users
-            List<Product> products = productService.selectProduct();
+            List<ProductDTO> products = productService.selectProduct();
 
             request.setAttribute("products",products);
         }
