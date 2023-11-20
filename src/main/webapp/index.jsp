@@ -23,13 +23,11 @@
     </tr>
 
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <c:forEach var="user" items="${users}">
+    <c:forEach var="product" items="${products}">
         <tr>
-            <td>${user.firstName}</td>
-            <td>${user.lastName}</td>
-            <td>${user.email}</td>
-            <td><a href="userAdmin?action=display_user&amp;email=${user.email}">Update</a></td>
-            <td><a href="userAdmin?action=delete_user&amp;email=${user.email}">Delete</a></td>
+            <td>${product.productID}</td>
+            <td>${product.productName}</td>
+            <td>${product.productDescription}</td>
         </tr>
     </c:forEach>
 

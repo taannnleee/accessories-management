@@ -13,9 +13,6 @@ public class ShoppingCart implements Serializable {
     @Column(name = "shopping_cart_id")
     private Long shopOrderId;
 
-    @Column(name = "transaction_id_customer")             // có thể hàm sinh ngẫu nhiên nhung phải đảm bảo nó không trùng nhau
-    private String transactionIdCustomer;
-
     @Column(name = "total_price")
     private double totalPrice;
 
@@ -41,10 +38,6 @@ public class ShoppingCart implements Serializable {
         return shopOrderId;
     }
 
-    public String getTransactionIdCustomer() {
-        return transactionIdCustomer;
-    }
-
     public double getTotalPrice() {
         return totalPrice;
     }
@@ -61,9 +54,6 @@ public class ShoppingCart implements Serializable {
         this.shopOrderId = shopOrderId;
     }
 
-    public void setTransactionIdCustomer(String transactionIdCustomer) {
-        this.transactionIdCustomer = transactionIdCustomer;
-    }
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
@@ -77,9 +67,8 @@ public class ShoppingCart implements Serializable {
         this.user = user;
     }
 
-    public ShoppingCart(Long shopOrderId, String transactionIdCustomer, double totalPrice, ShopOrder shop_order, User user) {
+    public ShoppingCart(Long shopOrderId, double totalPrice, ShopOrder shop_order, User user) {
         this.shopOrderId = shopOrderId;
-        this.transactionIdCustomer = transactionIdCustomer;
         this.totalPrice = totalPrice;
         this.shop_order = shop_order;
         this.user = user;
