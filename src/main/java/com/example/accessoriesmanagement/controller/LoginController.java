@@ -1,7 +1,7 @@
 package com.example.accessoriesmanagement.controller;
 
-import com.example.accessoriesmanagement.DAO.IUserDao;
-import com.example.accessoriesmanagement.DAO.UserDaoImpl;
+import com.example.accessoriesmanagement.repositories.IUserRepository;
+import com.example.accessoriesmanagement.repositories.UserRepositoryImpl;
 import com.example.accessoriesmanagement.entity.User;
 
 import java.io.IOException;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LoginControl", urlPatterns = {"/login"})
 public class LoginController extends HttpServlet {
 
-    private final IUserDao userDao = new UserDaoImpl();
+    private final IUserRepository userDao = new UserRepositoryImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -1,7 +1,8 @@
-package com.example.accessoriesmanagement.DAO;
+package com.example.accessoriesmanagement.repositories;
 
 import com.example.accessoriesmanagement.JPAConfig.DBUtil;
 import com.example.accessoriesmanagement.entity.User;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 
-public class UserDaoImpl implements IUserDao{
+public class UserRepositoryImpl implements IUserRepository {
     public User authenticateUser(String user, String pass) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         String jpql = "SELECT a FROM User a " +

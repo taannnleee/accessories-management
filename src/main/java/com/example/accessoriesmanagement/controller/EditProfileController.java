@@ -1,7 +1,7 @@
 package com.example.accessoriesmanagement.controller;
 
-import com.example.accessoriesmanagement.DAO.IUserDao;
-import com.example.accessoriesmanagement.DAO.UserDaoImpl;
+import com.example.accessoriesmanagement.repositories.IUserRepository;
+import com.example.accessoriesmanagement.repositories.UserRepositoryImpl;
 import com.example.accessoriesmanagement.entity.User;
 import java.io.IOException;
 import java.text.ParseException;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "EditProfileControl", urlPatterns = {"/editProfile"})
 public class EditProfileController extends HttpServlet {
 
-    private final IUserDao userDao = new UserDaoImpl();
+    private final IUserRepository userDao = new UserRepositoryImpl();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");

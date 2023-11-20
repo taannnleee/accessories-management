@@ -1,6 +1,6 @@
 package com.example.accessoriesmanagement.controller;
-import com.example.accessoriesmanagement.DAO.IUserDao;
-import com.example.accessoriesmanagement.DAO.UserDaoImpl;
+import com.example.accessoriesmanagement.repositories.IUserRepository;
+import com.example.accessoriesmanagement.repositories.UserRepositoryImpl;
 import com.example.accessoriesmanagement.entity.User;
 
 import java.io.IOException;
@@ -25,7 +25,7 @@ public class SignUpController extends HttpServlet {
         if (!pass.equals(re_pass)) {
             response.sendRedirect("Login.jsp");
         } else {
-            IUserDao userDao = new UserDaoImpl();
+            IUserRepository userDao = new UserRepositoryImpl();
 
             User existingUser = userDao.checkAccountExist(user);
 
