@@ -56,7 +56,7 @@ public class AddProductController extends HttpServlet {
         String description = req.getParameter("description");
         Double price = Double.valueOf(req.getParameter("price"));
         Integer quantity = Integer.valueOf(req.getParameter("quantity"));
-        String categoryId = req.getParameter("categoryId");
+        Long categoryId = Long.valueOf(req.getParameter("categoryId"));
 
         Part file = req.getPart("image_multipart");
         String imageFileName = file.getSubmittedFileName();
@@ -75,7 +75,6 @@ public class AddProductController extends HttpServlet {
         try {
             ProductDTO productDTO = new ProductDTO(name, description, price, imageFileName, quantity, categoryId);
             productService.insertProduct(productDTO);
-
             RequestDispatcher rd = req.getRequestDispatcher("/success.jsp");
             rd.forward(req, resp);
         } catch (Exception e) {

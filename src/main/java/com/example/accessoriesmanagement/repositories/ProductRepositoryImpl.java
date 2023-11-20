@@ -42,6 +42,49 @@ public class ProductRepositoryImpl implements IProductRepository {
             em.close();
         }
     }
+    @Override
+    public Product getProductById(Long productId) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            return em.find(Product.class, productId);
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public void update(Product product) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        try {
+            em.merge(product);
+            trans.commit();
+        } catch (Exception e) {
+            System.out.println("haha");
+            System.out.println(e);
+            trans.rollback();
+
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public void delete(Product product) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        trans.begin();
+        try {
+            em.remove(em.merge(product));
+            trans.commit();
+        } catch (Exception e) {
+            System.out.println(e);
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+    }
 
 
 }

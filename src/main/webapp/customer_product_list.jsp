@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-
-
 <section class="h-100" style="background-color: #eee;">
     <div class="container h-100 py-5">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -72,32 +70,19 @@
 
                                 <div class="col-md-2 col-lg-2 col-xl-2">
 
-                                    <form action="edit_product" method="post">
+                                    <form action="add_to_cart" method="post">
                                         <input type="hidden" name="product_id" value="${product.productID}">
-                                        <input type="hidden" name="action" value="getProductEdit">
-                                        <button type="submit" class="btn btn-success mb-2 w-100">Edit</button>
+                                        <input type="hidden" name="action" value="addToCart">
+                                        <button type="submit" class="btn btn-success mb-2 w-100">
+                                            <i class="fas fa-cart-plus"></i> Add to Cart
+                                        </button>
                                     </form>
-
-                                    <form action="delete_product" method="post">
-                                        <input type="hidden" name="product_id" value="${product.productID}">
-                                        <button type="submit" class="btn btn-warning mb-2 w-100">Delete</button>
-                                    </form>
-
-
                                 </div>
 
                             </div>
                         </div>
                     </div>
-
                 </c:forEach>
-
-
-                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                    <a href="<c:url value='/add_product'/>">
-                        <button type="button" class="btn btn-outline-warning btn-sm ms-2">Add New Product</button>
-                    </a>
-                </div>
             </div>
         </div>
     </div>

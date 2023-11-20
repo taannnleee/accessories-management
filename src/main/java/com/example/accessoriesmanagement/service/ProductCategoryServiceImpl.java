@@ -17,4 +17,8 @@ public class ProductCategoryServiceImpl implements IProductCategoryService {
         return Mappers.mapperEntityToDto(productCategoryRepository.selectProductCategory(),ProductCategoryDTO.class);
     }
 
+    @Override
+    public ProductCategoryDTO getProductCategoryById(Long productCategoryId){
+        return Mappers.convertToDto(productCategoryRepository.getProductCategoryById(productCategoryId),ProductCategoryDTO.class);
+    }
 }

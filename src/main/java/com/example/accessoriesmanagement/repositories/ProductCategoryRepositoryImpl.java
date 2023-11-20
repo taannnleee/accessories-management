@@ -1,6 +1,7 @@
 package com.example.accessoriesmanagement.repositories;
 
 import com.example.accessoriesmanagement.JPAConfig.DBUtil;
+import com.example.accessoriesmanagement.entity.Product;
 import com.example.accessoriesmanagement.entity.ProductCategory;
 
 import javax.persistence.EntityManager;
@@ -23,5 +24,15 @@ public class ProductCategoryRepositoryImpl implements IProductCategoryRepository
             em.close();
         }
         return productCategories;
+    }
+
+    @Override
+    public ProductCategory getProductCategoryById(Long productCategoryId) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            return em.find(ProductCategory.class, productCategoryId);
+        } finally {
+            em.close();
+        }
     }
 }

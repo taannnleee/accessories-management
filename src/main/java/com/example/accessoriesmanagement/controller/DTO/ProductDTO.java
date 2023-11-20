@@ -19,9 +19,9 @@ public class ProductDTO {
     private String productImage;  // Đây có thể là URL hoặc đường dẫn tới hình ảnh
 
     private int productQuantity;
-    private String productCategoryId;
+    private Long productCategoryId;
 
-    public ProductDTO(String productName, String productDescription, double productPrice, String productImage, int productQuantity,String productCategoryId) {
+    public ProductDTO(String productName, String productDescription, double productPrice, String productImage, int productQuantity,Long productCategoryId) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productPrice = productPrice;
@@ -81,11 +81,11 @@ public class ProductDTO {
     }
 
 
-    public String getProductCategoryId() {
+    public Long getProductCategoryId() {
         return productCategoryId;
     }
 
-    public void setProductCategoryId(String productCategoryId) {
+    public void setProductCategoryId(Long productCategoryId) {
         this.productCategoryId = productCategoryId;
     }
 }

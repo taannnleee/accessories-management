@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface IProductCategoryService {
     List<ProductCategoryDTO> selectProductCategory();
+    ProductCategoryDTO getProductCategoryById(Long productCategoryId);
 }
