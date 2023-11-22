@@ -149,33 +149,101 @@
 
 
 <div class="container">
+
+<%--    Cái này của Hậu tao đóng lại test thử nha--%>
+
+
+<%--    <div class="row" style="margin-top:25px">--%>
+<%--        <h1 style="text-align:center; width:100%" id="moiNhat">SẢN PHẨM MỚI NHẤT</h1>--%>
+<%--        <div class="col-sm-12">--%>
+<%--            <div id="contentMoiNhat" class="row">--%>
+<%--                <c:forEach items="${list8Last}" var="o">--%>
+<%--                    <div class=" col-12 col-md-6 col-lg-3">--%>
+<%--                        <div class="card">--%>
+<%--                            <div class="view zoom z-depth-2 rounded">--%>
+<%--                                <img class="img-fluid w-100" src="${o.image}" alt="Card image cap">--%>
+
+<%--                            </div>--%>
+<%--                            <div class="card-body">--%>
+<%--                                <h4 class="card-title show_txt"><a href="detail?pid=${o.id}" title="View Product">${o.name}</a></h4>--%>
+<%--                                <p class="card-text show_txt">${o.title}</p>--%>
+<%--                                <div class="row">--%>
+<%--                                    <div class="col">--%>
+<%--                                        <p class="btn btn-success btn-block">${o.price} $</p>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </c:forEach>--%>
+<%--            </div>--%>
+
+<%--        </div>--%>
+
+<%--    </div>--%>
     <div class="row" style="margin-top:25px">
         <h1 style="text-align:center; width:100%" id="moiNhat">SẢN PHẨM MỚI NHẤT</h1>
-        <div class="col-sm-12">
-            <div id="contentMoiNhat" class="row">
-                <c:forEach items="${list8Last}" var="o">
-                    <div class=" col-12 col-md-6 col-lg-3">
-                        <div class="card">
-                            <div class="view zoom z-depth-2 rounded">
-                                <img class="img-fluid w-100" src="${o.image}" alt="Card image cap">
-
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title show_txt"><a href="detail?pid=${o.id}" title="View Product">${o.name}</a></h4>
-                                <p class="card-text show_txt">${o.title}</p>
-                                <div class="row">
-                                    <div class="col">
-                                        <p class="btn btn-success btn-block">${o.price} $</p>
-                                    </div>
+        <c:forEach var="product" items="${products}">
+            <div class="card rounded-3 mb-4">
+                <div class="card-body p-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-2 col-lg-2 col-xl-2">
+                            <img src="${pageContext.request.contextPath}/static/${product.productImage}"
+                                 alt="Example Image"/>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-3">
+                            <div class="row align-items-center">
+                                <div class="col-12">
+                                    <a>Name</a>
+                                </div>
+                                <div class="col-12">
+                                    <h5 style="position: relative; margin-top: 10px" class="mb-0">
+                                        <p><c:out value="${product.productName}"/></p>
+                                    </h5>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-md-2 col-lg-2 col-xl-2">
+                            <div class="row align-items-center">
+                                <div class="col-12">
+                                    <a>Quantity</a>
+                                </div>
+                                <div class="col-12">
+                                    <h5 style="position: relative; margin-top: 10px" class="mb-0">
+                                        <p><c:out value="${product.productQuantity}"/></p>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-3">
+                            <div class="row align-items-center">
+                                <div class="col-12">
+                                    <a>Price</a>
+                                </div>
+                                <div class="col-12">
+                                    <h5 style="position: relative; margin-top: 10px" class="mb-0">
+                                        <p><c:out value="${product.productPrice}"/></p>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 col-lg-2 col-xl-2">
+
+                            <form action="add_to_cart" method="post">
+                                <input type="hidden" name="product_id" value="${product.productID}">
+                                <input type="hidden" name="action" value="addToCart">
+                                <button type="submit" class="btn btn-success mb-2 w-100">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
+                            </form>
+                        </div>
+
                     </div>
-                </c:forEach>
+                </div>
             </div>
-
-        </div>
-
+        </c:forEach>
     </div>
 
 
