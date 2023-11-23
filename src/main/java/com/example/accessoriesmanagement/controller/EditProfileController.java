@@ -1,7 +1,7 @@
 package com.example.accessoriesmanagement.controller;
 
 import com.example.accessoriesmanagement.repositories.IUserRepository;
-import com.example.accessoriesmanagement.repositories.UserRepositoryImpl;
+import com.example.accessoriesmanagement.repositories.Impl.UserRepositoryImpl;
 import com.example.accessoriesmanagement.entity.User;
 import java.io.IOException;
 import java.text.ParseException;

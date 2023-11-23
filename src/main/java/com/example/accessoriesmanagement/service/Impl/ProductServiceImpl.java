@@ -5,8 +5,8 @@ import com.example.accessoriesmanagement.controller.DTO.ProductDTO;
 import com.example.accessoriesmanagement.entity.ProductCategory;
 import com.example.accessoriesmanagement.repositories.IProductCategoryRepository;
 import com.example.accessoriesmanagement.repositories.IProductRepository;
-import com.example.accessoriesmanagement.repositories.ProductCategoryRepositoryImpl;
-import com.example.accessoriesmanagement.repositories.ProductRepositoryImpl;
+import com.example.accessoriesmanagement.repositories.Impl.ProductCategoryRepositoryImpl;
+import com.example.accessoriesmanagement.repositories.Impl.ProductRepositoryImpl;
 import com.example.accessoriesmanagement.entity.Product;
 import com.example.accessoriesmanagement.service.IProductService;
 

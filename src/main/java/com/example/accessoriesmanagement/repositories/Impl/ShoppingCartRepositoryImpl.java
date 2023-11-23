@@ -1,4 +1,4 @@
-package com.example.accessoriesmanagement.repositories;
+package com.example.accessoriesmanagement.repositories.Impl;
 
 import com.example.accessoriesmanagement.JPAConfig.DBUtil;
 import com.example.accessoriesmanagement.entity.ShoppingCart;
