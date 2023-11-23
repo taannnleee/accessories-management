@@ -2,13 +2,10 @@ package com.example.accessoriesmanagement.controller;
 
 import com.example.accessoriesmanagement.controller.DTO.ProductDTO;
 import com.example.accessoriesmanagement.service.IProductService;
-import com.example.accessoriesmanagement.service.ProductServiceImpl;
+import com.example.accessoriesmanagement.service.Impl.ProductServiceImpl;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;

@@ -2,6 +2,7 @@ package com.example.accessoriesmanagement.repositories;
 
 import com.example.accessoriesmanagement.JPAConfig.DBUtil;
 import com.example.accessoriesmanagement.entity.User;
+import com.example.accessoriesmanagement.repositories.IUserRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

@@ -1,10 +1,10 @@
-package com.example.accessoriesmanagement.service;
+package com.example.accessoriesmanagement.service.Impl;
 
 import com.example.accessoriesmanagement.Mapper.Mappers;
 import com.example.accessoriesmanagement.controller.DTO.ProductCategoryDTO;
 import com.example.accessoriesmanagement.repositories.IProductCategoryRepository;
 import com.example.accessoriesmanagement.repositories.ProductCategoryRepositoryImpl;
-import com.example.accessoriesmanagement.entity.ProductCategory;
+import com.example.accessoriesmanagement.service.IProductCategoryService;
 
 import java.util.List;
 

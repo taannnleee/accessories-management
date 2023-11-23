@@ -211,6 +211,7 @@
                                 </div>
                                 <div class="col-12">
                                     <h5 style="position: relative; margin-top: 10px" class="mb-0">
+                                        <input type="hidden" name="quantity" value="${product.productQuantity}">
                                         <p><c:out value="${product.productQuantity}"/></p>
                                     </h5>
                                 </div>

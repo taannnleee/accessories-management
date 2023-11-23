@@ -1,9 +1,8 @@
 package com.example.accessoriesmanagement.controller;
 
 import com.example.accessoriesmanagement.controller.DTO.ProductDTO;
-import com.example.accessoriesmanagement.entity.Product;
 import com.example.accessoriesmanagement.service.IProductService;
-import com.example.accessoriesmanagement.service.ProductServiceImpl;
+import com.example.accessoriesmanagement.service.Impl.ProductServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

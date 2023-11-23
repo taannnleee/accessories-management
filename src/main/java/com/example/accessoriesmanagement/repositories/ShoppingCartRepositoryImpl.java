@@ -1,40 +1,39 @@
 package com.example.accessoriesmanagement.repositories;
 
 import com.example.accessoriesmanagement.JPAConfig.DBUtil;
-import com.example.accessoriesmanagement.entity.Product;
-import com.example.accessoriesmanagement.repositories.IProductRepository;
+import com.example.accessoriesmanagement.entity.ShoppingCart;
+import com.example.accessoriesmanagement.repositories.IShoppingCartRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-public class ProductRepositoryImpl implements IProductRepository {
-
+public class ShoppingCartRepositoryImpl implements IShoppingCartRepository {
     @Override
-    public List<Product> selectProduct() {
+    public List<ShoppingCart> selectShoppingCart() {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        String qString = "SELECT p from Product p";
-        TypedQuery<Product> q = em.createQuery(qString, Product.class);
+        String qString = "SELECT p from ShoppingCart p";
+        TypedQuery<ShoppingCart> q = em.createQuery(qString, ShoppingCart.class);
 
-        List<Product> products;
+        List<ShoppingCart> shoppingCarts;
         try {
-            products = q.getResultList();
-            if (products == null || products.isEmpty())
-                products = null;
+            shoppingCarts = q.getResultList();
+            if (shoppingCarts == null || shoppingCarts.isEmpty())
+                shoppingCarts = null;
         } finally {
             em.close();
         }
-        return products;
+        return shoppingCarts;
     }
 
     @Override
-    public void insertProduct(Product product) {
+    public void insertShoppingCart(ShoppingCart shoppingCart) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         trans.begin();
         try {
-            em.persist(product);
+            em.persist(shoppingCart);
             trans.commit();
         } catch (Exception e) {
             System.out.println(e);
@@ -44,22 +43,22 @@ public class ProductRepositoryImpl implements IProductRepository {
         }
     }
     @Override
-    public Product getProductById(Long productId) {
+    public ShoppingCart getShoppingCartById(Long shoppingCartId) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            return em.find(Product.class, productId);
+            return em.find(ShoppingCart.class, shoppingCartId);
         } finally {
             em.close();
         }
     }
 
     @Override
-    public void update(Product product) {
+    public void updateShoppingCart(ShoppingCart shoppingCart) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         trans.begin();
         try {
-            em.merge(product);
+            em.merge(shoppingCart);
             trans.commit();
         } catch (Exception e) {
             System.out.println(e);
@@ -71,12 +70,12 @@ public class ProductRepositoryImpl implements IProductRepository {
     }
 
     @Override
-    public void delete(Product product) {
+    public void deleteShoppingCart(ShoppingCart shoppingCart) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
         trans.begin();
         try {
-            em.remove(em.merge(product));
+            em.remove(em.merge(shoppingCart));
             trans.commit();
         } catch (Exception e) {
             System.out.println(e);
@@ -85,6 +84,4 @@ public class ProductRepositoryImpl implements IProductRepository {
             em.close();
         }
     }
-
-
 }

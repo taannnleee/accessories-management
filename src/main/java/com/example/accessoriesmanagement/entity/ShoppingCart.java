@@ -3,6 +3,7 @@ package com.example.accessoriesmanagement.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 import javax.persistence.*;
 
 @Entity
@@ -73,4 +74,6 @@ public class ShoppingCart implements Serializable {
         this.shop_order = shop_order;
         this.user = user;
     }
+
+
 }

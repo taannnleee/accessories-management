@@ -2,12 +2,10 @@ package com.example.accessoriesmanagement.controller.admin;
 
 import com.example.accessoriesmanagement.controller.DTO.ProductCategoryDTO;
 import com.example.accessoriesmanagement.controller.DTO.ProductDTO;
-import com.example.accessoriesmanagement.entity.Product;
-import com.example.accessoriesmanagement.entity.ProductCategory;
 import com.example.accessoriesmanagement.service.IProductCategoryService;
 import com.example.accessoriesmanagement.service.IProductService;
-import com.example.accessoriesmanagement.service.ProductCategoryServiceImpl;
-import com.example.accessoriesmanagement.service.ProductServiceImpl;
+import com.example.accessoriesmanagement.service.Impl.ProductCategoryServiceImpl;
+import com.example.accessoriesmanagement.service.Impl.ProductServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,16 +15,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
-import java.util.Locale;
 
 @WebServlet("/add_product")
 @MultipartConfig

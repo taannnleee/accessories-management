@@ -1,8 +1,8 @@
 package com.example.accessoriesmanagement.Mapper;
 
-
 import org.modelmapper.ModelMapper;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,6 +14,10 @@ public class Mappers {
     }
 
     public static <S, D> List<D> mapperEntityToDto(List<S> sourceList, Class<D> destinationType) {
+        if (sourceList == null) {
+            return Collections.emptyList();
+        }
+
         return sourceList.stream()
                 .map(source -> modelMapper.map(source, destinationType))
                 .collect(Collectors.toList());
@@ -24,9 +28,12 @@ public class Mappers {
     }
 
     public static <S, D> List<D> mapperDtoToEntity(List<S> sourceList, Class<D> destinationType) {
+        if (sourceList == null) {
+            return Collections.emptyList();
+        }
+
         return sourceList.stream()
                 .map(source -> modelMapper.map(source, destinationType))
                 .collect(Collectors.toList());
     }
 }
-

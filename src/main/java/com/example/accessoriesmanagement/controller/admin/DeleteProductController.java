@@ -2,7 +2,7 @@ package com.example.accessoriesmanagement.controller.admin;
 
 import com.example.accessoriesmanagement.controller.DTO.ProductDTO;
 import com.example.accessoriesmanagement.service.IProductService;
-import com.example.accessoriesmanagement.service.ProductServiceImpl;
+import com.example.accessoriesmanagement.service.Impl.ProductServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

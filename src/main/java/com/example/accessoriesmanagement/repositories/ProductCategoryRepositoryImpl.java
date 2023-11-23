@@ -3,6 +3,7 @@ package com.example.accessoriesmanagement.repositories;
 import com.example.accessoriesmanagement.JPAConfig.DBUtil;
 import com.example.accessoriesmanagement.entity.Product;
 import com.example.accessoriesmanagement.entity.ProductCategory;
+import com.example.accessoriesmanagement.repositories.IProductCategoryRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

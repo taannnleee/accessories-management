@@ -11,6 +11,5 @@ public class ShoppingCartDTO {
 
     private String transactionIdCustomer;
 
-
     private double totalPrice;
 }
