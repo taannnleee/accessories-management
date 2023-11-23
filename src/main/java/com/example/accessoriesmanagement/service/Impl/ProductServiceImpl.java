@@ -39,6 +39,7 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public void update(ProductDTO productDTO){
         Product product = Mappers.convertToEntity(productDTO, Product.class);
+        System.out.println(productDTO.getProductID());
         productRepository.update(product);
     }
     @Override

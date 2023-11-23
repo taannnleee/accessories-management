@@ -75,5 +75,19 @@ public class ShoppingCart implements Serializable {
         this.user = user;
     }
 
+    public List<Payment> getPayments() {
+        return payments;
+    }
 
+    public List<ShoppingCartItem> getShoppingCartItems() {
+        return shoppingCartItems;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
+    }
+
+    public void setShoppingCartItems(List<ShoppingCartItem> shoppingCartItems) {
+        this.shoppingCartItems = shoppingCartItems;
+    }
 }

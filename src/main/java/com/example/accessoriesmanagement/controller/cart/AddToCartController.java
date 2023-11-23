@@ -7,7 +7,9 @@ import com.example.accessoriesmanagement.entity.ShoppingCart;
 import com.example.accessoriesmanagement.entity.ShoppingCartItem;
 import com.example.accessoriesmanagement.entity.User;
 import com.example.accessoriesmanagement.service.IProductService;
+import com.example.accessoriesmanagement.service.IShoppingCartService;
 import com.example.accessoriesmanagement.service.Impl.ProductServiceImpl;
+import com.example.accessoriesmanagement.service.Impl.ShoppingCartServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,10 +18,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/add_to_cart")
 public class AddToCartController extends HttpServlet {
     IProductService productService = new ProductServiceImpl();
+    IShoppingCartService shoppingCartService = new ShoppingCartServiceImpl();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp);
@@ -27,35 +33,61 @@ public class AddToCartController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String url = "view_cart";
-        HttpSession session = req.getSession();
+        try {
+            String url = "view_cart";
+            HttpSession session = req.getSession();
 
-        User user = (User) session.getAttribute("acc");
-        String product_id = req.getParameter("product_id");
-        String quantity = req.getParameter("quantity");
+            User user = (User) session.getAttribute("acc");
+            String product_id = req.getParameter("product_id");
+            String quantity = req.getParameter("quantity");
 
-        ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
-        if (shoppingCart == null) {
-            shoppingCart = new ShoppingCart();
-            shoppingCart.setUser(user);
-            session.setAttribute("shoppingCart", shoppingCart);
+            ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+
+            System.out.println(session.getAttribute("acc"));
+
+            if (user != null) {
+                // Kiểm tra xem người dùng đã đăng nhập hay chưa
+                if (shoppingCart == null || !user.getUserID().equals(shoppingCart.getUser().getUserID())) {
+                    // Nếu đăng nhập với tài khoản mới hoặc chưa có giỏ hàng, tạo giỏ hàng mới
+                    shoppingCart = new ShoppingCart();
+                    shoppingCart.setUser(user);
+                    shoppingCart.setShop_order(null);
+                    shoppingCart.setTotalPrice(0);
+                    session.setAttribute("shoppingCart", shoppingCart);
+                }
+
+
+                Long productId = Long.valueOf(product_id);
+                ProductDTO productDTO = productService.getProductById(productId);
+
+
+
+                ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
+                shoppingCartItem.setProduct(Mappers.convertToEntity(productDTO, Product.class));
+                shoppingCartItem.setShopping_cart(shoppingCart);
+                shoppingCartItem.setShoppingCartItemQuantity(quantity);
+
+                // Thêm shoppingCartItem vào shoppingCart
+                List<ShoppingCartItem> shoppingCartItems = new ArrayList<>();
+                shoppingCartItems.add(shoppingCartItem);
+
+                shoppingCart.setShoppingCartItems(shoppingCartItems);
+
+                shoppingCartService.insertShoppingCart(shoppingCart);
+
+
+
+                session.setAttribute("shoppingCart", shoppingCart);
+
+
+                resp.sendRedirect(url);
+
+            }
         }
-        //System.out.println(session.getAttribute("shoppingCart"));
-
-
-        Long productId = Long.valueOf(product_id);
-        ProductDTO productDTO = productService.getProductById(productId);
-
-
-        ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
-        shoppingCartItem.setProduct(Mappers.convertToEntity(productDTO,Product.class));
-
-        shoppingCartItem.setShopping_cart(shoppingCart);
-        shoppingCartItem.setShoppingCartItemQuantity(quantity);
-
-
-        resp.sendRedirect(url);
+        catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Có lỗi xảy ra: " + e.getMessage()); // In ra thông điệp lỗi nếu cần
+        }
 
     }
-
 }
