@@ -2,6 +2,7 @@ package com.example.accessoriesmanagement.DAO;
 
 import com.example.accessoriesmanagement.JPAConfig.DBUtil;
 import com.example.accessoriesmanagement.entity.Product;
+import com.example.accessoriesmanagement.entity.ProductCategory;
 import com.example.accessoriesmanagement.entity.User;
 
 import javax.persistence.EntityManager;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+import javax.persistence.*;
 
 public class ProductDaoImpl implements IProductDao{
 
@@ -101,5 +103,102 @@ public class ProductDaoImpl implements IProductDao{
         return users;
     }
 
+    public List<Product> getAllProducts() {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
 
+        String jpql = "SELECT p FROM Product p";
+
+        try {
+            TypedQuery<Product> query = em.createQuery(jpql, Product.class);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+    public List<Product> get8Last() {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String qString = "SELECT u FROM Product u where 1=1 ";
+        TypedQuery<Product> q = em.createQuery(qString, Product.class);
+
+        try {
+            return q.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Product> get4NikeLast() {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String jpql = "SELECT p FROM Product p WHERE p.product_category.productCategoryID = :categoryId ORDER BY p.productID DESC";
+        try {
+            Query query = em.createQuery(jpql, Product.class);
+            query.setParameter("categoryId", 2L);
+            query.setMaxResults(4);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Product> get4AdidasLast() {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String jpql = "SELECT p FROM Product p WHERE p.product_category.productCategoryID = :categoryId ORDER BY p.productID DESC";
+        try {
+            Query query = em.createQuery(jpql, Product.class);
+            query.setParameter("categoryId", 1L);
+            query.setMaxResults(4);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Product> get4PumaLast() {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String jpql = "SELECT p FROM Product p WHERE p.product_category.productCategoryID = :categoryId ORDER BY p.productID DESC";
+        try {
+            Query query = em.createQuery(jpql, Product.class);
+            query.setParameter("categoryId", 3L);
+            query.setMaxResults(4);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+    public List<Product> get4AnanasLast() {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String jpql = "SELECT p FROM Product p WHERE p.product_category.productCategoryID = :categoryId ORDER BY p.productID DESC";
+        try {
+            Query query = em.createQuery(jpql, Product.class);
+            query.setParameter("categoryId", 4L);
+            query.setMaxResults(4);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public long countAllProduct() {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String jpql = "SELECT COUNT(p) FROM Product p";
+        try {
+            TypedQuery<Long> query = em.createQuery(jpql, Long.class);
+            return query.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Product> getProductByIndex(int indexPage) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String jpql = "SELECT p FROM Product p ORDER BY p.productID";
+        try {
+            TypedQuery<Product> query = em.createQuery(jpql, Product.class);
+            query.setFirstResult((indexPage - 1) * 9);
+            query.setMaxResults(9);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
 }

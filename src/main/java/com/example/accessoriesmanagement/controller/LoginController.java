@@ -78,6 +78,7 @@ public class LoginController extends HttpServlet {
             request.setAttribute("error", "Sai username hoặc password!");
             request.getRequestDispatcher("views/Login.jsp").forward(request, response);
         }
+
     }
 
     @Override

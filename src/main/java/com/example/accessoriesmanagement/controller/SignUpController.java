@@ -33,7 +33,7 @@ public class SignUpController extends HttpServlet {
                 userDao.signup(user, pass, email);
                 response.sendRedirect("login");
             } else {
-                response.sendRedirect("Login.jsp");
+                response.sendRedirect("views/Login.jsp");
             }
         }
     }

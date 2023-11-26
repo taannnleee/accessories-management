@@ -83,6 +83,7 @@
 
 
 
+
 <!-- Carousel wrapper -->
 <div id="introCarousel" class="carousel slide carousel-fade shadow-2-strong" data-mdb-ride="carousel" style="margin-top:35px;">
     <!-- Indicators -->
@@ -153,19 +154,19 @@
         <h1 style="text-align:center; width:100%" id="moiNhat">SẢN PHẨM MỚI NHẤT</h1>
         <div class="col-sm-12">
             <div id="contentMoiNhat" class="row">
-                <c:forEach items="${list8Last}" var="o">
+                <c:forEach items="${allP}" var="product">
                     <div class=" col-12 col-md-6 col-lg-3">
                         <div class="card">
                             <div class="view zoom z-depth-2 rounded">
-                                <img class="img-fluid w-100" src="${o.image}" alt="Card image cap">
+                                <img class="img-fluid w-100" src="${product.productImage}" alt="Card image cap">
 
                             </div>
                             <div class="card-body">
-                                <h4 class="card-title show_txt"><a href="detail?pid=${o.id}" title="View Product">${o.name}</a></h4>
-                                <p class="card-text show_txt">${o.title}</p>
+                                <h4 class="card-title show_txt"><a href="detail?pid=${o.id}" title="View Product">${product.productName}</a></h4>
+                                <p class="card-text show_txt">${product.productDescription}</p>
                                 <div class="row">
                                     <div class="col">
-                                        <p class="btn btn-success btn-block">${o.price} $</p>
+                                        <p class="btn btn-success btn-block">${product.productPrice} $</p>
                                     </div>
                                 </div>
                             </div>
@@ -173,28 +174,27 @@
                     </div>
                 </c:forEach>
             </div>
-
         </div>
 
     </div>
 
 
     <div class="row" style="margin-top:25px">
-        <h1 style="text-align:center; width:100%" id="nike">GIÀY NIKE MỚI NHẤT</h1>
+        <h1 style="text-align:center; width:100%" id="nike">GIÀY ADIDAS MỚI NHẤT</h1>
         <div class="col-sm-12">
             <div id="contentNike" class="row">
-                <c:forEach items="${list4NikeLast}" var="o">
+                <c:forEach items="${allA}" var="product">
                     <div class="productNike col-12 col-md-6 col-lg-3">
                         <div class="card">
                             <div class="view zoom z-depth-2 rounded">
-                                <img class="img-fluid w-100" src="${o.image}" alt="Card image cap">
+                                <img class="img-fluid w-100" src="${product.productImage}" alt="Card image cap">
                             </div>
                             <div class="card-body">
-                                <h4 class="card-title show_txt"><a href="detail?pid=${o.id}" title="View Product">${o.name}</a></h4>
-                                <p class="card-text show_txt">${o.title}</p>
+                                <h4 class="card-title show_txt"><a href="detail?pid=${o.id}" title="View Product">${product.productName}</a></h4>
+                                <p class="card-text show_txt">${product.productDescription}</p>
                                 <div class="row">
                                     <div class="col">
-                                        <p class="btn btn-success btn-block">${o.price} $</p>
+                                        <p class="btn btn-success btn-block">${product.productPrice} $</p>
                                     </div>
 
                                 </div>
@@ -203,27 +203,29 @@
                     </div>
                 </c:forEach>
             </div>
-            <button onclick="loadMoreNike()" class="btn btn-primary">Load more</button>
+            <div class="text-center">
+                <button onclick="loadMoreNike()" class="btn btn-primary ">Load more</button>
+            </div>
         </div>
     </div>
 
 
     <div class="row" style="margin-top:25px">
-        <h1 style="text-align:center; width:100%" id="adidas">GIÀY ADIDAS MỚI NHẤT</h1>
+        <h1 style="text-align:center; width:100%" id="adidas">GIÀY NIKE MỚI NHẤT</h1>
         <div class="col-sm-12">
             <div id="contentAdidas" class="row">
-                <c:forEach items="${list4AdidasLast}" var="o">
-                    <div class="productAdidas col-12 col-md-6 col-lg-3">
+                <c:forEach items="${allN}" var="product">
+                    <div class="productNike col-12 col-md-6 col-lg-3">
                         <div class="card">
                             <div class="view zoom z-depth-2 rounded">
-                                <img class="img-fluid w-100" src="${o.image}" alt="Card image cap">
+                                <img class="img-fluid w-100" src="${product.productImage}" alt="Card image cap">
                             </div>
                             <div class="card-body">
-                                <h4 class="card-title show_txt"><a href="detail?pid=${o.id}" title="View Product">${o.name}</a></h4>
-                                <p class="card-text show_txt">${o.title}</p>
+                                <h4 class="card-title show_txt"><a href="detail?pid=${o.id}" title="View Product">${product.productName}</a></h4>
+                                <p class="card-text show_txt">${product.productDescription}</p>
                                 <div class="row">
                                     <div class="col">
-                                        <p class="btn btn-success btn-block">${o.price} $</p>
+                                        <p class="btn btn-success btn-block">${product.productPrice} $</p>
                                     </div>
 
                                 </div>
@@ -232,7 +234,9 @@
                     </div>
                 </c:forEach>
             </div>
-            <button onclick="loadMoreAdidas()" class="btn btn-primary">Load more</button>
+            <div class="text-center">
+                <button onclick="loadMoreNike()" class="btn btn-primary ">Load more</button>
+            </div>
         </div>
     </div>
 
@@ -288,4 +292,3 @@
 <script type="text/javascript" src="https://mdbootstrap.com/previews/ecommerce-demo/js/mdb.ecommerce.min.js"></script>
 </body>
 </html>
-
