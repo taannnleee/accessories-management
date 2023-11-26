@@ -1,7 +1,7 @@
 package com.example.accessoriesmanagement.controller;
 
-import com.example.accessoriesmanagement.repositories.IUserRepository;
-import com.example.accessoriesmanagement.repositories.Impl.UserRepositoryImpl;
+import com.example.accessoriesmanagement.repositories.IUserDao;
+import com.example.accessoriesmanagement.repositories.Impl.UserDaoImpl;
 import com.example.accessoriesmanagement.entity.User;
 
 import java.io.IOException;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LoginControl", urlPatterns = {"/login"})
 public class LoginController extends HttpServlet {
 
-    private final IUserRepository userDao = new UserRepositoryImpl();
+    private final IUserDao userDao = new UserDaoImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -78,6 +78,7 @@ public class LoginController extends HttpServlet {
             request.setAttribute("error", "Sai username hoặc password!");
             request.getRequestDispatcher("views/Login.jsp").forward(request, response);
         }
+
     }
 
     @Override
