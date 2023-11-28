@@ -153,27 +153,31 @@
     <div class="row" style="margin-top:25px">
         <h1 style="text-align:center; width:100%" id="moiNhat">SẢN PHẨM MỚI NHẤT</h1>
         <div class="col-sm-12">
-            <div id="contentMoiNhat" class="row">
-                <c:forEach items="${allP}" var="product">
-                    <div class=" col-12 col-md-6 col-lg-3">
-                        <div class="card">
-                            <div class="view zoom z-depth-2 rounded">
-                                <img class="img-fluid w-100" src="${product.productImage}" alt="Card image cap">
+                <div id="contentMoiNhat" class="row">
+                    <c:forEach items="${allP}" var="product">
+                        <div class=" col-12 col-md-6 col-lg-3">
+                            <div class="card">
+                                <div class="view zoom z-depth-2 rounded">
+                                    <img class="img-fluid w-100" src="${product.productImage}" alt="Card image cap">
 
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title show_txt"><a href="detail?pid=${o.productID}" title="View Product">${product.productName}</a></h4>
-                                <p class="card-text show_txt">${product.productDescription}</p>
-                                <div class="row">
-                                    <div class="col">
-                                        <p class="btn btn-success btn-block">${product.productPrice} $</p>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title show_txt"><a href="detail?pid=${o.id}" title="View Product">${product.productName}</a></h4>
+                                    <p class="card-text show_txt">${product.productDescription}</p>
+                                    <div class="row">
+                                        <div class="col">
+                                            <form action="add_to_cart" method="post">
+                                                <input type="hidden" name="product_id" value="${product.productID}" >
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
-            </div>
+
+                    </c:forEach>
+                </div>
         </div>
 
     </div>

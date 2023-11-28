@@ -29,6 +29,7 @@ public class ProductDTO {
         this.productQuantity = productQuantity;
         this.productCategoryId = productCategoryId;
     }
+
     public ProductDTO() {
     }
 

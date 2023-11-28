@@ -35,15 +35,12 @@ public class AddToCartController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             String url = "view_cart";
-            HttpSession session = req.getSession();
-
-            User user = (User) session.getAttribute("acc");
             String product_id = req.getParameter("product_id");
             String quantity = req.getParameter("quantity");
 
+            HttpSession session = req.getSession();
+            User user = (User) session.getAttribute("acc");
             ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
-
-            System.out.println(session.getAttribute("acc"));
 
             if (user != null) {
                 // Kiểm tra xem người dùng đã đăng nhập hay chưa
@@ -56,7 +53,6 @@ public class AddToCartController extends HttpServlet {
                     session.setAttribute("shoppingCart", shoppingCart);
                 }
 
-
                 Long productId = Long.valueOf(product_id);
                 ProductDTO productDTO = productService.getProductById(productId);
 
@@ -64,8 +60,8 @@ public class AddToCartController extends HttpServlet {
 
                 ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
                 shoppingCartItem.setProduct(Mappers.convertToEntity(productDTO, Product.class));
-                shoppingCartItem.setShopping_cart(shoppingCart);
                 shoppingCartItem.setShoppingCartItemQuantity(quantity);
+                shoppingCartItem.setShopping_cart(shoppingCart);
 
                 // Thêm shoppingCartItem vào shoppingCart
                 List<ShoppingCartItem> shoppingCartItems = new ArrayList<>();
@@ -78,10 +74,12 @@ public class AddToCartController extends HttpServlet {
 
 
                 session.setAttribute("shoppingCart", shoppingCart);
-
-
                 resp.sendRedirect(url);
 
+            }
+            else {
+                url = "error";
+                resp.sendRedirect(url);
             }
         }
         catch (Exception e) {
