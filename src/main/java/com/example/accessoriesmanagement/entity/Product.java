@@ -30,7 +30,7 @@ public class Product implements Serializable {
     @JoinColumn(name = "product_category_id")
     private ProductCategory product_category;
 
-    @OneToMany(mappedBy = "product",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<ShoppingCartItem> shoppingCartItems;
 
     public Product() {

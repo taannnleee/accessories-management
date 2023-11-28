@@ -16,7 +16,7 @@ public class ProductCategory implements Serializable {
     @Column(name = "category_name")
     private String categoryName;
 
-    @OneToMany(mappedBy = "product_category",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product_category")
     List<Product> products;
 
     public ProductCategory() {
@@ -42,5 +42,13 @@ public class ProductCategory implements Serializable {
     public ProductCategory(Long productCategoryID, String categoryName) {
         this.productCategoryID = productCategoryID;
         this.categoryName = categoryName;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }

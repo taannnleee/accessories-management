@@ -24,6 +24,7 @@ public class HomeController extends HttpServlet {
         List<Product> top4adidas = productDao.get4AdidasLast();
         List<Product> top4nike = productDao.get4NikeLast();
 
+
         request.setAttribute("allP", allProducts);
         request.setAttribute("allA", top4adidas);
         request.setAttribute("allN", top4nike);
