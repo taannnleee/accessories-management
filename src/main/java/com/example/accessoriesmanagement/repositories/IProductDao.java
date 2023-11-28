@@ -4,6 +4,7 @@ import com.example.accessoriesmanagement.entity.Product;
 import com.example.accessoriesmanagement.entity.User;
 
 import java.util.List;
+import java.util.function.LongFunction;
 
 public interface IProductDao {
     User selectUser(String email);
@@ -18,4 +19,12 @@ public interface IProductDao {
     long countAllProduct();
 
     List<Product> getProductByIndex(int indexPage);
+    List<Product> searchByName(String txtSearch);
+    List<Product> getProductById(Long cid);
+    List<Product> getProductUnder1000();
+    List<Product> getProductOver2000();
+    List<Product> getProduct1000to2000();
+    List<Product> getProductMinToMax(double priceMin, double priceMax);
+    Product getProductByIdProduct(Long cid);
+
 }
