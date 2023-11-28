@@ -1,6 +1,7 @@
 package com.example.accessoriesmanagement.repositories.Impl;
 
 import com.example.accessoriesmanagement.JPAConfig.DBUtil;
+import com.example.accessoriesmanagement.entity.Product;
 import com.example.accessoriesmanagement.entity.User;
 import com.example.accessoriesmanagement.repositories.IUserRepository;
 
@@ -12,6 +13,8 @@ import java.util.Date;
 
 
 public class UserRepositoryImpl implements IUserRepository {
+    private EntityManager entityManager;
+
     public User authenticateUser(String user, String pass) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         String jpql = "SELECT a FROM User a " +
@@ -102,4 +105,17 @@ public class UserRepositoryImpl implements IUserRepository {
             em.close();
         }
     }
+
+    public User getUserById(Long userId) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String jpql = "SELECT u FROM User u WHERE u.userID = :userId";
+        try {
+            Query query = em.createQuery(jpql, User.class);
+            query.setParameter("userId", userId );
+            return (User) query.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
+
 }

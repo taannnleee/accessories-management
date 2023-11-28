@@ -34,20 +34,25 @@ public class EditProfileController extends HttpServlet {
 
         Date dateOfBirth = null;
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            dateOfBirth = sdf.parse(dateOfBirthStr);
+            if (dateOfBirthStr != null && !dateOfBirthStr.isEmpty()) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                dateOfBirth = sdf.parse(dateOfBirthStr);
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         if (email != null && firstName != null && lastName != null && phone != null && dateOfBirth != null) {
             userDao.editProfile(dateOfBirth,email, firstName, lastName, phone, id);
-            request.setAttribute("mess", "Cập nhật thông tin thành công!");
+            request.setAttribute("mess", "Update successfully!");
         } else {
-            request.setAttribute("mess", "Vui lòng nhập đầy đủ thông tin cập nhật!");
+            request.setAttribute("mess", "Please fill the textbox to update!");
         }
+        User updatedUser = userDao.getUserById(id);
 
-        request.getRequestDispatcher("views/Home.jsp").forward(request, response);
+        session.setAttribute("acc", updatedUser);
+
+        request.getRequestDispatcher("EditProfile.jsp").forward(request, response);
     }
 
 

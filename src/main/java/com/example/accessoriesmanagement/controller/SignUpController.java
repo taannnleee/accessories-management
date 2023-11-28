@@ -23,7 +23,7 @@ public class SignUpController extends HttpServlet {
         String email = request.getParameter("email");
 
         if (!pass.equals(re_pass)) {
-            response.sendRedirect("Login.jsp");
+            response.sendRedirect("login");
         } else {
             IUserDao userDao = new UserDaoImpl();
 
@@ -33,7 +33,7 @@ public class SignUpController extends HttpServlet {
                 userDao.signup(user, pass, email);
                 response.sendRedirect("login");
             } else {
-                response.sendRedirect("views/Login.jsp");
+                response.sendRedirect("login");
             }
         }
     }

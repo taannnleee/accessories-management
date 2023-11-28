@@ -107,10 +107,11 @@ public class ProductDaoImpl implements IProductDao {
     public List<Product> getAllProducts() {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
 
-        String jpql = "SELECT p FROM Product p";
+        String jpql = "SELECT p FROM Product p ORDER BY p.productID DESC";
 
         try {
             TypedQuery<Product> query = em.createQuery(jpql, Product.class);
+            query.setMaxResults(8);
             return query.getResultList();
         } finally {
             em.close();
@@ -202,4 +203,87 @@ public class ProductDaoImpl implements IProductDao {
             em.close();
         }
     }
+
+    public List<Product> searchByName(String txtSearch) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String jpql = "SELECT p FROM Product p WHERE p.productName LIKE :txtSearch";
+
+
+        try {
+            TypedQuery<Product> query = em.createQuery(jpql, Product.class);
+            query.setParameter("txtSearch", "%" + txtSearch + "%");
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public List<Product> getProductById(Long cid) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String jpql = "SELECT u FROM Product u WHERE u.product_category.id = :cid";
+        try {
+            Query query = em.createQuery(jpql, Product.class);
+            query.setParameter("cid", cid );
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public Product getProductByIdProduct(Long cid) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String jpql = "SELECT u FROM Product u WHERE u.productID = :cid";
+        try {
+            Query query = em.createQuery(jpql, Product.class);
+            query.setParameter("cid", cid );
+            return (Product) query.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Product> getProductUnder1000() {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String jpql = "SELECT u FROM Product u WHERE u.productPrice < 1000 ORDER BY u.productPrice ASC";
+        try {
+            Query query = em.createQuery(jpql, Product.class);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+    public List<Product> getProductOver2000() {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String jpql = "SELECT u FROM Product u WHERE u.productPrice > 2000 ORDER BY u.productPrice ASC";
+        try {
+            Query query = em.createQuery(jpql, Product.class);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+    public List<Product> getProduct1000to2000() {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String jpql = "SELECT u FROM Product u WHERE u.productPrice <= 2000 and u.productPrice>=1000 ORDER BY u.productPrice ASC";
+        try {
+            Query query = em.createQuery(jpql, Product.class);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Product> getProductMinToMax(double priceMin, double priceMax) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String jpql = "SELECT p FROM Product p WHERE p.productPrice >= :minPrice AND p.productPrice <= :maxPrice ORDER BY p.productPrice ASC";
+        try {
+            Query query = em.createQuery(jpql, Product.class);
+            query.setParameter("minPrice", priceMin);
+            query.setParameter("maxPrice", priceMax);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
 }

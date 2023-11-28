@@ -14,7 +14,7 @@
           <a class="nav-link" href="home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="shop">Shop</a>
+          <a class="nav-link" href="ProductDetail.jsp">Shop</a>
         </li>
         <c:if test="${sessionScope.acc != null}">
           <li class="nav-item">
@@ -36,7 +36,7 @@
         </c:if>
         <c:if test="${sessionScope.acc != null}">
           <li class="nav-item">
-            <a class="nav-link" href="EditProfile.jsp">Edit Profile</a>
+            <a class="nav-link" href="editProfile">Edit Profile</a>
           </li>
         </c:if>
       </ul>

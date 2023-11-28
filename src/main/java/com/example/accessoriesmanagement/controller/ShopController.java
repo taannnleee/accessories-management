@@ -9,7 +9,6 @@ import com.example.accessoriesmanagement.entity.ProductCategory;
 
 import java.io.IOException;
 import java.util.List;
-import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,31 +30,25 @@ public class ShopController extends HttpServlet {
         }
         int indexPage = Integer.parseInt(index);
 
+        List<Product> list = productDAO.getProductByIndex(indexPage);
+        List<Product> allP = productDAO.getAllProducts();
+        List<ProductCategory> listC = categoryDAO.getAllCategory();
+        String cateID = request.getParameter("cid");
 
-        try {
-            List<Product> list = productDAO.getProductByIndex(indexPage);
-            List<Product> allP = productDAO.getAllProducts();
-            List<ProductCategory> listC = categoryDAO.getAllCategory();
+        long allProduct = productDAO.countAllProduct();
 
-            System.out.println("Number of cate: " + listC.size());
-
-            System.out.println("Number of pro: " + list.size());
-            long allProduct = productDAO.countAllProduct();
-            System.out.println("Number of n: " + allProduct);
-
-            long end  = allProduct / 9;
-            if (allProduct % 9 != 0) {
-                end++;
-            }
-
-            request.setAttribute("tag", indexPage);
-            request.setAttribute("endPage", end);
-            request.setAttribute("listC", listC);
-            request.setAttribute("listP", allP);
-
-            request.getRequestDispatcher("Shop.jsp").forward(request, response);
-        } finally {
+        long end  = allProduct / 9;
+        if (allProduct % 9 != 0) {
+            end++;
         }
+        request.setAttribute("tag", indexPage);
+        request.setAttribute("endPage", end);
+        request.setAttribute("listC", listC);
+        request.setAttribute("listP", list);
+        request.setAttribute("cateid", cateID);
+
+        request.getRequestDispatcher("views/Shop.jsp").forward(request, response);
+
     }
 
     @Override

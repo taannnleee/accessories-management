@@ -45,21 +45,21 @@
         }
 
         .carousel-item:nth-child(1) {
-            background-image: url('https://file.hstatic.net/1000230642/file/banner__1__9831c8de62ca4121b4f3caa18164f352_master.jpg');
+            background-image: url('https://ananas.vn/wp-content/uploads/Web1920-1.jpeg');
             background-repeat: no-repeat;
             background-size: 100% 100%;
             background-position: center center;
         }
 
         .carousel-item:nth-child(2) {
-            background-image: url('https://file.hstatic.net/1000230642/file/web-top-banner_68b9a0c957374772bdf25d1d0f312b11_master.jpg');
+            background-image: url('https://scontent.fsgn8-4.fna.fbcdn.net/v/t39.30808-6/357067741_2238790339624823_8319242517451226013_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEYMfzZVXg5ruxFRM-sryxl6rjV4rhOG57quNXiuE4bnqQJ4Xbkix19tygYrt1KN7w11vR5hU9V1DUG_2JfnYGI&_nc_ohc=lDh8vKh9WwQAX-RGWQQ&_nc_ht=scontent.fsgn8-4.fna&oh=00_AfCNRHwABlH45hsg-PxbfOHoICMDJEOIhkv0eHPquL1Fww&oe=65691868');
             background-repeat: no-repeat;
             background-size: 100% 100%;
             background-position: center center;
         }
 
         .carousel-item:nth-child(3) {
-            background-image: url('https://file.hstatic.net/1000230642/file/banner_central_opt_2_76f1c057c7dc43ee9c8a36c6bee9ac4d_master.jpg');
+            background-image: url('https://ananas.vn/wp-content/uploads/Hi-im-Mule_1500x800-Mobile.jpg');
             background-repeat: no-repeat;
             background-size: 100% 100%;
             background-position: center center;
@@ -119,28 +119,28 @@
 
 <div class="card-group" style="margin-top:50px;">
     <div class="card" style="border-style: none;">
-        <img style="height:55px; width:64px; margin: auto;" src="https://giayxshop.vn/wp-content/uploads/2019/11/iconfinder_truck_1291768-1.png">
+        <img style="height:55px; width:64px; margin: auto;" src="https://eadn-wc05-10929864.nxedge.io/wp-content/uploads/2023/08/ecommerce-concept-transportation-shipment-delivery-by-truck-3d-illustration.jpg">
         <div class="card-body">
             <h5 class="card-title" style="text-align:center">GIAO HÀNG TOÀN QUỐC</h5>
             <p class="card-text" style="text-align:center">VẬN CHUYỂN KHẮP VIỆT NAM</p>
         </div>
     </div>
     <div class="card" style="border-style: none;">
-        <img class="card-img-top" style="height:55px; width:64px; margin: auto;" src="https://giayxshop.vn/wp-content/uploads/2019/11/iconfinder_payment_1954199-3.png" alt="Card image cap">
+        <img class="card-img-top" style="height:55px; width:64px; margin: auto;" src="https://www.clio.com/wp-content/uploads/2022/11/Illustration_Blog_Lawyer-Payment-Methods.png" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title" style="text-align:center">THANH TOÁN KHI NHẬN HÀNG</h5>
             <p class="card-text" style="text-align:center">NHẬN HÀNG TẠI NHÀ RỒI THANH TOÁN</p>
         </div>
     </div>
     <div class="card" style="border-style: none;">
-        <img class="card-img-top" style="height:55px; width:64px; margin: auto;" src="https://giayxshop.vn/wp-content/uploads/2019/11/iconfinder_service_repair_phone_mobile_wrench_screw_driver_4014703-1.png" alt="Card image cap">
+        <img class="card-img-top" style="height:55px; width:64px; margin: auto;" src="https://giadinh.mediacdn.vn/k:2016/1580415-1476688882450/baohanhvabaodamkhacnhaunhuthenao.jpg" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title" style="text-align:center">BẢO HÀNH DÀI HẠN</h5>
             <p class="card-text" style="text-align:center">BẢO HÀNG LÊN ĐẾN 60 NGÀY</p>
         </div>
     </div>
     <div class="card" style="border-style: none;">
-        <img class="card-img-top" style="height:55px; width:64px; margin: auto;" src="https://giayxshop.vn/wp-content/uploads/2019/11/iconfinder_refresh_3017918-1.png" alt="Card image cap">
+        <img class="card-img-top" style="height:55px; width:64px; margin: auto;" src="https://media.istockphoto.com/id/1170465736/vector/shop-delivery-receive-parcel-pick-up-point-return-order-to-store-send-back-purchase.jpg?s=612x612&w=0&k=20&c=KRA3kIbYkMWILA3Rd7mT7gUDgWkj3pmYtJ4fibj2Xk8=" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title" style="text-align:center">ĐỔI HÀNG DỄ DÀNG</h5>
             <p class="card-text" style="text-align:center">ĐỔI HÀNG THOẢI MÁI TRONG 30 NGÀY</p>
@@ -162,7 +162,7 @@
 
                             </div>
                             <div class="card-body">
-                                <h4 class="card-title show_txt"><a href="detail?pid=${o.id}" title="View Product">${product.productName}</a></h4>
+                                <h4 class="card-title show_txt"><a href="detail?pid=${o.productID}" title="View Product">${product.productName}</a></h4>
                                 <p class="card-text show_txt">${product.productDescription}</p>
                                 <div class="row">
                                     <div class="col">
@@ -190,7 +190,7 @@
                                 <img class="img-fluid w-100" src="${product.productImage}" alt="Card image cap">
                             </div>
                             <div class="card-body">
-                                <h4 class="card-title show_txt"><a href="detail?pid=${o.id}" title="View Product">${product.productName}</a></h4>
+                                <h4 class="card-title show_txt"><a href="detail?pid=${o.productID}" title="View Product">${product.productName}</a></h4>
                                 <p class="card-text show_txt">${product.productDescription}</p>
                                 <div class="row">
                                     <div class="col">
@@ -221,7 +221,7 @@
                                 <img class="img-fluid w-100" src="${product.productImage}" alt="Card image cap">
                             </div>
                             <div class="card-body">
-                                <h4 class="card-title show_txt"><a href="detail?pid=${o.id}" title="View Product">${product.productName}</a></h4>
+                                <h4 class="card-title show_txt"><a href="detail?pid=${o.productID}" title="View Product">${product.productName}</a></h4>
                                 <p class="card-text show_txt">${product.productDescription}</p>
                                 <div class="row">
                                     <div class="col">
@@ -240,33 +240,6 @@
         </div>
     </div>
 
-
-    <div class="row" style="margin-top:50px">
-        <div class="col-sm-12">
-            <div id="content" class="row">
-                <div class=" col-12 col-md-12 col-lg-6">
-                    <div class="card-body">
-                        <h4 class="card-title show_txt" style="text-align:center; font-size:18pt; color:#b57b00;">Về chúng tôi</h4>
-                        <h2 class="card-title show_txt" style="text-align:center; font-size:24pt;">Shoes Family</h2>
-                        <p style="text-align:center;">Uy tín lâu năm chuyên cung cấp giày thể thao sneaker nam, nữ hàng Replica 1:1 -
-                            Like Auth với chất lượng đảm bảo và giá tốt nhất tại Hà Nội, tpHCM.</p>
-                        <p>Bạn đang cần tìm một đôi giày thể thao sneaker đẹp và hợp thời trang và đang hot Trends
-                            đến từ các thương hiệu lớn nhưng lại không đủ hầu bao để sắm được hàng chính hãng?
-                            Hãy đến với ShoesFamily – nơi bạn thỏa lòng mong ước mà chỉ phải chi ra 1 phần nhỏ so với dòng chính hãng ngoài store
-                            mà vẫn sắm cho mình được một đôi chất lượng từ rep 1:1 đến siêu cấp like auth.</p>
-                    </div>
-                </div>
-                <div class=" col-12 col-md-12 col-lg-6">
-                    <img class="card-img-top" src="https://shopgiayreplica.com/wp-content/uploads/2020/11/shop-giay-replica-1-1.jpg" alt="Card image cap">
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
 </div>
 
 <jsp:include page="footer.jsp"></jsp:include>
@@ -278,6 +251,13 @@
 <script type="text/javascript" src="js/mdb.min.js"></script>
 <!-- Custom scripts -->
 <script type="text/javascript" src="js/script.js"></script>
+
+<script>
+    function loadMoreNike() {
+        // Mở trang web của Nike trong cửa sổ mới
+        window.open("https://www.nike.com/", "_blank");
+    }
+</script>
 
 <!-- SCRIPTS -->
 <!-- JQuery -->
