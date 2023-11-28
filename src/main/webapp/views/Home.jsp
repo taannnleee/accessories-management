@@ -166,7 +166,7 @@
                                     <p class="card-text show_txt">${product.productDescription}</p>
                                     <div class="row">
                                         <div class="col">
-                                            <form action="add_to_cart" method="post">
+                                            <form action="detail_product" method="post">
                                                 <input type="hidden" name="product_id" value="${product.productID}" >
                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                             </form>

@@ -11,6 +11,7 @@ import com.example.accessoriesmanagement.service.IShoppingCartService;
 import com.example.accessoriesmanagement.service.Impl.ProductServiceImpl;
 import com.example.accessoriesmanagement.service.Impl.ShoppingCartServiceImpl;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,10 +34,14 @@ public class AddToCartController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         try {
             String url = "view_cart";
             String product_id = req.getParameter("product_id");
             String quantity = req.getParameter("quantity");
+            System.out.println("hihih"+quantity);
 
             HttpSession session = req.getSession();
             User user = (User) session.getAttribute("acc");
@@ -74,13 +79,13 @@ public class AddToCartController extends HttpServlet {
 
 
                 session.setAttribute("shoppingCart", shoppingCart);
-                resp.sendRedirect(url);
-
+                resp.sendRedirect("view_cart");
             }
             else {
-                url = "error";
-                resp.sendRedirect(url);
+                RequestDispatcher rd = req.getRequestDispatcher(url);
+                rd.forward(req, resp);
             }
+
         }
         catch (Exception e) {
             e.printStackTrace();
