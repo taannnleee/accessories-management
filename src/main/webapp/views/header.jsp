@@ -14,7 +14,7 @@
           <a class="nav-link" href="home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="ProductDetail.jsp">Shop</a>
+          <a class="nav-link" href="shop">Shop</a>
         </li>
         <c:if test="${sessionScope.acc != null}">
           <li class="nav-item">
