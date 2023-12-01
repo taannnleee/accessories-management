@@ -2,10 +2,12 @@ package com.example.accessoriesmanagement.repositories.Impl;
 
 import com.example.accessoriesmanagement.JPAConfig.DBUtil;
 import com.example.accessoriesmanagement.entity.ShoppingCart;
+import com.example.accessoriesmanagement.entity.User;
 import com.example.accessoriesmanagement.repositories.IShoppingCartRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -84,4 +86,24 @@ public class ShoppingCartRepositoryImpl implements IShoppingCartRepository {
             em.close();
         }
     }
+
+    @Override
+    public ShoppingCart getShoppingCartByUser(User user) {
+        EntityManager entityManager = DBUtil.getEmFactory().createEntityManager();
+        TypedQuery<ShoppingCart> query = entityManager.createQuery(
+                "SELECT s FROM ShoppingCart s WHERE s.user = :user", ShoppingCart.class);
+        query.setParameter("user", user);
+
+        ShoppingCart shoppingCart = null;
+        try {
+            shoppingCart = query.getSingleResult();
+        } catch (Exception e) {
+            // Xử lý ngoại lệ nếu không tìm thấy giỏ hàng nào cho người dùng
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+        return shoppingCart;
+    }
+
 }

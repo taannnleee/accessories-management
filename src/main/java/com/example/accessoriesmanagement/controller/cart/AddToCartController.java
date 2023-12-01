@@ -7,8 +7,10 @@ import com.example.accessoriesmanagement.entity.ShoppingCart;
 import com.example.accessoriesmanagement.entity.ShoppingCartItem;
 import com.example.accessoriesmanagement.entity.User;
 import com.example.accessoriesmanagement.service.IProductService;
+import com.example.accessoriesmanagement.service.IShoppingCartItemService;
 import com.example.accessoriesmanagement.service.IShoppingCartService;
 import com.example.accessoriesmanagement.service.Impl.ProductServiceImpl;
+import com.example.accessoriesmanagement.service.Impl.ShoppingCartItemServiceImpl;
 import com.example.accessoriesmanagement.service.Impl.ShoppingCartServiceImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -27,6 +29,8 @@ public class AddToCartController extends HttpServlet {
     IProductService productService = new ProductServiceImpl();
     IShoppingCartService shoppingCartService = new ShoppingCartServiceImpl();
 
+    IShoppingCartItemService shoppingCartItemService = new ShoppingCartItemServiceImpl();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp);
@@ -41,49 +45,53 @@ public class AddToCartController extends HttpServlet {
             String url = "view_cart";
             String product_id = req.getParameter("product_id");
             String quantity = req.getParameter("quantity");
-            System.out.println("hihih"+quantity);
+
+            Long productId = Long.valueOf(product_id);
+            ProductDTO productDTO = productService.getProductById(productId);
 
             HttpSession session = req.getSession();
             User user = (User) session.getAttribute("acc");
             ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
 
             if (user != null) {
-                // Kiểm tra xem người dùng đã đăng nhập hay chưa
-                if (shoppingCart == null || !user.getUserID().equals(shoppingCart.getUser().getUserID())) {
+                if (shoppingCart == null) {
                     // Nếu đăng nhập với tài khoản mới hoặc chưa có giỏ hàng, tạo giỏ hàng mới
                     shoppingCart = new ShoppingCart();
                     shoppingCart.setUser(user);
                     shoppingCart.setShop_order(null);
                     shoppingCart.setTotalPrice(0);
+                    // Lưu giỏ hàng vào session
                     session.setAttribute("shoppingCart", shoppingCart);
                 }
+                else if(!user.getUserID().equals(shoppingCart.getUser().getUserID())){
+                    shoppingCart = shoppingCartService.getShoppingCartById(user.getShoppingCart().getShoppingId());
+                }
+                else {
+                    shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+                }
 
-                Long productId = Long.valueOf(product_id);
-                ProductDTO productDTO = productService.getProductById(productId);
-
-
-
+                // Tạo ShoppingCartItem và thêm vào giỏ hàng
                 ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
                 shoppingCartItem.setProduct(Mappers.convertToEntity(productDTO, Product.class));
                 shoppingCartItem.setShoppingCartItemQuantity(quantity);
                 shoppingCartItem.setShopping_cart(shoppingCart);
 
-                // Thêm shoppingCartItem vào shoppingCart
-                List<ShoppingCartItem> shoppingCartItems = new ArrayList<>();
-                shoppingCartItems.add(shoppingCartItem);
+                ShoppingCartItem updateShoppingCartItem = shoppingCartItemService.updateShoppingCartItem(shoppingCartItem);
 
-                shoppingCart.setShoppingCartItems(shoppingCartItems);
+                //Trong lần đầu đăng nhập thì null để tạo cart mới. set lại cart hiện tại để nó không tự động tạo ra cart mơi
+                if(shoppingCart==null || shoppingCart.getShoppingId()==null){
+                    shoppingCart = updateShoppingCartItem.getShopping_cart();
+                }
 
-                shoppingCartService.insertShoppingCart(shoppingCart);
-
-
-
+                // Cập nhật giỏ hàng trong session
                 session.setAttribute("shoppingCart", shoppingCart);
-                resp.sendRedirect("view_cart");
-            }
-            else {
-                RequestDispatcher rd = req.getRequestDispatcher(url);
-                rd.forward(req, resp);
+                session.setAttribute("acc", user);
+
+                System.out.println("add ne");
+                System.out.println(user.getShoppingCart());
+                System.out.println(user.getShoppingCart().getShoppingId());
+
+                resp.sendRedirect(url);
             }
 
         }

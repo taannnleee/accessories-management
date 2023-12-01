@@ -12,16 +12,24 @@ public class ShoppingCartItem {
     @Column(name = "quantity")
     private String shoppingCartItemQuantity;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shopping_cart_id")
     private ShoppingCart shopping_cart;
 
     public ShoppingCartItem() {
 
+    }
+
+
+    public ShoppingCartItem(Long shoppingCartItemId, String shoppingCartItemQuantity, Product product, ShoppingCart shopping_cart) {
+        this.shoppingCartItemId = shoppingCartItemId;
+        this.shoppingCartItemQuantity = shoppingCartItemQuantity;
+        this.product = product;
+        this.shopping_cart = shopping_cart;
     }
 
     public Long getShoppingCartItemId() {
@@ -53,13 +61,6 @@ public class ShoppingCartItem {
     }
 
     public void setShopping_cart(ShoppingCart shopping_cart) {
-        this.shopping_cart = shopping_cart;
-    }
-
-    public ShoppingCartItem(Long shoppingCartItemId, String shoppingCartItemQuantity, Product product, ShoppingCart shopping_cart) {
-        this.shoppingCartItemId = shoppingCartItemId;
-        this.shoppingCartItemQuantity = shoppingCartItemQuantity;
-        this.product = product;
         this.shopping_cart = shopping_cart;
     }
 }

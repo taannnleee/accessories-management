@@ -49,11 +49,19 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Payment> payments;
 
-    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    List<ShoppingCart> shoppingCarts;
+    @OneToOne(mappedBy = "user",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    ShoppingCart shoppingCart;
 
     public User() {
         
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 
     public List<ShopOrder> getShopOders() {
@@ -64,9 +72,6 @@ public class User implements Serializable {
         return payments;
     }
 
-    public List<ShoppingCart> getShoppingCarts() {
-        return shoppingCarts;
-    }
 
     public void setShopOders(List<ShopOrder> shopOders) {
         this.shopOders = shopOders;
@@ -76,9 +81,6 @@ public class User implements Serializable {
         this.payments = payments;
     }
 
-    public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
-        this.shoppingCarts = shoppingCarts;
-    }
 
     public Long getUserID() {
         return userID;

@@ -16,7 +16,7 @@ public class ProductCategory implements Serializable {
     @Column(name = "category_name")
     private String categoryName;
 
-    @OneToMany(mappedBy = "product_category")
+    @OneToMany(mappedBy = "product_category",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Product> products;
 
     public ProductCategory() {

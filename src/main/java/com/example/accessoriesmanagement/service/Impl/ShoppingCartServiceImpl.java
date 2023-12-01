@@ -1,6 +1,7 @@
 package com.example.accessoriesmanagement.service.Impl;
 
 import com.example.accessoriesmanagement.entity.ShoppingCart;
+import com.example.accessoriesmanagement.entity.User;
 import com.example.accessoriesmanagement.repositories.IShoppingCartRepository;
 import com.example.accessoriesmanagement.repositories.Impl.ShoppingCartRepositoryImpl;
 import com.example.accessoriesmanagement.service.IShoppingCartService;
@@ -34,4 +35,9 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
     public List<ShoppingCart> selectShoppingCart() {
         return shoppingCartRepository.selectShoppingCart();
     }
+
+    public ShoppingCart getShoppingCartByUser(User user){
+        return shoppingCartRepository.getShoppingCartByUser(user);
+    }
+
 }

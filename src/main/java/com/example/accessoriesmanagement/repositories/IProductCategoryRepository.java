@@ -7,4 +7,5 @@ import java.util.List;
 public interface IProductCategoryRepository {
     List<ProductCategory> selectProductCategory();
     ProductCategory getProductCategoryById(Long productCategoryId);
+    void insertProductCategory(ProductCategory productCategory);
 }

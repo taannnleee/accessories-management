@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -110,6 +110,7 @@
             text-align: center;
             cursor: pointer;
         }
+
         .posBody:hover {
             background-color: #d3d3d3;
             padding: 10px;
@@ -154,7 +155,7 @@
                             <ion-icon style="color: orange" name="star"></ion-icon>
                             <ion-icon style="color: orange" name="star"></ion-icon>
                             <ion-icon style="color: orange" name="star-outline"></ion-icon>
-                            <span style="color: #1a9cb7; font-size: .8rem;">100 Rating</span><br />
+                            <span style="color: #1a9cb7; font-size: .8rem;">100 Rating</span><br/>
                             <span style="color: #1a9cb7; font-size: .8rem;"><a href="#">Visit Official
                                         Website</a></span>
                         </div>
@@ -163,45 +164,50 @@
                             <ion-icon style="font-size: 20px;" name="heart-outline"></ion-icon>
                         </div>
                     </div>
-                    <hr style="opacity: .2;" />
+                    <hr style="opacity: .2;"/>
                     <div style="padding: 1.5rem;">
                         <span style="color: red; font-size: 1.5rem;">-10%</span>
-                        <span style="color: black; font-size: 2rem;"><p><c:out value="${productDetail.productPrice}"/></p></span>
+                        <span style="color: black; font-size: 2rem;"><p><c:out
+                                value="${productDetail.productPrice}"/></p></span>
                     </div>
-                    <hr style="opacity: .2;" />
+                    <hr style="opacity: .2;"/>
                     <div style="padding: 10px;">
                         <span>Color:</span>
                         <span style="color: red;">Red</span>
                         <span style="color: blue;">Blue</span>
                         <span style="color: yellow;">yellow</span>
                     </div>
-                    <hr style="opacity: .2;" />
-
-
-                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                        <a th:for="quantity" style="display: flex; margin-left: 25px">Quantity</a>
-                        <div style="display: flex; align-items: center;">
-                            <button type="button" class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <input id="form1" min="1" name="quantity" th:value="1" type="number" class="form-control form-control-sm"/>
-                            <button type="button" class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-
-
+                    <hr style="opacity: .2;"/>
 
 
                     <form action="add_to_cart" method="post">
-                        <input type="hidden" name="product_id" value="${productDetail.productID}" >
-                        <button style="background-color: orange; padding: 1rem; text-align: center; color: white; margin: 1px; cursor: pointer; border-radius: 5px; width: 500px; display: inline-block;">Add to cart</button>
+                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                            <a th:for="quantity" style="display: flex; margin-left: 25px">Quantity</a>
+                            <div style="display: flex; align-items: center;">
+                                <button type="button" class="btn btn-link px-2"
+                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input id="form1" min="1" name="quantity" th:value="1" type="number"
+                                       class="form-control form-control-sm"/>
+                                <button type="button" class="btn btn-link px-2"
+                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <input type="hidden" name="product_id" value="${productDetail.productID}">
+                        <button style="background-color: orange; padding: 1rem; text-align: center; color: white; margin: 1px; cursor: pointer; border-radius: 5px; width: 500px; display: inline-block;">
+                            Add to cart
+                        </button>
                     </form>
 
-                    <button style="background-color: #2abbe8; padding: 1rem; text-align: center; color: white; margin: 1px; cursor: pointer; border-radius: 5px;width: 500px; display: inline-block;"> Buy Now</button>
 
-
+                    <button style="background-color: #2abbe8; padding: 1rem; text-align: center; color: white; margin: 1px; cursor: pointer; border-radius: 5px;width: 500px; display: inline-block;">
+                        Buy Now
+                    </button>
                 </div>
             </div>
         </div>
@@ -209,18 +215,18 @@
     <div class="container">
         <div class="body">
             <div style="background-color: #fff; padding: 1rem; margin: 1rem;">
-                <span style=" font-weight: bold;">Delivery</span><br />
+                <span style=" font-weight: bold;">Delivery</span><br/>
                 <div style="padding: 1rem;">
-                    <span>Pokhara Valley: </span><span style="color: red;">Free</span><br />
-                    <span>Outside Valley: </span><span style="color: red;">Rs. 180</span><br /><br />
-                    <span>Your Product will be in your door within 3 - 7 Days.</span><br />
+                    <span>Pokhara Valley: </span><span style="color: red;">Free</span><br/>
+                    <span>Outside Valley: </span><span style="color: red;">Rs. 180</span><br/><br/>
+                    <span>Your Product will be in your door within 3 - 7 Days.</span><br/>
                     <span>Note: Cash on Delivery is avaible</span>
                 </div>
             </div>
 
 
             <div style="background-color: #fff; padding: 1rem; margin: 1rem;">
-                <span style=" font-weight: bold;">iPhone 14 Specification</span><br />
+                <span style=" font-weight: bold;">iPhone 14 Specification</span><br/>
                 <div style="padding: 1rem;">
                     <p>The iPhone 14 retains the same design as its predecessor. That means a big notch on the front
                         and camera lenses aligned diagonally on the back. The entire body is made of aerospace-grade
@@ -238,7 +244,7 @@
 
 
             <div style="background-color: #fff; padding: 1rem; margin: 1rem;">
-                <span style=" font-weight: bold;">Related Products</span><br />
+                <span style=" font-weight: bold;">Related Products</span><br/>
                 <div style="padding: 1rem;">
                     <div class="wrapper">
                         <div class="pos">
@@ -277,7 +283,6 @@
         </div>
     </div>
 </div>
-
 
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">

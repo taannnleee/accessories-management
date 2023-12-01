@@ -12,7 +12,7 @@ public class ShoppingCart implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "shopping_cart_id")
-    private Long shopOrderId;
+    private Long shoppingId;
 
     @Column(name = "total_price")
     private double totalPrice;
@@ -24,19 +24,27 @@ public class ShoppingCart implements Serializable {
     @OneToMany(mappedBy = "shopping_cart",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Payment> payments;
 
-    @ManyToOne
+    @OneToOne()
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "shopping_cart",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "shopping_cart",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<ShoppingCartItem> shoppingCartItems;
 
     public ShoppingCart() {
 
     }
 
-    public Long getShopOrderId() {
-        return shopOrderId;
+
+    public ShoppingCart(Long shoppingId, double totalPrice, ShopOrder shop_order, User user) {
+        this.shoppingId = shoppingId;
+        this.totalPrice = totalPrice;
+        this.shop_order = shop_order;
+        this.user = user;
+    }
+
+    public Long getShoppingId() {
+        return shoppingId;
     }
 
     public double getTotalPrice() {
@@ -47,14 +55,21 @@ public class ShoppingCart implements Serializable {
         return shop_order;
     }
 
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
     public User getUser() {
         return user;
     }
 
-    public void setShopOrderId(Long shopOrderId) {
-        this.shopOrderId = shopOrderId;
+    public List<ShoppingCartItem> getShoppingCartItems() {
+        return shoppingCartItems;
     }
 
+    public void setShoppingId(Long shoppingId) {
+        this.shoppingId = shoppingId;
+    }
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
@@ -64,27 +79,12 @@ public class ShoppingCart implements Serializable {
         this.shop_order = shop_order;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public ShoppingCart(Long shopOrderId, double totalPrice, ShopOrder shop_order, User user) {
-        this.shopOrderId = shopOrderId;
-        this.totalPrice = totalPrice;
-        this.shop_order = shop_order;
-        this.user = user;
-    }
-
-    public List<Payment> getPayments() {
-        return payments;
-    }
-
-    public List<ShoppingCartItem> getShoppingCartItems() {
-        return shoppingCartItems;
-    }
-
     public void setPayments(List<Payment> payments) {
         this.payments = payments;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setShoppingCartItems(List<ShoppingCartItem> shoppingCartItems) {
