@@ -12,6 +12,9 @@ public class ShoppingCartItem {
     @Column(name = "quantity")
     private String shoppingCartItemQuantity;
 
+    @Column(name = "size")
+    private String size;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
     private Product product;
