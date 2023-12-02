@@ -170,14 +170,6 @@
                                             <p class="btn btn-success">${product.productPrice}$</p>
                                         </div>
                                         <div class="col-lg-6">
-                                            <form action="add_to_cart" method="post">
-<%--=======--%>
-<%--                                        <div class="col">--%>
-<%--                                            <form action="detail_product" method="post">--%>
-<%-->>>>>>> Cart--%>
-                                                <input type="hidden" name="product_id" value="${product.productID}" >
-                                                <button type="submit" class="btn btn-success">CART</button>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -244,12 +236,12 @@
                                     <div class="col-lg-6">
                                         <p class="btn btn-success">${product.productPrice}$</p>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <form action="add_to_cart" method="post">
-                                            <input type="hidden" name="product_id" value="${product.productID}" >
-                                            <button type="submit" class="btn btn-success">CART</button>
-                                        </form>
-                                    </div>
+<%--                                    <div class="col-lg-6">--%>
+<%--                                        <form action="add_to_cart" method="post">--%>
+<%--                                            <input type="hidden" name="product_id" value="${product.productID}" >--%>
+<%--                                            <button type="submit" class="btn btn-success">CART</button>--%>
+<%--                                        </form>--%>
+<%--                                    </div>--%>
                                 </div>
                             </div>
                         </div>

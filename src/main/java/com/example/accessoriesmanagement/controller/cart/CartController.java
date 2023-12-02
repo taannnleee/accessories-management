@@ -42,27 +42,32 @@ public class CartController extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
+        System.out.println("hello");
+
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("acc");
 
-        // lấy shopping tu user
-        ShoppingCart shoppingCart =  shoppingCartService.getShoppingCartByUser(user);
+        //Cập nhật lại user theoID
+        User user_update = userService.getUserById(user.getUserID());
 
-        System.out.println("sfd");
-        System.out.println(shoppingCart.getShoppingId());
+         //lấy shopping tu user
+        ShoppingCart shoppingCart =  shoppingCartService.getShoppingCartById(user_update.getShoppingCart().getShoppingId());
 
 
-        // lay shopingCartItem theo shoppingCart
-        List<ShoppingCartItem> shoppingCartItems = shoppingCartItemService.selectShoppingCartItemByShoppingCart(shoppingCart);
 
-        List<Product> products = new ArrayList<>();
+
+         //lay shopingCartItem theo shoppingCart
+        List<ShoppingCartItem> shoppingCartItems = shoppingCart.getShoppingCartItems();
+
+        List<Product> productBuys = new ArrayList<>();
         for(ShoppingCartItem s :shoppingCartItems){
            ProductDTO productDTO =  productService.getProductById(s.getProduct().getProductID());
-           Product product = Mappers.convertToEntity(productDTO,Product.class);
-           products.add(product);
+           Product productBuy = Mappers.convertToEntity(productDTO,Product.class);
+           productBuys.add(productBuy);
         }
+        req.setAttribute("productBuys",productBuys);
 
-        for(Product p :products){
+        for(Product p :productBuys){
             System.out.println(p.getProductName());
         }
 
