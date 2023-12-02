@@ -162,13 +162,16 @@
 
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="card-title show_txt"><a href="detail?pid=${o.id}" title="View Product">${product.productName}</a></h4>
+                                    <h4 class="card-title show_txt"><a href="detail?pid=${product.productID}" title="View Product">${product.productName}</a></h4>
                                     <p class="card-text show_txt">${product.productDescription}</p>
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-lg-6">
+                                            <p class="btn btn-success">${product.productPrice}$</p>
+                                        </div>
+                                        <div class="col-lg-6">
                                             <form action="add_to_cart" method="post">
                                                 <input type="hidden" name="product_id" value="${product.productID}" >
-                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <button type="submit" class="btn btn-success">CART</button>
                                             </form>
                                         </div>
                                     </div>
@@ -194,13 +197,18 @@
                                 <img class="img-fluid w-100" src="${product.productImage}" alt="Card image cap">
                             </div>
                             <div class="card-body">
-                                <h4 class="card-title show_txt"><a href="detail?pid=${o.productID}" title="View Product">${product.productName}</a></h4>
+                                <h4 class="card-title show_txt"><a href="detail?pid=${product.productID}" title="View Product">${product.productName}</a></h4>
                                 <p class="card-text show_txt">${product.productDescription}</p>
                                 <div class="row">
-                                    <div class="col">
-                                        <p class="btn btn-success btn-block">${product.productPrice} $</p>
+                                    <div class="col-lg-6">
+                                        <p class="btn btn-success">${product.productPrice}$</p>
                                     </div>
-
+                                    <div class="col-lg-6">
+                                        <form action="add_to_cart" method="post">
+                                            <input type="hidden" name="product_id" value="${product.productID}" >
+                                            <button type="submit" class="btn btn-success">CART</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -225,13 +233,18 @@
                                 <img class="img-fluid w-100" src="${product.productImage}" alt="Card image cap">
                             </div>
                             <div class="card-body">
-                                <h4 class="card-title show_txt"><a href="detail?pid=${o.productID}" title="View Product">${product.productName}</a></h4>
+                                <h4 class="card-title show_txt"><a href="detail?pid=${product.productID}" title="View Product">${product.productName}</a></h4>
                                 <p class="card-text show_txt">${product.productDescription}</p>
                                 <div class="row">
-                                    <div class="col">
-                                        <p class="btn btn-success btn-block">${product.productPrice} $</p>
+                                    <div class="col-lg-6">
+                                        <p class="btn btn-success">${product.productPrice}$</p>
                                     </div>
-
+                                    <div class="col-lg-6">
+                                        <form action="add_to_cart" method="post">
+                                            <input type="hidden" name="product_id" value="${product.productID}" >
+                                            <button type="submit" class="btn btn-success">CART</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

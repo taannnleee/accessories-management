@@ -286,4 +286,17 @@ public class ProductDaoImpl implements IProductDao {
         }
     }
 
+    public List<Product> getRelatedProduct(Long cateIDProductDetail) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String jpql = "SELECT p FROM Product p WHERE p.product_category.productCategoryID = :cateID ORDER BY FUNCTION('RAND')";
+        try {
+            Query query = em.createQuery(jpql, Product.class);
+            query.setParameter("cateID", cateIDProductDetail);
+            query.setMaxResults(4);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
 }

@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ICategoryDao {
     List<ProductCategory> getAllCategory();
+    Long getCateIDByProductID(Long id);
 }

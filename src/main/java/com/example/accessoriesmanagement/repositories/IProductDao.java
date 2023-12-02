@@ -26,5 +26,6 @@ public interface IProductDao {
     List<Product> getProduct1000to2000();
     List<Product> getProductMinToMax(double priceMin, double priceMax);
     Product getProductByIdProduct(Long cid);
+    List<Product> getRelatedProduct(Long cateIDProductDetail);
 
 }
