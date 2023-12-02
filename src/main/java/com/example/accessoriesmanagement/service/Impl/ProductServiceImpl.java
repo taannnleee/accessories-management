@@ -10,6 +10,7 @@ import com.example.accessoriesmanagement.repositories.Impl.ProductRepositoryImpl
 import com.example.accessoriesmanagement.entity.Product;
 import com.example.accessoriesmanagement.service.IProductService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductServiceImpl implements IProductService {
@@ -27,11 +28,10 @@ public class ProductServiceImpl implements IProductService {
     {
         Product product = Mappers.convertToEntity(productDTO, Product.class);
         ProductCategory productCategory = productCategoryRepository.getProductCategoryById(productDTO.getProductCategoryId());
+
+
         product.setProduct_category(productCategory);
-
-        productRepository.insertProduct(product);
-        List<Product> products = productCategory.getProducts();
-
+        productRepository.update(product);
     }
     @Override
     public ProductDTO getProductById(Long productId){

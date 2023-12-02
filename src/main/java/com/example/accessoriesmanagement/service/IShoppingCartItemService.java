@@ -1,11 +1,11 @@
-package com.example.accessoriesmanagement.repositories;
+package com.example.accessoriesmanagement.service;
 
 import com.example.accessoriesmanagement.entity.ShoppingCart;
 import com.example.accessoriesmanagement.entity.ShoppingCartItem;
 
 import java.util.List;
 
-public interface IShoppingCartItemRepository {
+public interface IShoppingCartItemService {
     void deleteShoppingCartItem(ShoppingCartItem shoppingCartItem);
     ShoppingCartItem updateShoppingCartItem(ShoppingCartItem shoppingCartItem);
     ShoppingCartItem getShoppingCartItemById(Long shoppingCartItemId);

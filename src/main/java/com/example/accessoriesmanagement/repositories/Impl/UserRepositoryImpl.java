@@ -64,6 +64,7 @@ public class UserRepositoryImpl implements IUserRepository {
         }
     }
 
+
     public User checkAccountExist(String user) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
 
@@ -106,6 +107,7 @@ public class UserRepositoryImpl implements IUserRepository {
         }
     }
 
+    @Override
     public User getUserById(Long userId) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         String jpql = "SELECT u FROM User u WHERE u.userID = :userId";

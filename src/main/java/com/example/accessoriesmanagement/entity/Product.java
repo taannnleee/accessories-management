@@ -26,7 +26,7 @@ public class Product implements Serializable {
     @Column(name = "quantity")
     private int productQuantity;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_category_id")
     private ProductCategory product_category;
 

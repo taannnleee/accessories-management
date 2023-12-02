@@ -165,11 +165,16 @@
                                     <h4 class="card-title show_txt"><a href="detail?pid=${product.productID}" title="View Product">${product.productName}</a></h4>
                                     <p class="card-text show_txt">${product.productDescription}</p>
                                     <div class="row">
+
                                         <div class="col-lg-6">
                                             <p class="btn btn-success">${product.productPrice}$</p>
                                         </div>
                                         <div class="col-lg-6">
                                             <form action="add_to_cart" method="post">
+<%--=======--%>
+<%--                                        <div class="col">--%>
+<%--                                            <form action="detail_product" method="post">--%>
+<%-->>>>>>> Cart--%>
                                                 <input type="hidden" name="product_id" value="${product.productID}" >
                                                 <button type="submit" class="btn btn-success">CART</button>
                                             </form>
