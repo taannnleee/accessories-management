@@ -8,6 +8,7 @@ import com.example.accessoriesmanagement.repositories.IShoppingCartItemRepositor
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.List;
 
 public class ShoppingCartItemRepositoryImpl implements IShoppingCartItemRepository {

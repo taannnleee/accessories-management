@@ -64,7 +64,7 @@
                                                 <a>Quantity</a>
                                                 <input type="hidden" name="price"
                                                        value="<c:out value='${item.shoppingCartItemQuantity}' />"/>
-                                                <h6 class="text-black mb-0"><c:out value='${item.product.productName}'/></h6>
+                                                <h6 class="text-black mb-0"><c:out value='${item.shoppingCartItemQuantity}'/></h6>
 
                                             </div>
                                             <div class="col-md-1 col-lg-1 col-xl-1 text-end">
@@ -76,18 +76,6 @@
                                         </div>
                                         <hr class="my-4">
                                     </c:forEach>
-
-
-                                    <div class="col-md-3 col-lg-3 col-xl-3">
-                                        <div class="d-flex justify-content-start mb-2">
-                                            <a href="/customer/clear" class="text-danger icon-link mb-2">
-                                                <button type="button" style="background: red"
-                                                        class="btn btn-primary add-to-cart"
-                                                <i class="fas fa-trash"></i>
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </div>
 
                                     <div class="pt-5">
                                         <h6 class="mb-0"><a href="#!" class="text-body"><i

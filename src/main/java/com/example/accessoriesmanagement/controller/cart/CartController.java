@@ -55,14 +55,9 @@ public class CartController extends HttpServlet {
             List<ShoppingCartItem> productBuys = new ArrayList<>();
             for(ShoppingCartItem s :shoppingCartItems){
                 ProductDTO productDTO =  productService.getProductById(s.getProduct().getProductID());
-                Product productBuy = Mappers.convertToEntity(productDTO,Product.class);
                 productBuys.add(s);
             }
             req.setAttribute("productBuys",productBuys);
-
-//            for(Product p :productBuys){
-//                System.out.println(p.getProductName());
-//            }
             RequestDispatcher dispatcher = req.getRequestDispatcher("/cart.jsp");
             dispatcher.forward(req, resp);
         }

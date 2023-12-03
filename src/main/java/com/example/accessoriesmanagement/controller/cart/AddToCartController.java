@@ -65,7 +65,7 @@ public class AddToCartController extends HttpServlet {
                         shoppingCart = shoppingCartService.getShoppingCartById(user.getShoppingCart().getShoppingId());
                     }
 
-                    if(shoppingCart == null) {
+                    if (shoppingCart == null) {
                         shoppingCart = new ShoppingCart();
                         shoppingCart.setUser(user);
                         shoppingCart.setShop_order(null);
@@ -73,53 +73,57 @@ public class AddToCartController extends HttpServlet {
                     }
                     // Lưu giỏ hàng vào session
                     session.setAttribute("shoppingCart", shoppingCart);
-                }
-                else if(!user.getUserID().equals(shoppingCart.getUser().getUserID())){
+                } else if (!user.getUserID().equals(shoppingCart.getUser().getUserID())) {
                     shoppingCart = shoppingCartService.getShoppingCartById(user.getShoppingCart().getShoppingId());
-                }
-                else {
+                } else {
+                    //shoppingCart = shoppingCartService.getShoppingCartById(user.getShoppingCart().getShoppingId());
+                    //shoppingCart = shoppingCartService.getShoppingCartById(user.getShoppingCart().getShoppingId());
                     shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
                 }
 
-                // phải có shopping carrt mới cho update
-                if(shoppingCart!=null){
+                if (shoppingCart.getShoppingCartItems() != null) {
+                    boolean productExistsInCart = false;
                     List<ShoppingCartItem> shoppingCartItems = shoppingCart.getShoppingCartItems();
+                    //update so lượng khi cùng một loại san phẩm
                     for (ShoppingCartItem item : shoppingCartItems) {
                         if (item.getProduct().getProductID().equals(productDTO.getProductID())) {
                             // Nếu sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
-                            //int newQuantity = Integer.parseInt(item.getShoppingCartItemQuantity()) + Integer.parseInt(quantity);
-                            //item.setShoppingCartItemQuantity(String.valueOf(newQuantity));
-                            //productExistsInCart = true;
-                            //break;
-                            System.out.println("vô đây roof");
-                            System.out.println(item.getProduct().getProductID());
-                            System.out.println(productDTO.getProductID());
+                            int newQuantity = Integer.parseInt(item.getShoppingCartItemQuantity()) + Integer.parseInt(quantity);
+                            item.setShoppingCartItemQuantity(String.valueOf(newQuantity));
+                            productExistsInCart = true;
+                            shoppingCartItemService.updateShoppingCartItem(item);
+                            break;
                         }
                     }
-
+                    if (!productExistsInCart) {
+                        ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
+                        shoppingCartItem.setProduct(Mappers.convertToEntity(productDTO, Product.class));
+                        shoppingCartItem.setShoppingCartItemQuantity(quantity);
+                        shoppingCartItem.setShopping_cart(shoppingCart);
+                        //them vào database
+                        shoppingCartItemService.updateShoppingCartItem(shoppingCartItem);
+                    }
+                } else {
+                    ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
+                    shoppingCartItem.setProduct(Mappers.convertToEntity(productDTO, Product.class));
+                    shoppingCartItem.setShoppingCartItemQuantity(quantity);
+                    shoppingCartItem.setShopping_cart(shoppingCart);
+                    //them vào database
+                    shoppingCartItemService.updateShoppingCartItem(shoppingCartItem);
                 }
 
-                // Tạo ShoppingCartItem và thêm vào giỏ hàng
-                ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
-                shoppingCartItem.setProduct(Mappers.convertToEntity(productDTO, Product.class));
-                shoppingCartItem.setShoppingCartItemQuantity(quantity);
-                shoppingCartItem.setShopping_cart(shoppingCart);
-
-                ShoppingCartItem updateShoppingCartItem = shoppingCartItemService.updateShoppingCartItem(shoppingCartItem);
-
-                //Trong lần đầu đăng nhập thì null để tạo cart mới. set lại cart hiện tại để nó không tự động tạo ra cart mơi
-                if(shoppingCart==null || shoppingCart.getShoppingId()==null){
-                    shoppingCart = updateShoppingCartItem.getShopping_cart();
+                // lan dau dang nhap chua co shopping cart
+                if (shoppingCart==null){
+                    System.out.println("có vào null");
+                    shoppingCart = shoppingCartService.getShoppingCartById(user.getShoppingCart().getShoppingId());
                 }
-
                 // Cập nhật giỏ hàng trong session
                 session.setAttribute("shoppingCart", shoppingCart);
                 session.setAttribute("acc", user);
                 resp.sendRedirect("view_cart");
             }
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Có lỗi xảy ra: " + e.getMessage()); // In ra thông điệp lỗi nếu cần
         }
