@@ -39,4 +39,10 @@ public class ShoppingCartItemServiceImpl implements IShoppingCartItemService {
     public List<ShoppingCartItem> selectShoppingCartItemByShoppingCart(ShoppingCart shoppingCart){
         return shoppingCartItemRepository.selectShoppingCartItemByShoppingCart(shoppingCart);
     }
+
+    @Override
+    public void deleteShoppingCartItemById(Long shoppingCartId){
+        shoppingCartItemRepository.deleteShoppingCartItemById(shoppingCartId);
+    }
+
 }

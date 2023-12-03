@@ -49,14 +49,16 @@
                                                 <a>Name</a>
                                                 <input type="hidden" name="name"
                                                        value="<c:out value='${item.product.productName}' />"/>
-                                                <h6 class="text-black mb-0"><c:out value='${item.product.productName}'/></h6>
+                                                <h6 class="text-black mb-0"><c:out
+                                                        value='${item.product.productName}'/></h6>
                                             </div>
 
                                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                                 <a>Price</a>
                                                 <input type="hidden" name="qty"
                                                        value="<c:out value='${item.product.productPrice}' />"/>
-                                                <h6 class="text-black mb-0"><c:out value='${item.product.productPrice}'/></h6>
+                                                <h6 class="text-black mb-0"><c:out
+                                                        value='${item.product.productPrice}'/></h6>
 
                                             </div>
 
@@ -64,11 +66,12 @@
                                                 <a>Quantity</a>
                                                 <input type="hidden" name="price"
                                                        value="<c:out value='${item.shoppingCartItemQuantity}' />"/>
-                                                <h6 class="text-black mb-0"><c:out value='${item.shoppingCartItemQuantity}'/></h6>
+                                                <h6 class="text-black mb-0"><c:out
+                                                        value='${item.shoppingCartItemQuantity}'/></h6>
 
                                             </div>
                                             <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                                <a href="remove_cart?cid=${item.shoppingCartItemId}"
+                                                <a href="remove_item?cid=${item.shoppingCartItemId}"
                                                    class="text-muted"><i class="fas fa-times"></i>
                                                 </a>
                                             </div>
@@ -129,11 +132,13 @@
                                         <%--                                                                    <p th:text="${TOTAL_PRICE}">Default Text</p>--%>
                                         <%--                                                                </div>--%>
 
-                                        <button type="submit" class="btn btn-dark btn-block btn-lg"
-                                                data-mdb-ripple-color="dark">Confirm
-                                        </button>
-
-
+                                        <form action="checkout" method="post">
+                                            <input type="hidden" name="cpid" value="${shoppingCart.shoppingId}">
+                                            <button type="submit" class="btn btn-dark btn-block btn-lg"
+                                                    data-mdb-ripple-color="dark">
+                                                Confirm
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

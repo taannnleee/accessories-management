@@ -12,4 +12,5 @@ public interface IShoppingCartItemService {
     void insertShoppingCartItem(ShoppingCartItem shoppingCartItem);
     List<ShoppingCartItem> selectShoppingCartItem();
     List<ShoppingCartItem> selectShoppingCartItemByShoppingCart(ShoppingCart shoppingCart);
+    void deleteShoppingCartItemById(Long shoppingCartId);
 }

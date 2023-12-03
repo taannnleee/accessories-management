@@ -33,6 +33,14 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<ShoppingCartItem> shoppingCartItems;
 
+    public List<ShoppingCartItem> getShoppingCartItems() {
+        return shoppingCartItems;
+    }
+
+    public void setShoppingCartItems(List<ShoppingCartItem> shoppingCartItems) {
+        this.shoppingCartItems = shoppingCartItems;
+    }
+
     public Product() {
 
     }

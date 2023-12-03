@@ -1,6 +1,7 @@
 package com.example.accessoriesmanagement.repositories.Impl;
 
 import com.example.accessoriesmanagement.JPAConfig.DBUtil;
+import com.example.accessoriesmanagement.entity.Product;
 import com.example.accessoriesmanagement.entity.ShoppingCart;
 import com.example.accessoriesmanagement.entity.ShoppingCartItem;
 import com.example.accessoriesmanagement.repositories.IShoppingCartItemRepository;
@@ -109,5 +110,36 @@ public class ShoppingCartItemRepositoryImpl implements IShoppingCartItemReposito
             em.close();
         }
         return shoppingCartItems;
+    }
+
+    @Override
+    public void deleteShoppingCartItemById(Long shoppingCartId) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+
+        try {
+            trans.begin();
+            // Tìm Product cần xóa bằng id trước khi thực hiện xóa
+            ShoppingCartItem shoppingCartItem = em.find(ShoppingCartItem.class, shoppingCartId);
+
+            if (shoppingCartItem != null) {
+                shoppingCartItem.getShopping_cart().getShoppingCartItems().remove(shoppingCartItem);
+                shoppingCartItem.setShopping_cart(null);
+
+                shoppingCartItem.getProduct().getShoppingCartItems().remove(shoppingCartItem);
+                shoppingCartItem.setProduct(null);
+
+                em.remove(shoppingCartItem);
+                trans.commit();
+            } else {
+                // Nếu không tìm thấy Product có id tương ứng
+                System.out.println("Không tìm thấy ShoppingCartItem để xóa");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            trans.rollback();
+        } finally {
+            em.close();
+        }
     }
 }

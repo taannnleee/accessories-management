@@ -12,5 +12,6 @@ public interface IShoppingCartRepository {
     void insertShoppingCart(ShoppingCart shoppingCart);
     List<ShoppingCart> selectShoppingCart();
     ShoppingCart getShoppingCartByUser(User user);
+    void deleteShoppingCartById(Long shoppingCartId);
 
 }

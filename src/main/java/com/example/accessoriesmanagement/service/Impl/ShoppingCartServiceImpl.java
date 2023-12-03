@@ -40,4 +40,10 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
         return shoppingCartRepository.getShoppingCartByUser(user);
     }
 
+    @Override
+    public void deleteShoppingCartById(Long shoppingCartId){
+        shoppingCartRepository.deleteShoppingCartById(shoppingCartId);
+    }
+
+
 }

@@ -28,7 +28,7 @@ public class ShoppingCart implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "shopping_cart",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "shopping_cart",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     List<ShoppingCartItem> shoppingCartItems;
 
     public ShoppingCart() {

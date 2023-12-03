@@ -86,5 +86,33 @@ public class ProductRepositoryImpl implements IProductRepository {
         }
     }
 
+    public void deleteProductById(Long productId) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+
+        try {
+            trans.begin();
+            // Tìm Product cần xóa bằng id trước khi thực hiện xóa
+            Product product = em.find(Product.class, productId);
+
+            if (product != null) {
+                product.getProduct_category().getProducts().remove(product);
+                product.setProduct_category(null);// Xóa liên kết ngược lại với Category
+
+                em.remove(product);
+                trans.commit();
+            } else {
+                // Nếu không tìm thấy Product có id tương ứng
+                System.out.println("Không tìm thấy Product để xóa");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            trans.rollback();
+        } finally {
+            em.close();
+        }
+    }
+
+
 
 }

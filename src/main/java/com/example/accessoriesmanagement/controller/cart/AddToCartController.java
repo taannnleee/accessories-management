@@ -58,8 +58,8 @@ public class AddToCartController extends HttpServlet {
 
             if (user != null) {
                 if (shoppingCart == null) {
+                    System.out.println("=================================");
                     // Nếu đăng nhập với tài khoản mới hoặc chưa có giỏ hàng, tạo giỏ hàng mới
-
                     // kiểm trả trong db coi đã có shopping cart hay chưa (trường hợp hêt hạn session)
                     if (user.getShoppingCart() != null && user.getShoppingCart().getShoppingId() != null) {
                         shoppingCart = shoppingCartService.getShoppingCartById(user.getShoppingCart().getShoppingId());
@@ -71,14 +71,25 @@ public class AddToCartController extends HttpServlet {
                         shoppingCart.setShop_order(null);
                         shoppingCart.setTotalPrice(0);
                     }
-                    // Lưu giỏ hàng vào session
-                    session.setAttribute("shoppingCart", shoppingCart);
                 } else if (!user.getUserID().equals(shoppingCart.getUser().getUserID())) {
-                    shoppingCart = shoppingCartService.getShoppingCartById(user.getShoppingCart().getShoppingId());
+                    System.out.println("111=================================");
+                    if (user.getShoppingCart() == null) {
+                        shoppingCart = new ShoppingCart();
+                        shoppingCart.setUser(user);
+                        shoppingCart.setShop_order(null);
+                        shoppingCart.setTotalPrice(0);
+
+                        shoppingCartService.updateShoppingCart(shoppingCart);
+                    }
+                    User user_update =  userService.getUserById(user.getUserID());
+                    shoppingCart =  shoppingCartService.getShoppingCartById(user_update.getShoppingCart().getShoppingId());
+                    //session.setAttribute("shoppingCart", shoppingCart);
                 } else {
-                    //shoppingCart = shoppingCartService.getShoppingCartById(user.getShoppingCart().getShoppingId());
-                    //shoppingCart = shoppingCartService.getShoppingCartById(user.getShoppingCart().getShoppingId());
-                    shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+                    System.out.println("22=================================");
+                    //shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+                    User user_update =  userService.getUserById(user.getUserID());
+                    shoppingCart =  shoppingCartService.getShoppingCartById(user_update.getShoppingCart().getShoppingId());
+                    session.setAttribute("shoppingCart", shoppingCart);
                 }
 
                 if (shoppingCart.getShoppingCartItems() != null) {
@@ -112,14 +123,17 @@ public class AddToCartController extends HttpServlet {
                     shoppingCartItemService.updateShoppingCartItem(shoppingCartItem);
                 }
 
-                // lan dau dang nhap chua co shopping cart
-                if (shoppingCart==null){
-                    System.out.println("có vào null");
-                    shoppingCart = shoppingCartService.getShoppingCartById(user.getShoppingCart().getShoppingId());
-                }
-                // Cập nhật giỏ hàng trong session
+                User user_update =  userService.getUserById(user.getUserID());
+                shoppingCart =  shoppingCartService.getShoppingCartById(user_update.getShoppingCart().getShoppingId());
+
                 session.setAttribute("shoppingCart", shoppingCart);
-                session.setAttribute("acc", user);
+
+//                session.setAttribute("shoppingCart", shoppingCart);
+//                shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+//                System.out.println("sdf");
+//                System.out.println(shoppingCart);
+//                System.out.println(shoppingCart.getShoppingId());
+//                System.out.println(shoppingCart.getTotalPrice());
                 resp.sendRedirect("view_cart");
             }
 

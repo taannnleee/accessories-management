@@ -1,6 +1,7 @@
 package com.example.accessoriesmanagement.repositories.Impl;
 
 import com.example.accessoriesmanagement.JPAConfig.DBUtil;
+import com.example.accessoriesmanagement.entity.Product;
 import com.example.accessoriesmanagement.entity.ShoppingCart;
 import com.example.accessoriesmanagement.entity.User;
 import com.example.accessoriesmanagement.repositories.IShoppingCartRepository;
@@ -104,6 +105,35 @@ public class ShoppingCartRepositoryImpl implements IShoppingCartRepository {
             entityManager.close();
         }
         return shoppingCart;
+    }
+
+    @Override
+    public void deleteShoppingCartById(Long shoppingCartId) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+
+        try {
+            trans.begin();
+            // Tìm Product cần xóa bằng id trước khi thực hiện xóa
+            ShoppingCart shoppingCart = em.find(ShoppingCart.class, shoppingCartId);
+
+            if (shoppingCart != null) {
+                shoppingCart.getUser().setShoppingCart(null);
+                shoppingCart.setUser(null);
+
+
+                em.remove(shoppingCart);
+                trans.commit();
+            } else {
+
+                System.out.println("Không tìm thấy ShoppingCart để xóa");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            trans.rollback();
+        } finally {
+            em.close();
+        }
     }
 
 }

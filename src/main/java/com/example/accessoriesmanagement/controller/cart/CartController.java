@@ -58,6 +58,7 @@ public class CartController extends HttpServlet {
                 productBuys.add(s);
             }
             req.setAttribute("productBuys",productBuys);
+            req.setAttribute("shoppingCart",shoppingCart);
             RequestDispatcher dispatcher = req.getRequestDispatcher("/cart.jsp");
             dispatcher.forward(req, resp);
         }

@@ -50,4 +50,8 @@ public class ProductServiceImpl implements IProductService {
         Product product = Mappers.convertToEntity(productDTO, Product.class);
         productRepository.delete(product);
     }
+
+    public void deleteProductById(Long productId){
+        productRepository.deleteProductById(productId);
+    }
 }

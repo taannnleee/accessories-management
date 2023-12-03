@@ -13,31 +13,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.logging.Handler;
+import java.util.List;
 
-@WebServlet("/remove_item")
-public class RemoveCartController extends HttpServlet {
-    IShoppingCartItemService shoppingCartItemService = new ShoppingCartItemServiceImpl();
-
+@WebServlet("/checkout")
+public class Checkout extends HttpServlet {
     IShoppingCartService shoppingCartService = new ShoppingCartServiceImpl();
+
+    IShoppingCartItemService shoppingCartItemService = new ShoppingCartItemServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        req.setCharacterEncoding("UTF-8");
-        resp.setCharacterEncoding("UTF-8");
-
-        Long cart_id = Long.valueOf((req.getParameter("cid")));
-
-        ShoppingCartItem shoppingCartItem  = shoppingCartItemService.getShoppingCartItemById(cart_id);
-        shoppingCartItemService.deleteShoppingCartItemById(shoppingCartItem.getShoppingCartItemId());
-
-        resp.sendRedirect("view_cart");
-
-
+        super.doGet(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        resp.setContentType("text/html");
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+
+
+        Long shopping_cart_id = Long.valueOf((req.getParameter("cpid")));
+        ShoppingCart shoppingCart =  shoppingCartService.getShoppingCartById(shopping_cart_id);
+
+        List<ShoppingCartItem> shoppingCartItems =  shoppingCart.getShoppingCartItems();
+        for(ShoppingCartItem s:shoppingCartItems){
+            shoppingCartItemService.deleteShoppingCartItemById(s.getShoppingCartItemId());
+        }
+
+        //shoppingCartService.deleteShoppingCartById(shopping_cart_id);
     }
 }

@@ -28,7 +28,12 @@ public class DeleteProductController extends HttpServlet {
 
         Long product_id = Long.valueOf(req.getParameter("product_id"));
         ProductDTO getProductDelete =  productService.getProductById(product_id);
-        productService.delete(getProductDelete);
+        //productService.delete(getProductDelete);
+        productService.deleteProductById(getProductDelete.getProductID());
+
+        System.out.println("ID:");
+        System.out.println(getProductDelete.getProductID());
+
         RequestDispatcher rd = req.getRequestDispatcher("/success.jsp");
         rd.forward(req, resp);
     }
