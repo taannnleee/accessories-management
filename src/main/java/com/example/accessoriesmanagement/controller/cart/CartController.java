@@ -38,42 +38,40 @@ public class CartController extends HttpServlet {
     IProductService productService = new ProductServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        req.setCharacterEncoding("UTF-8");
-        resp.setCharacterEncoding("UTF-8");
+        try {
+            HttpSession session = req.getSession();
+            User user = (User) session.getAttribute("acc");
 
-        System.out.println("hello");
+            //Cập nhật lại user theoID
+            User user_update = userService.getUserById(user.getUserID());
 
-        HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("acc");
-
-        //Cập nhật lại user theoID
-        User user_update = userService.getUserById(user.getUserID());
-
-         //lấy shopping tu user
-        ShoppingCart shoppingCart =  shoppingCartService.getShoppingCartById(user_update.getShoppingCart().getShoppingId());
+            //lấy shopping tu user
+            ShoppingCart shoppingCart =  shoppingCartService.getShoppingCartById(user_update.getShoppingCart().getShoppingId());
 
 
+            //lay shopingCartItem theo shoppingCart
+            List<ShoppingCartItem> shoppingCartItems = shoppingCart.getShoppingCartItems();
 
+            List<ShoppingCartItem> productBuys = new ArrayList<>();
+            for(ShoppingCartItem s :shoppingCartItems){
+                ProductDTO productDTO =  productService.getProductById(s.getProduct().getProductID());
+                Product productBuy = Mappers.convertToEntity(productDTO,Product.class);
+                productBuys.add(s);
+            }
+            req.setAttribute("productBuys",productBuys);
 
-         //lay shopingCartItem theo shoppingCart
-        List<ShoppingCartItem> shoppingCartItems = shoppingCart.getShoppingCartItems();
-
-        List<Product> productBuys = new ArrayList<>();
-        for(ShoppingCartItem s :shoppingCartItems){
-           ProductDTO productDTO =  productService.getProductById(s.getProduct().getProductID());
-           Product productBuy = Mappers.convertToEntity(productDTO,Product.class);
-           productBuys.add(productBuy);
+//            for(Product p :productBuys){
+//                System.out.println(p.getProductName());
+//            }
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/cart.jsp");
+            dispatcher.forward(req, resp);
         }
-        req.setAttribute("productBuys",productBuys);
-
-        for(Product p :productBuys){
-            System.out.println(p.getProductName());
+        catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Có lỗi xảy ra: " + e.getMessage()); // In ra thông điệp lỗi nếu cần
         }
 
 
-        RequestDispatcher errorDispatcher = req.getRequestDispatcher("/cart.jsp");
-        errorDispatcher.forward(req, resp);
     }
 
     @Override

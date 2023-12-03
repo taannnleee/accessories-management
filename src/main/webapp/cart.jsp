@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -29,7 +30,7 @@
                             <div class="col-lg-8">
                                 <div class="p-5">
                                     <div class="d-flex justify-content-between align-items-center mb-5">
-                                        <h1 class="fw-bold mb-0 text-black">Danh sách bắp nước</h1>
+                                        <h1 class="fw-bold mb-0 text-black">Cart</h1>
                                         <h6 class="mb-0 text-muted">Total items:
                                             <span
                                             <%--                                                <c:out value="${fn:length(productBuys)}" />--%>
@@ -47,110 +48,112 @@
                                             <div class="col-md-3 col-lg-3 col-xl-3">
                                                 <a>Name</a>
                                                 <input type="hidden" name="name"
-                                                       value="<c:out value='${item.productName}' />"/>
-                                                <h6 class="text-black mb-0"><c:out value='${item.productName}'/></h6>
-                                            </div>
-
-                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                <a>Quantity</a>
-                                                <input type="hidden" name="qty" value="<c:out value='${item.productName}' />"/>
-                                                <h6 class="text-black mb-0"><c:out value='${item.productName}'/></h6>
-
+                                                       value="<c:out value='${item.product.productName}' />"/>
+                                                <h6 class="text-black mb-0"><c:out value='${item.product.productName}'/></h6>
                                             </div>
 
                                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                                 <a>Price</a>
-                                                <input type="hidden" name="price"
-                                                       value="<c:out value='${item.productName}' />"/>
-                                                <h6 class="text-black mb-0"><c:out value='${item.productName}'/></h6>
+                                                <input type="hidden" name="qty"
+                                                       value="<c:out value='${item.product.productPrice}' />"/>
+                                                <h6 class="text-black mb-0"><c:out value='${item.product.productPrice}'/></h6>
 
                                             </div>
-                                                <%--                                                <div class="col-md-1 col-lg-1 col-xl-1 text-end">--%>
-                                                <%--                                                    <a th:href="@{'/customer/remove/' + ${item.productId}}"--%>
-                                                <%--                                                       class="text-muted"><i class="fas fa-times"></i></a>--%>
-                                                <%--                                                </div>--%>
+
+                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                <a>Quantity</a>
+                                                <input type="hidden" name="price"
+                                                       value="<c:out value='${item.shoppingCartItemQuantity}' />"/>
+                                                <h6 class="text-black mb-0"><c:out value='${item.product.productName}'/></h6>
+
+                                            </div>
+                                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                <a href="remove_cart?cid=${item.shoppingCartItemId}"
+                                                   class="text-muted"><i class="fas fa-times"></i>
+                                                </a>
+                                            </div>
+
                                         </div>
                                         <hr class="my-4">
                                     </c:forEach>
 
 
-                                    <%--                                    <div class="col-md-3 col-lg-3 col-xl-3">--%>
-                                    <%--                                        <div class="d-flex justify-content-start mb-2">--%>
-                                    <%--                                            <a href="/customer/clear" class="text-danger icon-link mb-2">--%>
-                                    <%--                                                <button type="button" style="background: red"--%>
-                                    <%--                                                        class="btn btn-primary add-to-cart"--%>
-                                    <%--                                                        data-product-id="${product.id}">--%>
-                                    <%--                                                    <i class="fas fa-trash"></i>--%>
-                                    <%--                                                </button>--%>
-                                    <%--                                            </a>--%>
-                                    <%--                                        </div>--%>
-                                    <%--                                    </div>--%>
+                                    <div class="col-md-3 col-lg-3 col-xl-3">
+                                        <div class="d-flex justify-content-start mb-2">
+                                            <a href="/customer/clear" class="text-danger icon-link mb-2">
+                                                <button type="button" style="background: red"
+                                                        class="btn btn-primary add-to-cart"
+                                                <i class="fas fa-trash"></i>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
 
-                                    <%--                                    <div class="pt-5">--%>
-                                    <%--                                        <h6 class="mb-0"><a href="#!" class="text-body"><i--%>
-                                    <%--                                                class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>--%>
-                                    <%--                                    </div>--%>
+                                    <div class="pt-5">
+                                        <h6 class="mb-0"><a href="#!" class="text-body"><i
+                                                class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                                    </div>
                                 </div>
                             </div>
 
 
-                            <%--                            <div class="col-lg-4 bg-grey">--%>
-                            <%--                                <div class="p-5">--%>
-                            <%--                                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>--%>
-                            <%--                                    <hr class="my-4">--%>
+                            <div class="col-lg-4 bg-grey">
+                                <div class="p-5">
+                                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                                    <hr class="my-4">
 
-                            <%--                                    <div class="d-flex justify-content-between mb-4">--%>
-                            <%--                                        <h5 class="text-uppercase">items:--%>
-                            <%--                                            <span--%>
-                            <%--                                                    th:text="${#lists.size(CART_ITEMS)}"></span>--%>
-                            <%--                                        </h5>--%>
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <h5 class="text-uppercase">items:
+                                            <span
+                                            <%--                                                                                th:text="${#lists.size(CART_ITEMS)}"></span>--%>
+                                        </h5>
 
-                            <%--                                        <input type="hidden" name="TOTAL_PRICE" th:value="${TOTAL_PRICE}"/>--%>
-                            <%--                                        <p th:text="${TOTAL_PRICE}">Default Text</p>--%>
+                                        <%--                                                                    <input type="hidden" name="TOTAL_PRICE" th:value="${TOTAL_PRICE}"/>--%>
+                                        <%--                                                                    <p th:text="${TOTAL_PRICE}">Default Text</p>--%>
 
-                            <%--                                    </div>--%>
+                                    </div>
 
-                            <%--                                    <h5 class="text-uppercase mb-3">Shipping</h5>--%>
+                                    <h5 class="text-uppercase mb-3">Shipping</h5>
 
-                            <%--                                    <div class="mb-4 pb-2">--%>
-                            <%--                                        <select class="select">--%>
-                            <%--                                            <option value="1">Standard-Delivery- €5.00</option>--%>
-                            <%--                                            <option value="2">Two</option>--%>
-                            <%--                                            <option value="3">Three</option>--%>
-                            <%--                                            <option value="4">Four</option>--%>
-                            <%--                                        </select>--%>
-                            <%--                                    </div>--%>
+                                    <div class="mb-4 pb-2">
+                                        <select class="select">
+                                            <option value="1">Standard-Delivery- €5.00</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                            <option value="4">Four</option>
+                                        </select>
+                                    </div>
 
-                            <%--                                    <h5 class="text-uppercase mb-3">Give code</h5>--%>
+                                    <h5 class="text-uppercase mb-3">Give code</h5>
 
-                            <%--                                    <div class="mb-5">--%>
-                            <%--                                        <div class="form-outline">--%>
-                            <%--                                            <input type="text" id="form3Examplea2"--%>
-                            <%--                                                   class="form-control form-control-lg"/>--%>
-                            <%--                                            <label class="form-label" for="form3Examplea2">Enter your code</label>--%>
-                            <%--                                        </div>--%>
-                            <%--                                    </div>--%>
+                                    <div class="mb-5">
+                                        <div class="form-outline">
+                                            <input type="text" id="form3Examplea2"
+                                                   class="form-control form-control-lg"/>
+                                            <label class="form-label" for="form3Examplea2">Enter your code</label>
+                                        </div>
+                                    </div>
 
-                            <%--                                    <hr class="my-4">--%>
+                                    <hr class="my-4">
 
-                            <%--                                    <div class="d-flex justify-content-between mb-5">--%>
-                            <%--                                        <h5 class="text-uppercase">Total price</h5>--%>
-                            <%--                                        <p th:text="${TOTAL_PRICE}">Default Text</p>--%>
-                            <%--                                    </div>--%>
+                                    <div class="d-flex justify-content-between mb-5">
+                                        <h5 class="text-uppercase">Total price</h5>
+                                        <%--                                                                    <p th:text="${TOTAL_PRICE}">Default Text</p>--%>
+                                        <%--                                                                </div>--%>
 
-                            <%--                                    <button type="submit" class="btn btn-dark btn-block btn-lg"--%>
-                            <%--                                            data-mdb-ripple-color="dark">Confirm--%>
-                            <%--                                    </button>--%>
+                                        <button type="submit" class="btn btn-dark btn-block btn-lg"
+                                                data-mdb-ripple-color="dark">Confirm
+                                        </button>
 
 
-                            <%--                                </div>--%>
-                            <%--                            </div>--%>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 <%--</form>--%>

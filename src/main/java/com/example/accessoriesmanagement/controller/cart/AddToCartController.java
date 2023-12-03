@@ -59,10 +59,18 @@ public class AddToCartController extends HttpServlet {
             if (user != null) {
                 if (shoppingCart == null) {
                     // Nếu đăng nhập với tài khoản mới hoặc chưa có giỏ hàng, tạo giỏ hàng mới
-                    shoppingCart = new ShoppingCart();
-                    shoppingCart.setUser(user);
-                    shoppingCart.setShop_order(null);
-                    shoppingCart.setTotalPrice(0);
+
+                    // kiểm trả trong db coi đã có shopping cart hay chưa (trường hợp hêt hạn session)
+                    if (user.getShoppingCart() != null && user.getShoppingCart().getShoppingId() != null) {
+                        shoppingCart = shoppingCartService.getShoppingCartById(user.getShoppingCart().getShoppingId());
+                    }
+
+                    if(shoppingCart == null) {
+                        shoppingCart = new ShoppingCart();
+                        shoppingCart.setUser(user);
+                        shoppingCart.setShop_order(null);
+                        shoppingCart.setTotalPrice(0);
+                    }
                     // Lưu giỏ hàng vào session
                     session.setAttribute("shoppingCart", shoppingCart);
                 }
@@ -71,6 +79,24 @@ public class AddToCartController extends HttpServlet {
                 }
                 else {
                     shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
+                }
+
+                // phải có shopping carrt mới cho update
+                if(shoppingCart!=null){
+                    List<ShoppingCartItem> shoppingCartItems = shoppingCart.getShoppingCartItems();
+                    for (ShoppingCartItem item : shoppingCartItems) {
+                        if (item.getProduct().getProductID().equals(productDTO.getProductID())) {
+                            // Nếu sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
+                            //int newQuantity = Integer.parseInt(item.getShoppingCartItemQuantity()) + Integer.parseInt(quantity);
+                            //item.setShoppingCartItemQuantity(String.valueOf(newQuantity));
+                            //productExistsInCart = true;
+                            //break;
+                            System.out.println("vô đây roof");
+                            System.out.println(item.getProduct().getProductID());
+                            System.out.println(productDTO.getProductID());
+                        }
+                    }
+
                 }
 
                 // Tạo ShoppingCartItem và thêm vào giỏ hàng
@@ -89,34 +115,7 @@ public class AddToCartController extends HttpServlet {
                 // Cập nhật giỏ hàng trong session
                 session.setAttribute("shoppingCart", shoppingCart);
                 session.setAttribute("acc", user);
-////////////////////////////////////////////////////////////////////
-
-
-                //Cập nhật lại user theoID
-                User user_update = userService.getUserById(user.getUserID());
-
-                //lấy shopping tu user
-                ShoppingCart shoppingCart1 =  shoppingCartService.getShoppingCartById(user_update.getShoppingCart().getShoppingId());
-
-
-                //lay shopingCartItem theo shoppingCart
-                List<ShoppingCartItem> shoppingCartItems = shoppingCart1.getShoppingCartItems();
-
-                List<Product> productBuys = new ArrayList<>();
-                for(ShoppingCartItem s :shoppingCartItems){
-                    ProductDTO productDTO1 =  productService.getProductById(s.getProduct().getProductID());
-                    Product productBuy = Mappers.convertToEntity(productDTO1,Product.class);
-                    productBuys.add(productBuy);
-                }
-                req.setAttribute("productBuys",productBuys);
-
-                for(Product p :productBuys){
-                    System.out.println(p.getProductName());
-                }
-
-
-                RequestDispatcher errorDispatcher = req.getRequestDispatcher("/cart.jsp");
-                errorDispatcher.forward(req, resp);
+                resp.sendRedirect("view_cart");
             }
 
         }
@@ -126,4 +125,6 @@ public class AddToCartController extends HttpServlet {
         }
 
     }
+
+
 }
