@@ -1,5 +1,6 @@
 package com.example.accessoriesmanagement.controller.cart;
 
+import com.example.accessoriesmanagement.entity.ShopOrder;
 import com.example.accessoriesmanagement.entity.ShoppingCart;
 import com.example.accessoriesmanagement.entity.ShoppingCartItem;
 import com.example.accessoriesmanagement.entity.User;
@@ -44,19 +45,16 @@ public class Checkout extends HttpServlet {
         ShoppingCart shoppingCart =  shoppingCartService.getShoppingCartById(shopping_cart_id);
 
         //tạo 1 shopOrder link với user
-//        ShopOrder shopOrder = new ShopOrder();
-//        shopOrder.setUser(user);
-//
-//        shopOrderService.insertShopOrder(shopOrder);
-//
-//        List<ShoppingCartItem> shoppingCartItems =  shoppingCart.getShoppingCartItems();
-//        for(ShoppingCartItem s:shoppingCartItems){
-//
-//        }
+        ShopOrder shopOrder = new ShopOrder();
+        shopOrder.setUser(user);
 
-
+        shopOrderService.insertShopOrder(shopOrder);
 
         List<ShoppingCartItem> shoppingCartItems =  shoppingCart.getShoppingCartItems();
+        for(ShoppingCartItem s:shoppingCartItems){
+
+        }
+
         for(ShoppingCartItem s:shoppingCartItems){
             shoppingCartItemService.deleteShoppingCartItemById(s.getShoppingCartItemId());
         }

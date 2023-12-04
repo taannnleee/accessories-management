@@ -102,9 +102,9 @@ public class AddToCartController extends HttpServlet {
                     shoppingCartItem.setShoppingCartItemQuantity(quantity);
                     shoppingCartItem.setShopping_cart(shoppingCart1);
                     //them vào database
-                    shoppingCartItemService.updateShoppingCartItem(shoppingCartItem);
+                    ShoppingCartItem shoppingCartItem1 =  shoppingCartItemService.updateShoppingCartItem(shoppingCartItem);
 
-                    session.setAttribute("shoppingCart", shoppingCart1);
+                    session.setAttribute("shoppingCart", shoppingCartItem1.getShopping_cart());
                 }
             }
             resp.sendRedirect("view_cart");
