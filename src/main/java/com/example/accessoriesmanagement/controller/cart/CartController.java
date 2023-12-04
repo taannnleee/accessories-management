@@ -78,7 +78,6 @@ public class CartController extends HttpServlet {
                 dispatcher.forward(req, resp);
             }
 
-
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Có lỗi xảy ra: " + e.getMessage()); // In ra thông điệp lỗi nếu cần
