@@ -43,13 +43,11 @@ public class Checkout extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
-        Long customerName = Long.valueOf((req.getParameter("customerName")));
-        Long customerPhone = Long.valueOf((req.getParameter("customerPhone")));
-        Long customerEmail = Long.valueOf((req.getParameter("customerEmail")));
-        Long customerAddress = Long.valueOf((req.getParameter("customerAddress")));
-        Long customerAddressProvince = Long.valueOf((req.getParameter("customerAddressProvince")));
-        Long customerAddressDistrict = Long.valueOf((req.getParameter("customerAddressDistrict")));
-        Long customerAddressTown = Long.valueOf((req.getParameter("customerAddressTown")));
+        String customerFirstName = (req.getParameter("customerFirstName"));
+        String customerLastName =(req.getParameter("customerLastName"));
+        String customerPhone = (req.getParameter("customerPhone"));
+        String customerEmail =(req.getParameter("customerEmail"));
+        String customerAddress = (req.getParameter("customerAddress"));
 
 
         HttpSession session = req.getSession();
@@ -70,6 +68,12 @@ public class Checkout extends HttpServlet {
             shopOrder.setUser(user);
             shopOrder.setOrderStatus("paid");
             shopOrder.setOrderDate(date);
+            shopOrder.setCustomerLastName(customerLastName);
+            shopOrder.setCustomerFirstName(customerFirstName);
+            shopOrder.setCustomerEmail(customerEmail);
+            shopOrder.setCustomerPhone(customerPhone);
+            shopOrder.setAddressShipping(customerAddress);
+
             shopOrder.setTotalPrice(shoppingCart.getTotalPrice());
             shopOrderService.insertShopOrder(shopOrder);
 

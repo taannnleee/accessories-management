@@ -48,6 +48,12 @@
           <b><span id="amountCart" class="badge badge-light" style="color:black; font-size: 12px;"></span></b>
 
         </a>
+
+        <a class="btn btn-success btn-sm ml-3" href="history">
+          <i class="fa fa-history"></i> <span style="font-size: 14px;">History</span>
+          <b><span id="amountCart" class="badge badge-light" style="color:black; font-size: 12px;"></span></b>
+        </a>
+
       </form>
     </div>
   </div>

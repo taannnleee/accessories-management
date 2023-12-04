@@ -194,8 +194,15 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 title-1-1">THÔNG TIN GIAO HÀNG</div>
                         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group">
                             <div class="has-feedback">
-                                <input type="text" class="form-control" id="inputSuccess2" placeholder="HỌ TÊN"
-                                       name="customerName">
+                                <input type="text" class="form-control" id="inputSuccess2" placeholder="Last Name"
+                                       name="customerLastName">
+                                <span class="" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group">
+                            <div class="has-feedback">
+                                <input type="text" class="form-control" id="inputSuccess2" placeholder="First Name"
+                                       name="customerFirstName">
                                 <span class="" aria-hidden="true"></span>
                             </div>
                         </div>
@@ -223,30 +230,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group">
-                            <div class="has-feedback">
-                                <input type="text" class="form-control" id="inputError2" placeholder="Thành phố/Tỉnh"
-                                       name="customerAddressProvince">
-                                <span class="" aria-hidden="true"></span>
 
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group">
-                            <div class="has-feedback">
-                                <input type="text" class="form-control" id="inputError2" placeholder="Quận/Huyện"
-                                       name="customerAddressDistrict">
-                                <span class="" aria-hidden="true"></span>
-
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group">
-                            <div class="has-feedback">
-                                <input type="text" class="form-control" id="inputError2" placeholder="Phường/Xã"
-                                       name="customerAddressTown">
-                                <span class="" aria-hidden="true"></span>
-
-                            </div>
-                        </div>
                         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group">
                             <div class="ck1">
                                 <input type="checkbox" id="cb2" name="isNotification"/>
