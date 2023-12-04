@@ -129,6 +129,7 @@
                                     </div>
 
                                     <form action="checkout" method="post">
+                                        <input type="hidden" name="action" value="get_information">
                                         <input type="hidden" name="cpid" value="${shoppingCart.shoppingId}">
                                         <button type="submit" class="btn btn-dark btn-block btn-lg"
                                                 data-mdb-ripple-color="dark">
