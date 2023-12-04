@@ -11,39 +11,45 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
       <ul class="navbar-nav m-auto">
         <li class="nav-item">
-          <a class="nav-link" href="home">Home</a>
+          <a class="nav-link" href="home"><i class="fas fa-home"></i> Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="shop">Shop</a>
+          <a class="nav-link" href="shop"><i class="fas fa-shopping-bag"></i> Shop</a>
         </li>
         <c:if test="${sessionScope.acc != null}">
           <li class="nav-item">
-            <a class="nav-link" href="#">Hello ${sessionScope.acc.firstName}</a>
+            <a class="nav-link" href="#"><i class="fas fa-user"></i> Hello ${sessionScope.acc.firstName}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="logout">Logout</a>
-          </li>
-        </c:if>
-        <c:if test="${sessionScope.acc == null}">
-          <li class="nav-item">
-            <a class="nav-link" href="login">Login</a>
+            <a class="nav-link" href="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
           </li>
         </c:if>
         <c:if test="${sessionScope.acc == null}">
           <li class="nav-item">
-            <a class="nav-link" href="forgotPassword">Forgot Password</a>
+            <a class="nav-link" href="login"><i class="fas fa-sign-in-alt"></i> Login</a>
+          </li>
+        </c:if>
+        <c:if test="${sessionScope.acc == null}">
+          <li class="nav-item">
+            <a class="nav-link" href="forgotPassword"><i class="fas fa-key"></i> Forgot Password</a>
           </li>
         </c:if>
         <c:if test="${sessionScope.acc != null}">
           <li class="nav-item">
-            <a class="nav-link" href="editProfile">Edit Profile</a>
+            <a class="nav-link" href="editProfile"><i class="fas fa-edit"></i> Edit Profile</a>
           </li>
         </c:if>
+        <c:if test="${sessionScope.acc != null and sessionScope.acc.role eq 'admin'}">
+          <li class="nav-item">
+            <a class="nav-link" href="statistical.jsp"><i class="fas fa-cogs"></i> Admin</a>
+          </li>
+        </c:if>
+
       </ul>
 
       <form action="search" method="post" class="form-inline my-2 my-lg-0">
 
-        <a class="btn btn-success btn-sm ml-3" href="managerCart">
+        <a class="btn btn-success btn-sm ml-3" href="view_cart">
           <i class="fa fa-shopping-cart"></i> <span style="font-size: 14px;">Cart</span>
           <b><span id="amountCart" class="badge badge-light" style="color:black; font-size: 12px;"></span></b>
 

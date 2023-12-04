@@ -28,9 +28,10 @@ public class ShoppingCartItem {
     }
 
 
-    public ShoppingCartItem(Long shoppingCartItemId, String shoppingCartItemQuantity, Product product, ShoppingCart shopping_cart) {
+    public ShoppingCartItem(Long shoppingCartItemId, String shoppingCartItemQuantity,String size ,Product product, ShoppingCart shopping_cart) {
         this.shoppingCartItemId = shoppingCartItemId;
         this.shoppingCartItemQuantity = shoppingCartItemQuantity;
+        this.size = size;
         this.product = product;
         this.shopping_cart = shopping_cart;
     }

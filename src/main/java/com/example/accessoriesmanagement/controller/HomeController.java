@@ -23,11 +23,15 @@ public class HomeController extends HttpServlet {
         List<Product> allProducts = productDao.getAllProducts();
         List<Product> top4adidas = productDao.get4AdidasLast();
         List<Product> top4nike = productDao.get4NikeLast();
+        List<Product> top4puma = productDao.get4PumaLast();
+        List<Product> top4ana = productDao.get4AnanasLast();
 
 
         request.setAttribute("allP", allProducts);
         request.setAttribute("allA", top4adidas);
         request.setAttribute("allN", top4nike);
+        request.setAttribute("allPu", top4puma);
+        request.setAttribute("allAn", top4ana);
         request.getRequestDispatcher("views/Home.jsp").forward(request, response);
     }
 

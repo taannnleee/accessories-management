@@ -45,35 +45,19 @@ public class AddProductController extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
 
         String name = req.getParameter("name");
-        String description = req.getParameter("description");
+        String description = req.getParameter("title");
+        String img = req.getParameter("image");
         Double price = Double.valueOf(req.getParameter("price"));
         Integer quantity = Integer.valueOf(req.getParameter("quantity"));
-        Long categoryId = Long.valueOf(req.getParameter("categoryId"));
-
-        Part file = req.getPart("image_multipart");
-        String imageFileName = file.getSubmittedFileName();
-        String uploadPath = "C:/Users/Admin/Downloads/DoAnLTWeb/accessories-management/src/main/webapp/static/"+ imageFileName;
+        Long categoryId = Long.valueOf(req.getParameter("category"));
         try {
-            FileOutputStream fos = new FileOutputStream(uploadPath);
-            InputStream is = file.getInputStream();
-
-            byte[] data = new byte[is.available()];
-            is.read(data);
-            fos.write(data);
-            fos.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        try {
-            ProductDTO productDTO = new ProductDTO(name, description, price, imageFileName, quantity, categoryId);
+            ProductDTO productDTO = new ProductDTO(name, description, price, img, quantity, categoryId);
             productService.insertProduct(productDTO);
             RequestDispatcher rd = req.getRequestDispatcher("/success.jsp");
             rd.forward(req, resp);
         } catch (Exception e) {
-            // Xử lý exception ở đây, ví dụ:
             e.printStackTrace(); // In ra stack trace để ghi nhận lỗi
 
-            // Forward hoặc redirect tới một trang lỗi để thông báo cho người dùng về sự cố
             RequestDispatcher errorDispatcher = req.getRequestDispatcher("/error.jsp");
             errorDispatcher.forward(req, resp);
         }

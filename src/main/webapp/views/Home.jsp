@@ -165,11 +165,8 @@
                                     <h4 class="card-title show_txt"><a href="detail?pid=${product.productID}" title="View Product">${product.productName}</a></h4>
                                     <p class="card-text show_txt">${product.productDescription}</p>
                                     <div class="row">
-
-                                        <div class="col-lg-6">
-                                            <p class="btn btn-success">${product.productPrice}$</p>
-                                        </div>
-                                        <div class="col-lg-6">
+                                        <div class="col">
+                                            <p class="btn btn-success btn-block">${product.productPrice} $</p>
                                         </div>
                                     </div>
                                 </div>
@@ -188,7 +185,7 @@
         <div class="col-sm-12">
             <div id="contentNike" class="row">
                 <c:forEach items="${allA}" var="product">
-                    <div class="productNike col-12 col-md-6 col-lg-3">
+                    <div class="productAdidas col-12 col-md-6 col-lg-3">
                         <div class="card">
                             <div class="view zoom z-depth-2 rounded">
                                 <img class="img-fluid w-100" src="${product.productImage}" alt="Card image cap">
@@ -197,23 +194,14 @@
                                 <h4 class="card-title show_txt"><a href="detail?pid=${product.productID}" title="View Product">${product.productName}</a></h4>
                                 <p class="card-text show_txt">${product.productDescription}</p>
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <p class="btn btn-success">${product.productPrice}$</p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <form action="add_to_cart" method="post">
-                                            <input type="hidden" name="product_id" value="${product.productID}" >
-                                            <button type="submit" class="btn btn-success">CART</button>
-                                        </form>
+                                    <div class="col">
+                                        <p class="btn btn-success btn-block">${product.productPrice} $</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </c:forEach>
-            </div>
-            <div class="text-center">
-                <button onclick="loadMoreNike()" class="btn btn-primary ">Load more</button>
             </div>
         </div>
     </div>
@@ -233,23 +221,66 @@
                                 <h4 class="card-title show_txt"><a href="detail?pid=${product.productID}" title="View Product">${product.productName}</a></h4>
                                 <p class="card-text show_txt">${product.productDescription}</p>
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <p class="btn btn-success">${product.productPrice}$</p>
+                                    <div class="col">
+                                        <p class="btn btn-success btn-block">${product.productPrice} $</p>
                                     </div>
-<%--                                    <div class="col-lg-6">--%>
-<%--                                        <form action="add_to_cart" method="post">--%>
-<%--                                            <input type="hidden" name="product_id" value="${product.productID}" >--%>
-<%--                                            <button type="submit" class="btn btn-success">CART</button>--%>
-<%--                                        </form>--%>
-<%--                                    </div>--%>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </c:forEach>
             </div>
-            <div class="text-center">
-                <button onclick="loadMoreNike()" class="btn btn-primary ">Load more</button>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:25px">
+        <h1 style="text-align:center; width:100%" id="puma">GIÀY PUMA MỚI NHẤT</h1>
+        <div class="col-sm-12">
+            <div id="contentPuma" class="row">
+                <c:forEach items="${allPu}" var="product">
+                    <div class="productNike col-12 col-md-6 col-lg-3">
+                        <div class="card">
+                            <div class="view zoom z-depth-2 rounded">
+                                <img class="img-fluid w-100" src="${product.productImage}" alt="Card image cap">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title show_txt"><a href="detail?pid=${product.productID}" title="View Product">${product.productName}</a></h4>
+                                <p class="card-text show_txt">${product.productDescription}</p>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="btn btn-success btn-block">${product.productPrice} $</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:25px">
+        <h1 style="text-align:center; width:100%" id="ananas">GIÀY ANANAS MỚI NHẤT</h1>
+        <div class="col-sm-12">
+            <div id="contentAnanas" class="row">
+                <c:forEach items="${allAn}" var="product">
+                    <div class="productNike col-12 col-md-6 col-lg-3">
+                        <div class="card">
+                            <div class="view zoom z-depth-2 rounded">
+                                <img class="img-fluid w-100" src="${product.productImage}" alt="Card image cap">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title show_txt"><a href="detail?pid=${product.productID}" title="View Product">${product.productName}</a></h4>
+                                <p class="card-text show_txt">${product.productDescription}</p>
+                                <div class="row">
+                                    <div class="col">
+                                        <p class="btn btn-success btn-block">${product.productPrice} $</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
         </div>
     </div>
@@ -259,22 +290,11 @@
 <jsp:include page="footer.jsp"></jsp:include>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
-
 <!-- MDB -->
 <script type="text/javascript" src="js/mdb.min.js"></script>
 <!-- Custom scripts -->
 <script type="text/javascript" src="js/script.js"></script>
 
-<script>
-    function loadMoreNike() {
-        // Mở trang web của Nike trong cửa sổ mới
-        window.open("https://www.nike.com/", "_blank");
-    }
-</script>
-
-<!-- SCRIPTS -->
-<!-- JQuery -->
 <script src="https://mdbootstrap.com/previews/ecommerce-demo/js/jquery-3.4.1.min.js"></script>
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="https://mdbootstrap.com/previews/ecommerce-demo/js/popper.min.js"></script>

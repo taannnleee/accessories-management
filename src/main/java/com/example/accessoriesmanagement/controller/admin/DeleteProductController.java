@@ -26,7 +26,7 @@ public class DeleteProductController extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         req.setCharacterEncoding("UTF-8");
 
-        Long product_id = Long.valueOf(req.getParameter("product_id"));
+        Long product_id = Long.valueOf(req.getParameter("pid"));
         ProductDTO getProductDelete =  productService.getProductById(product_id);
         //productService.delete(getProductDelete);
         productService.deleteProductById(getProductDelete.getProductID());
@@ -34,7 +34,7 @@ public class DeleteProductController extends HttpServlet {
         System.out.println("ID:");
         System.out.println(getProductDelete.getProductID());
 
-        RequestDispatcher rd = req.getRequestDispatcher("/success.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("manager_product_list");
         rd.forward(req, resp);
     }
 }

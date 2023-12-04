@@ -1,5 +1,6 @@
 package com.example.accessoriesmanagement.repositories.Impl;
 import com.example.accessoriesmanagement.JPAConfig.DBUtil;
+import com.example.accessoriesmanagement.entity.Product;
 import com.example.accessoriesmanagement.entity.User;
 import com.example.accessoriesmanagement.repositories.IUserDao;
 
@@ -8,6 +9,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 public class UserDaoImpl implements IUserDao {
@@ -107,6 +109,40 @@ public class UserDaoImpl implements IUserDao {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             return em.find(User.class, UserId);
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<User> getAllAccount() {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+
+        String jpql = "SELECT p FROM User p ";
+
+        try {
+            TypedQuery<User> query = em.createQuery(jpql, User.class);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public void deleteAccount(Long id) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+
+        try {
+            trans.begin();
+            String jpql = "DELETE FROM User a WHERE a.userID = :userID";
+            em.createQuery(jpql)
+                    .setParameter("userID", id)
+                    .executeUpdate();
+            trans.commit();
+        } catch (Exception e) {
+            if (trans.isActive()) {
+                trans.rollback();
+            }
+            e.printStackTrace();
         } finally {
             em.close();
         }

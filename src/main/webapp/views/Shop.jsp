@@ -237,7 +237,7 @@
     });
     function load(cateid){
         $.ajax({
-            url: "/accessories_management_war/loadCate",
+            url: "loadCate",
             type: "get", //send it through get method
             data: {
                 cid: cateid
@@ -251,7 +251,7 @@
         var txtSearch = param.value;
         console.log('Giá trị của txtSearch:', txtSearch);
         $.ajax({
-            url: "/accessories_management_war/searchProduct",
+            url: "searchProduct",
             type: "get", //send it through get method
             data: {
                 txt: txtSearch
@@ -268,7 +268,7 @@
 
     function loadAmountCart(){
         $.ajax({
-            url: "/accessories_management_war/loadAllAmountCart",
+            url: "loadAllAmountCart",
             type: "get", //send it through get method
             data: {
 
@@ -280,7 +280,7 @@
     }
     function searchByPriceUnder1000(){
         $.ajax({
-            url: "/accessories_management_war/product1000",
+            url: "product1000",
             type: "get", //send it through get method
             data: {
 
@@ -296,7 +296,7 @@
     }
     function searchByPrice100To200(){
         $.ajax({
-            url: "/accessories_management_war/product1to2",
+            url: "product1to2",
             type: "get", //send it through get method
             data: {
 
@@ -312,7 +312,7 @@
     }
     function searchByPriceAbove200(){
         $.ajax({
-            url: "/accessories_management_war/product2000",
+            url: "product2000",
             type: "get", //send it through get method
             data: {
 
@@ -330,7 +330,7 @@
         var numMin = document.getElementById("priceMin").value;
         var numMax = document.getElementById("priceMax").value;
         $.ajax({
-            url: "/accessories_management_war/searchMinToMax",
+            url: "searchMinToMax",
             type: "get", //send it through get method
             data: {
                 priceMin: numMin,
