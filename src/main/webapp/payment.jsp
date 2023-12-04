@@ -226,7 +226,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group">
                             <div class="has-feedback">
                                 <input type="text" class="form-control" id="inputError2" placeholder="Thành phố/Tỉnh"
-                                       name="customerAddress">
+                                       name="customerAddressProvince">
                                 <span class="" aria-hidden="true"></span>
 
                             </div>
@@ -234,7 +234,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group">
                             <div class="has-feedback">
                                 <input type="text" class="form-control" id="inputError2" placeholder="Quận/Huyện"
-                                       name="customerAddress">
+                                       name="customerAddressDistrict">
                                 <span class="" aria-hidden="true"></span>
 
                             </div>
@@ -242,7 +242,7 @@
                         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group">
                             <div class="has-feedback">
                                 <input type="text" class="form-control" id="inputError2" placeholder="Phường/Xã"
-                                       name="customerAddress">
+                                       name="customerAddressTown">
                                 <span class="" aria-hidden="true"></span>
 
                             </div>
@@ -271,18 +271,6 @@
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group title-right normal-fee">0 VNĐ</div>
 
-                        <!--                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 form-group">-->
-                        <!--                        <div class="ck1">-->
-                        <!--                            <input type="radio" id="cb4" name="shippingType" value="speed"/>-->
-                        <!--                            <label for="cb4"></label>-->
-                        <!--                            Tốc độ nhanh hơn &nbsp; &nbsp; <img class="tooltip_attach"-->
-                        <!--                                                                src="-->
-                        <!--">-->
-                        <!--                        </div>-->
-                        <!--                        <div class="tooltip-container" hidden>Là giao hàng rồi mới trả tiền đó, giao tận tay luôn! 2-->
-                        <!--                        </div>-->
-                        <!--                    </div>-->
-                        <!--                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group title-right speed-fee">0 VNĐ</div>-->
 
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 title-1">PHƯƠNG THỨC THANH TOÁN</div>
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 form-group">

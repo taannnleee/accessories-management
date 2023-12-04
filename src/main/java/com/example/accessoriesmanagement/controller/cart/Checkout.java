@@ -43,6 +43,15 @@ public class Checkout extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
 
+        Long customerName = Long.valueOf((req.getParameter("customerName")));
+        Long customerPhone = Long.valueOf((req.getParameter("customerPhone")));
+        Long customerEmail = Long.valueOf((req.getParameter("customerEmail")));
+        Long customerAddress = Long.valueOf((req.getParameter("customerAddress")));
+        Long customerAddressProvince = Long.valueOf((req.getParameter("customerAddressProvince")));
+        Long customerAddressDistrict = Long.valueOf((req.getParameter("customerAddressDistrict")));
+        Long customerAddressTown = Long.valueOf((req.getParameter("customerAddressTown")));
+
+
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("acc");
 

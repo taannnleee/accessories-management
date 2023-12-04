@@ -44,7 +44,7 @@
                                                     <%--                                                <img src="'/' + ${item.img_url}" class="img-fluid rounded-3"--%>
                                                     <%--                                                     alt="Not found image">--%>
                                             </div>
-                                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                            <div class="col-md-2 col-lg-3 col-xl-3">
                                                 <a>Name</a>
                                                 <input type="hidden" name="name"
                                                        value="<c:out value='${item.product.productName}' />"/>
@@ -52,7 +52,7 @@
                                                         value='${item.product.productName}'/></h6>
                                             </div>
 
-                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                            <div class="col-md-2 col-lg-2 col-xl-2 offset-lg-1">
                                                 <a>Price</a>
                                                 <input type="hidden" name="qty"
                                                        value="<c:out value='${item.product.productPrice}' />"/>
@@ -67,6 +67,14 @@
                                                        value="<c:out value='${item.shoppingCartItemQuantity}' />"/>
                                                 <h6 class="text-black mb-0"><c:out
                                                         value='${item.shoppingCartItemQuantity}'/></h6>
+
+                                            </div>
+                                            <div class="col-md-2 col-lg-2 col-xl-2 offset-lg-1">
+                                                <a>Size</a>
+                                                <input type="hidden" name="size"
+                                                       value="<c:out value='${item.size}' />"/>
+                                                <h6 class="text-black mb-0"><c:out
+                                                        value='${item.size}'/></h6>
 
                                             </div>
                                             <div class="col-md-1 col-lg-1 col-xl-1 text-end">
