@@ -100,5 +100,15 @@ public class UserDaoImpl implements IUserDao {
         } finally {
             em.close();
         }
+
+    }
+    @Override
+    public User getUserById(Long UserId) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            return em.find(User.class, UserId);
+        } finally {
+            em.close();
+        }
     }
 }

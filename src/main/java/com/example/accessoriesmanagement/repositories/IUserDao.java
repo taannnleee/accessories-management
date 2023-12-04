@@ -9,4 +9,5 @@ public interface IUserDao {
     void editProfile(Date dateOfBirth, String email, String fName, String lName, String phone, Long userID);
     User checkAccountExist(String user);
     void signup(String user, String pass, String email);
+    User getUserById(Long UserId);
 }

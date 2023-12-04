@@ -56,57 +56,35 @@ public class AddToCartController extends HttpServlet {
             User user = (User) session.getAttribute("acc");
             ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
 
+            ShoppingCart shoppingCart_temp = (ShoppingCart) session.getAttribute("shoppingCart");
+            shoppingCart = shoppingCartService.getShoppingCartById(shoppingCart_temp.getShoppingId());
+
             if (user != null) {
-                if (shoppingCart == null) {
-                    System.out.println("=================================");
-                    // Nếu đăng nhập với tài khoản mới hoặc chưa có giỏ hàng, tạo giỏ hàng mới
-                    // kiểm trả trong db coi đã có shopping cart hay chưa (trường hợp hêt hạn session)
-                    if (user.getShoppingCart() != null && user.getShoppingCart().getShoppingId() != null) {
-                        shoppingCart = shoppingCartService.getShoppingCartById(user.getShoppingCart().getShoppingId());
-                    }
 
-                    if (shoppingCart == null) {
-                        shoppingCart = new ShoppingCart();
-                        shoppingCart.setUser(user);
-                        shoppingCart.setShop_order(null);
-                        shoppingCart.setTotalPrice(0);
-                    }
-                } else if (!user.getUserID().equals(shoppingCart.getUser().getUserID())) {
-                    System.out.println("111=================================");
-                    if (user.getShoppingCart() == null) {
-                        shoppingCart = new ShoppingCart();
-                        shoppingCart.setUser(user);
-                        shoppingCart.setShop_order(null);
-                        shoppingCart.setTotalPrice(0);
-
-                        shoppingCartService.updateShoppingCart(shoppingCart);
-                    }
-                    User user_update =  userService.getUserById(user.getUserID());
-                    shoppingCart =  shoppingCartService.getShoppingCartById(user_update.getShoppingCart().getShoppingId());
-                    //session.setAttribute("shoppingCart", shoppingCart);
-                } else {
-                    System.out.println("22=================================");
-                    //shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
-                    User user_update =  userService.getUserById(user.getUserID());
-                    shoppingCart =  shoppingCartService.getShoppingCartById(user_update.getShoppingCart().getShoppingId());
-                    session.setAttribute("shoppingCart", shoppingCart);
-                }
-
-                if (shoppingCart.getShoppingCartItems() != null) {
-                    boolean productExistsInCart = false;
-                    List<ShoppingCartItem> shoppingCartItems = shoppingCart.getShoppingCartItems();
-                    //update so lượng khi cùng một loại san phẩm
-                    for (ShoppingCartItem item : shoppingCartItems) {
-                        if (item.getProduct().getProductID().equals(productDTO.getProductID())) {
-                            // Nếu sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
-                            int newQuantity = Integer.parseInt(item.getShoppingCartItemQuantity()) + Integer.parseInt(quantity);
-                            item.setShoppingCartItemQuantity(String.valueOf(newQuantity));
-                            productExistsInCart = true;
-                            shoppingCartItemService.updateShoppingCartItem(item);
-                            break;
+                if(shoppingCart !=null){
+                    if (shoppingCart.getShoppingCartItems() != null) {
+                        boolean productExistsInCart = false;
+                        List<ShoppingCartItem> shoppingCartItems = shoppingCart.getShoppingCartItems();
+                        //update so lượng khi cùng một loại san phẩm
+                        for (ShoppingCartItem item : shoppingCartItems) {
+                            if (item.getProduct().getProductID().equals(productDTO.getProductID())) {
+                                // Nếu sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
+                                int newQuantity = Integer.parseInt(item.getShoppingCartItemQuantity()) + Integer.parseInt(quantity);
+                                item.setShoppingCartItemQuantity(String.valueOf(newQuantity));
+                                productExistsInCart = true;
+                                shoppingCartItemService.updateShoppingCartItem(item);
+                                break;
+                            }
                         }
-                    }
-                    if (!productExistsInCart) {
+                        if (!productExistsInCart) {
+                            ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
+                            shoppingCartItem.setProduct(Mappers.convertToEntity(productDTO, Product.class));
+                            shoppingCartItem.setShoppingCartItemQuantity(quantity);
+                            shoppingCartItem.setShopping_cart(shoppingCart);
+                            //them vào database
+                            shoppingCartItemService.updateShoppingCartItem(shoppingCartItem);
+                        }
+                    } else {
                         ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
                         shoppingCartItem.setProduct(Mappers.convertToEntity(productDTO, Product.class));
                         shoppingCartItem.setShoppingCartItemQuantity(quantity);
@@ -114,29 +92,22 @@ public class AddToCartController extends HttpServlet {
                         //them vào database
                         shoppingCartItemService.updateShoppingCartItem(shoppingCartItem);
                     }
-                } else {
+                }else{
+                    ShoppingCart shoppingCart1 = new ShoppingCart();
+                    shoppingCart1.setUser(user);
+                    shoppingCart1.setTotalPrice(0);
+
                     ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
                     shoppingCartItem.setProduct(Mappers.convertToEntity(productDTO, Product.class));
                     shoppingCartItem.setShoppingCartItemQuantity(quantity);
-                    shoppingCartItem.setShopping_cart(shoppingCart);
+                    shoppingCartItem.setShopping_cart(shoppingCart1);
                     //them vào database
                     shoppingCartItemService.updateShoppingCartItem(shoppingCartItem);
+
+                    session.setAttribute("shoppingCart", shoppingCart1);
                 }
-
-                User user_update =  userService.getUserById(user.getUserID());
-                shoppingCart =  shoppingCartService.getShoppingCartById(user_update.getShoppingCart().getShoppingId());
-
-                session.setAttribute("shoppingCart", shoppingCart);
-
-//                session.setAttribute("shoppingCart", shoppingCart);
-//                shoppingCart = (ShoppingCart) session.getAttribute("shoppingCart");
-//                System.out.println("sdf");
-//                System.out.println(shoppingCart);
-//                System.out.println(shoppingCart.getShoppingId());
-//                System.out.println(shoppingCart.getTotalPrice());
-                resp.sendRedirect("view_cart");
             }
-
+            resp.sendRedirect("view_cart");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Có lỗi xảy ra: " + e.getMessage()); // In ra thông điệp lỗi nếu cần

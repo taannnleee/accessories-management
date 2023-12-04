@@ -1,8 +1,11 @@
 package com.example.accessoriesmanagement.controller;
 
+import com.example.accessoriesmanagement.entity.ShoppingCart;
 import com.example.accessoriesmanagement.repositories.IUserDao;
 import com.example.accessoriesmanagement.repositories.Impl.UserDaoImpl;
 import com.example.accessoriesmanagement.entity.User;
+import com.example.accessoriesmanagement.service.IShoppingCartService;
+import com.example.accessoriesmanagement.service.Impl.ShoppingCartServiceImpl;
 
 import java.io.IOException;
 import javax.persistence.NoResultException;
@@ -18,6 +21,8 @@ import javax.servlet.http.HttpSession;
 public class LoginController extends HttpServlet {
 
     private final IUserDao userDao = new UserDaoImpl();
+
+    IShoppingCartService shoppingCartService = new ShoppingCartServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -55,6 +60,25 @@ public class LoginController extends HttpServlet {
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("acc", user);
+
+//                User user_temp = (User) session.getAttribute("acc");
+//                user =  userDao.getUserById(user_temp.getUserID());
+//                if(user.getShoppingCart() == null){
+//                    ShoppingCart shoppingCart = new ShoppingCart();
+//                    shoppingCart.setUser(user);
+//                    shoppingCart.setTotalPrice(0);
+//                    shoppingCartService.insertShoppingCart(shoppingCart);
+//
+//                    session.setAttribute("shoppingCart", shoppingCart);
+//                    session.setAttribute("acc", user);
+//                }
+//                else {
+//                    ShoppingCart shoppingCart = user.getShoppingCart();
+//                    session.setAttribute("shoppingCart", shoppingCart);
+//                    session.setAttribute("acc", user);
+//                }
+
+
                 session.setMaxInactiveInterval(60 * 60 * 24);
 
                 // Lưu user vào cookie

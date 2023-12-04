@@ -36,6 +36,7 @@ public class CartController extends HttpServlet {
     IShoppingCartItemService shoppingCartItemService = new ShoppingCartItemServiceImpl();
 
     IProductService productService = new ProductServiceImpl();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
@@ -45,24 +46,40 @@ public class CartController extends HttpServlet {
             //Cập nhật lại user theoID
             User user_update = userService.getUserById(user.getUserID());
 
-            //lấy shopping tu user
-            ShoppingCart shoppingCart =  shoppingCartService.getShoppingCartById(user_update.getShoppingCart().getShoppingId());
+            if(user_update.getShoppingCart()!=null){
+                //lấy shopping tu user
+                ShoppingCart shoppingCart = shoppingCartService.getShoppingCartById(user_update.getShoppingCart().getShoppingId());
 
 
-            //lay shopingCartItem theo shoppingCart
-            List<ShoppingCartItem> shoppingCartItems = shoppingCart.getShoppingCartItems();
+                //lay shopingCartItem theo shoppingCart
+                List<ShoppingCartItem> shoppingCartItems = shoppingCart.getShoppingCartItems();
 
-            List<ShoppingCartItem> productBuys = new ArrayList<>();
-            for(ShoppingCartItem s :shoppingCartItems){
-                ProductDTO productDTO =  productService.getProductById(s.getProduct().getProductID());
-                productBuys.add(s);
+                List<ShoppingCartItem> productBuys = new ArrayList<>();
+                for (ShoppingCartItem s : shoppingCartItems) {
+                    ProductDTO productDTO = productService.getProductById(s.getProduct().getProductID());
+                    productBuys.add(s);
+                }
+                int size = shoppingCartItems.size();
+                double totalPrice = calculateTotalPrice(shoppingCartItems);
+                req.setAttribute("totalPrice", totalPrice);
+                req.setAttribute("productBuys", productBuys);
+                req.setAttribute("shoppingCart", shoppingCart);
+                req.setAttribute("size", size);
+
+                //cạp nhat tong tien trong shoppingCart
+                shoppingCart.setTotalPrice(totalPrice);
+                shoppingCartService.updateShoppingCart(shoppingCart);
+
+                RequestDispatcher dispatcher = req.getRequestDispatcher("/cart.jsp");
+                dispatcher.forward(req, resp);
             }
-            req.setAttribute("productBuys",productBuys);
-            req.setAttribute("shoppingCart",shoppingCart);
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/cart.jsp");
-            dispatcher.forward(req, resp);
-        }
-        catch (Exception e) {
+            else {
+                RequestDispatcher dispatcher = req.getRequestDispatcher("/cart.jsp");
+                dispatcher.forward(req, resp);
+            }
+
+
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Có lỗi xảy ra: " + e.getMessage()); // In ra thông điệp lỗi nếu cần
         }
@@ -73,5 +90,20 @@ public class CartController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
+    }
+
+    public double calculateTotalPrice(List<ShoppingCartItem> shoppingCartItems) {
+        double totalPrice = 0.0;
+
+        for (ShoppingCartItem item : shoppingCartItems) {
+            ProductDTO productDTO = productService.getProductById(item.getProduct().getProductID());
+            int quantity = Integer.parseInt(item.getShoppingCartItemQuantity());
+            double pricePerUnit = productDTO.getProductPrice();
+
+            double itemTotal = quantity * pricePerUnit;
+            totalPrice += itemTotal;
+        }
+
+        return totalPrice;
     }
 }

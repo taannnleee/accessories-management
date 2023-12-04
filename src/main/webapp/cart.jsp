@@ -32,9 +32,7 @@
                                     <div class="d-flex justify-content-between align-items-center mb-5">
                                         <h1 class="fw-bold mb-0 text-black">Cart</h1>
                                         <h6 class="mb-0 text-muted">Total items:
-                                            <span
-                                            <%--                                                <c:out value="${fn:length(productBuys)}" />--%>
-                                            </span>
+                                            <span><c:out value="${size}" /></span>
                                         </h6>
                                     </div>
                                     <hr class="my-4">
@@ -42,8 +40,9 @@
                                     <c:forEach var="item" items="${productBuys}">
                                         <div class="row mb-4 d-flex justify-content-between align-items-center">
                                             <div class="col-md-2 col-lg-2 col-xl-2">
-                                                    <%--                                                    <img th:src="'/' + ${item.img_url}" class="img-fluid rounded-3"--%>
-                                                    <%--                                                         alt="Not found image">--%>
+                                                Dang lỗi load hình
+                                                    <%--                                                <img src="'/' + ${item.img_url}" class="img-fluid rounded-3"--%>
+                                                    <%--                                                     alt="Not found image">--%>
                                             </div>
                                             <div class="col-md-3 col-lg-3 col-xl-3">
                                                 <a>Name</a>
@@ -94,13 +93,10 @@
                                     <hr class="my-4">
 
                                     <div class="d-flex justify-content-between mb-4">
-                                        <h5 class="text-uppercase">items:
-                                            <span
-                                            <%--                                                                                th:text="${#lists.size(CART_ITEMS)}"></span>--%>
-                                        </h5>
 
-                                        <%--                                                                    <input type="hidden" name="TOTAL_PRICE" th:value="${TOTAL_PRICE}"/>--%>
-                                        <%--                                                                    <p th:text="${TOTAL_PRICE}">Default Text</p>--%>
+                                        <input type="hidden" name="TOTAL_PRICE" <c:out value="${totalPrice}" />/>
+                                        <p><c:out value="${totalPrice}" /></p>
+
 
                                     </div>
 
@@ -129,17 +125,16 @@
 
                                     <div class="d-flex justify-content-between mb-5">
                                         <h5 class="text-uppercase">Total price</h5>
-                                        <%--                                                                    <p th:text="${TOTAL_PRICE}">Default Text</p>--%>
-                                        <%--                                                                </div>--%>
-
-                                        <form action="checkout" method="post">
-                                            <input type="hidden" name="cpid" value="${shoppingCart.shoppingId}">
-                                            <button type="submit" class="btn btn-dark btn-block btn-lg"
-                                                    data-mdb-ripple-color="dark">
-                                                Confirm
-                                            </button>
-                                        </form>
+                                        <p><c:out value="${totalPrice}" /></p>
                                     </div>
+
+                                    <form action="checkout" method="post">
+                                        <input type="hidden" name="cpid" value="${shoppingCart.shoppingId}">
+                                        <button type="submit" class="btn btn-dark btn-block btn-lg"
+                                                data-mdb-ripple-color="dark">
+                                            Confirm
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -147,6 +142,7 @@
                 </div>
             </div>
         </div>
+    </div>
 </section>
 
 <%--</form>--%>
