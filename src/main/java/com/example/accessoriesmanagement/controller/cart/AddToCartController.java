@@ -68,7 +68,7 @@ public class AddToCartController extends HttpServlet {
                         List<ShoppingCartItem> shoppingCartItems = shoppingCart.getShoppingCartItems();
                         //update so lượng khi cùng một loại san phẩm
                         for (ShoppingCartItem item : shoppingCartItems) {
-                            if (item.getProduct().getProductID().equals(productDTO.getProductID())) {
+                            if (item.getProduct().getProductID().equals(productDTO.getProductID()) && item.getSize().equals(size)) {
                                 // Nếu sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
                                 int newQuantity = Integer.parseInt(item.getShoppingCartItemQuantity()) + Integer.parseInt(quantity);
                                 item.setShoppingCartItemQuantity(String.valueOf(newQuantity));

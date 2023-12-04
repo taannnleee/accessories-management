@@ -110,4 +110,5 @@ public class Product implements Serializable {
         this.productQuantity = productQuantity;
         this.product_category = product_category;
     }
+
 }
