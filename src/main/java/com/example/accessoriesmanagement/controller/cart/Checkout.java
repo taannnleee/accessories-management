@@ -50,12 +50,16 @@ public class Checkout extends HttpServlet {
         ShoppingCart shoppingCart =  shoppingCartService.getShoppingCartById(shopping_cart_id);
 
 
+        long millis=System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
+        System.out.println(date);
 
+        LocalDate currentDate = DateUtils.getCurrentDate();
         //tạo mới một Order
         ShopOrder shopOrder = new ShopOrder();
         shopOrder.setUser(user);
         shopOrder.setOrderStatus("paid");
-//        shopOrder.setOrderDate(currentDate);
+        shopOrder.setOrderDate(date);
         shopOrderService.insertShopOrder(shopOrder);
 
         //gan item qua cho shopOrderItem
