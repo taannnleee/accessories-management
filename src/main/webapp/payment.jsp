@@ -349,7 +349,7 @@
                             <span class="title-6-1"><span><c:out value='${item.itemTotal}'/></span> VND</span>
                         </li>
                         <li class="list-group-item text-1-1">
-                            <span class="title-6-2">Size: free</span>
+                            <span class="title-6-2"><c:out value='${item.shoppingCartItem.size}'/></span>
                             <span class="title-6-3">x
                                 <span>
                                     <c:out value='${item.shoppingCartItem.shoppingCartItemQuantity}'/>

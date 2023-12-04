@@ -48,6 +48,7 @@ public class AddToCartController extends HttpServlet {
         try {
             String product_id = req.getParameter("pid");
             String quantity = req.getParameter("quantity");
+            String size = req.getParameter("size");
 
             Long productId = Long.valueOf(product_id);
             ProductDTO productDTO = productService.getProductById(productId);
@@ -80,6 +81,7 @@ public class AddToCartController extends HttpServlet {
                             ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
                             shoppingCartItem.setProduct(Mappers.convertToEntity(productDTO, Product.class));
                             shoppingCartItem.setShoppingCartItemQuantity(quantity);
+                            shoppingCartItem.setSize(size);
                             shoppingCartItem.setShopping_cart(shoppingCart);
                             //them vào database
                             shoppingCartItemService.updateShoppingCartItem(shoppingCartItem);
@@ -88,6 +90,7 @@ public class AddToCartController extends HttpServlet {
                         ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
                         shoppingCartItem.setProduct(Mappers.convertToEntity(productDTO, Product.class));
                         shoppingCartItem.setShoppingCartItemQuantity(quantity);
+                        shoppingCartItem.setSize(size);
                         shoppingCartItem.setShopping_cart(shoppingCart);
                         //them vào database
                         shoppingCartItemService.updateShoppingCartItem(shoppingCartItem);
@@ -99,6 +102,7 @@ public class AddToCartController extends HttpServlet {
 
                     ShoppingCartItem shoppingCartItem = new ShoppingCartItem();
                     shoppingCartItem.setProduct(Mappers.convertToEntity(productDTO, Product.class));
+                    shoppingCartItem.setSize(size);
                     shoppingCartItem.setShoppingCartItemQuantity(quantity);
                     shoppingCartItem.setShopping_cart(shoppingCart1);
                     //them vào database
