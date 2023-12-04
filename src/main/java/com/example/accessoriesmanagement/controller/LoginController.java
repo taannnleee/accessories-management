@@ -61,22 +61,22 @@ public class LoginController extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("acc", user);
 
-//                User user_temp = (User) session.getAttribute("acc");
-//                user =  userDao.getUserById(user_temp.getUserID());
-//                if(user.getShoppingCart() == null){
-//                    ShoppingCart shoppingCart = new ShoppingCart();
-//                    shoppingCart.setUser(user);
-//                    shoppingCart.setTotalPrice(0);
-//                    shoppingCartService.insertShoppingCart(shoppingCart);
-//
-//                    session.setAttribute("shoppingCart", shoppingCart);
-//                    session.setAttribute("acc", user);
-//                }
-//                else {
-//                    ShoppingCart shoppingCart = user.getShoppingCart();
-//                    session.setAttribute("shoppingCart", shoppingCart);
-//                    session.setAttribute("acc", user);
-//                }
+                User user_temp = (User) session.getAttribute("acc");
+                user =  userDao.getUserById(user_temp.getUserID());
+                if(user.getShoppingCart() == null){
+                    ShoppingCart shoppingCart = new ShoppingCart();
+                    shoppingCart.setUser(user);
+                    shoppingCart.setTotalPrice(0);
+                    shoppingCartService.insertShoppingCart(shoppingCart);
+
+                    session.setAttribute("shoppingCart", shoppingCart);
+                    session.setAttribute("acc", user);
+                }
+                else {
+                    ShoppingCart shoppingCart = user.getShoppingCart();
+                    session.setAttribute("shoppingCart", shoppingCart);
+                    session.setAttribute("acc", user);
+                }
 
 
                 session.setMaxInactiveInterval(60 * 60 * 24);

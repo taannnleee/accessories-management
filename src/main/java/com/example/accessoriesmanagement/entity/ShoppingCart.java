@@ -17,12 +17,6 @@ public class ShoppingCart implements Serializable {
     @Column(name = "total_price")
     private double totalPrice;
 
-    @ManyToOne
-    @JoinColumn(name = "shop_order_id")
-    private ShopOrder shop_order;
-
-    @OneToMany(mappedBy = "shopping_cart",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<Payment> payments;
 
     @OneToOne()
     @JoinColumn(name = "user_id")
@@ -36,10 +30,9 @@ public class ShoppingCart implements Serializable {
     }
 
 
-    public ShoppingCart(Long shoppingId, double totalPrice, ShopOrder shop_order, User user) {
+    public ShoppingCart(Long shoppingId, double totalPrice, User user) {
         this.shoppingId = shoppingId;
         this.totalPrice = totalPrice;
-        this.shop_order = shop_order;
         this.user = user;
     }
 
@@ -51,13 +44,7 @@ public class ShoppingCart implements Serializable {
         return totalPrice;
     }
 
-    public ShopOrder getShop_order() {
-        return shop_order;
-    }
 
-    public List<Payment> getPayments() {
-        return payments;
-    }
 
     public User getUser() {
         return user;
@@ -75,13 +62,6 @@ public class ShoppingCart implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    public void setShop_order(ShopOrder shop_order) {
-        this.shop_order = shop_order;
-    }
-
-    public void setPayments(List<Payment> payments) {
-        this.payments = payments;
-    }
 
     public void setUser(User user) {
         this.user = user;

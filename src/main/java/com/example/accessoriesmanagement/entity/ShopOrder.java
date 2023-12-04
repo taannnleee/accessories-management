@@ -29,9 +29,6 @@ public class ShopOrder implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "shop_order",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<ShoppingCart> shoppingCarts;
-
     public ShopOrder() {
 
     }
