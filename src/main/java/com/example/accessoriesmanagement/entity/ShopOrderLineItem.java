@@ -15,7 +15,7 @@ public class ShopOrderLineItem {
     @Column(name = "size")
     private String size;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "shop_order_id")
     private ShopOrder shopOrder;
 
@@ -26,6 +26,8 @@ public class ShopOrderLineItem {
     public Long getShopOrderLineItemId() {
         return shopOrderLineItemId;
     }
+
+
 
     public String getQuantity() {
         return quantity;

@@ -66,4 +66,12 @@ public class ShoppingCartItem {
     public void setShopping_cart(ShoppingCart shopping_cart) {
         this.shopping_cart = shopping_cart;
     }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getSize() {
+        return size;
+    }
 }

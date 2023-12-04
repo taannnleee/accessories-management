@@ -29,6 +29,9 @@ public class ShopOrder implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToMany(mappedBy = "shopOrder",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    List<ShopOrderLineItem> shopOrderLineItems;
+
     public ShopOrder() {
 
     }
@@ -88,5 +91,13 @@ public class ShopOrder implements Serializable {
         this.orderStatus = orderStatus;
         this.addressShipping = addressShipping;
         this.user = user;
+    }
+
+    public List<ShopOrderLineItem> getShopOrderLineItems() {
+        return shopOrderLineItems;
+    }
+
+    public void setShopOrderLineItems(List<ShopOrderLineItem> shopOrderLineItems) {
+        this.shopOrderLineItems = shopOrderLineItems;
     }
 }
