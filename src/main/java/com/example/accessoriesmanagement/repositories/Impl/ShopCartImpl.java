@@ -61,4 +61,40 @@ public class ShopCartImpl implements IShopCartDao {
             em.close();
         }
     }
+
+    public List<ShopOrder> getAllShopItem() {
+        EntityManager em = new DBUtil().getEmFactory().createEntityManager();
+        String jpql = "SELECT s FROM ShopOrder s JOIN FETCH s.shopOrderLineItems";
+        try {
+            TypedQuery<ShopOrder> query = em.createQuery(jpql, ShopOrder.class);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<ShopOrder> getAllInvoiceByID(Long id) {
+        EntityManager em = new DBUtil().getEmFactory().createEntityManager();
+        String jpql = "SELECT s FROM ShopOrder s JOIN FETCH s.shopOrderLineItems where s.user.userID = :id";
+        try {
+            TypedQuery<ShopOrder> query = em.createQuery(jpql, ShopOrder.class);
+            query.setParameter("id",id);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<ShopOrder> getAllShopItemWithProducts() {
+        EntityManager em = new DBUtil().getEmFactory().createEntityManager();
+        String jpql = "SELECT s FROM ShopOrder s " +
+                "JOIN FETCH s.shopOrderLineItems lineItem " +
+                "JOIN FETCH lineItem.product product";
+        try {
+            TypedQuery<ShopOrder> query = em.createQuery(jpql, ShopOrder.class);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
 }

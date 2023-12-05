@@ -17,7 +17,7 @@
 </head>
 
 <body>
-
+<jsp:include page="views/header.jsp"></jsp:include>
 <%--<form th:action="@{'/customer/pay'}" th:object="${CART_ITEMS}" method="post">--%>
 
 <section class="h-100 h-custom" style="background-color: #d2c9ff;">
@@ -40,9 +40,8 @@
                                     <c:forEach var="item" items="${productBuys}">
                                         <div class="row mb-4 d-flex justify-content-between align-items-center">
                                             <div class="col-md-2 col-lg-2 col-xl-2">
-                                                Dang lỗi load hình
-                                                    <%--                                                <img src="'/' + ${item.img_url}" class="img-fluid rounded-3"--%>
-                                                    <%--                                                     alt="Not found image">--%>
+                                                <img class="img-fluid w-100"
+                                                     src="${item.product.productImage }">
                                             </div>
                                             <div class="col-md-2 col-lg-3 col-xl-3">
                                                 <a>Name</a>
@@ -88,7 +87,7 @@
                                     </c:forEach>
 
                                     <div class="pt-5">
-                                        <h6 class="mb-0"><a href="#!" class="text-body"><i
+                                        <h6 class="mb-0"><a href="shop" class="text-body"><i
                                                 class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
                                     </div>
                                 </div>
@@ -144,11 +143,6 @@
                                             Confirm
                                         </button>
                                     </form>
-
-                                    <a class="btn btn-success btn-sm ml-3" href="history">
-                                        <i class="fa fa-history"></i> <span style="font-size: 14px;">History</span>
-                                        <b><span id="amountCart" class="badge badge-light" style="color:black; font-size: 12px;"></span></b>
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -159,7 +153,6 @@
     </div>
 </section>
 
-<%--</form>--%>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>

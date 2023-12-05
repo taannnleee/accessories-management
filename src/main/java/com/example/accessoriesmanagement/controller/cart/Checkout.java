@@ -87,7 +87,7 @@ public class Checkout extends HttpServlet {
 
                 shopOrderItem.setSize(s.getSize());
                 shopOrderItem.setQuantity(s.getShoppingCartItemQuantity());
-
+                shopOrderItem.setProduct(s.getProduct().getProductID());
                 // Gán shopOrder cho shopOrderItem
                 shopOrderItem.setShopOrder(shopOrder);
 

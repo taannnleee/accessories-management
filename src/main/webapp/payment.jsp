@@ -179,18 +179,6 @@
                 <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 main-cart-left">
 
                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 title-1-2" style="display: none">
-                            BẠN CÓ MUỐN TÍCH ĐIỂM ĐỂ NHẬN ƯU ĐÃI &nbsp; &nbsp;
-                            <img class="tooltip_attach"
-                                 src="https://ananas.vn/wp-content/themes/ananas/fe-assets/images/svg/icon_cham_hoi.svg">
-                            &nbsp; &nbsp;
-                            <button class="btn btn-login" type="button"
-                                    onclick="window.location.href= 'https://ananas.vn/wp-login.php'">ĐĂNG NHẬP
-                            </button>
-                            <div class="tooltip-container" hidden>Rất nhiều ưu đãi đang chờ bạn, đăng nhập ngay để nhận!
-                            </div>
-                        </div>
-
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 title-1-1">THÔNG TIN GIAO HÀNG</div>
                         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group">
                             <div class="has-feedback">
@@ -227,80 +215,6 @@
                                        name="customerAddress">
                                 <span class="" aria-hidden="true"></span>
 
-                            </div>
-                        </div>
-
-
-                        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group">
-                            <div class="ck1">
-                                <input type="checkbox" id="cb2" name="isNotification"/>
-                                <label for="cb2"></label>
-                                Cập nhật các thông tin mới nhất về chương trình từ Ananas
-                            </div>
-                        </div>
-
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 title-1">PHƯƠNG THỨC GIAO HÀNG</div>
-
-                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 form-group">
-                            <div class="ck1">
-                                <input type="radio" id="cb3" name="shippingType" value="normal" checked=""/>
-                                <label for="cb3"></label>
-                                Tốc độ tiêu chuẩn (từ 2 - 5 ngày làm việc) &nbsp; &nbsp; <img class="tooltip_attach"
-                                                                                              src="https://ananas.vn/wp-content/themes/ananas/fe-assets/images/svg/icon_cham_hoi.svg">
-                            </div>
-                            <div class="tooltip-container" hidden>Tuỳ vào địa chỉ giao hàng mà tốc độ giao hàng tiêu
-                                chuẩn
-                                sẽ khác nhau. Chúng tôi luôn cố gắng để đơn hàng đến tay bạn sớm nhất.
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 form-group title-right normal-fee">0 VNĐ</div>
-
-
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 title-1">PHƯƠNG THỨC THANH TOÁN</div>
-                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 form-group">
-                            <div class="ck1">
-                                <input type="radio" id="cb5" name="paymentType" class="paymentType" value="direct"
-                                       checked=""/>
-                                <label for="cb5"></label>
-                                Thanh toán trực tiếp khi giao hàng &nbsp; &nbsp; <img class="tooltip_attach"
-                                                                                      src="https://ananas.vn/wp-content/themes/ananas/fe-assets/images/svg/icon_cham_hoi.svg">
-                                &nbsp; &nbsp; <img
-                                    src="https://ananas.vn/wp-content/themes/ananas/fe-assets/images/svg/icon_COD.svg">
-                            </div>
-                            <div class="tooltip-container" hidden>Là phương thức thanh toán bằng tiền mặt trực tiếp khi
-                                nhận
-                                hàng
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group">
-                            <div class="ck1">
-                                <input type="radio" id="cb7" name="paymentType" class="paymentType" value="payoo-card"/>
-                                <label for="cb7"></label>
-                                Thanh toán bằng Thẻ quốc tế / Thẻ nội địa / QR Code &nbsp; &nbsp; <img
-                                    class="tooltip_attach"
-                                    src="https://ananas.vn/wp-content/themes/ananas/fe-assets/images/svg/icon_cham_hoi.svg">
-                                &nbsp; &nbsp; <img
-                                    src="https://ananas.vn/wp-content/themes/ananas/fe-assets/images/svg/card_icon.svg">
-                            </div>
-                            <div class="tooltip-container" hidden>
-                                Phương thức thanh toán sử dụng các loại thẻ quốc tế như Visa, Master, JCB,…
-                                hoặc các loại thẻ thanh toán nội địa (ATM) hoặc thanh toán bằng QR ngân hàng hoặc ví
-                                điện tử.
-                                Vui lòng đọc kĩ các cam kết thanh toán khi chọn phương thức này.
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 form-group">
-                            <div class="ck1">
-                                <input type="radio" id="cb8" name="paymentType" class="paymentType" value="momo"/>
-                                <label for="cb8"></label>
-                                Thanh toán bằng ví MoMo &nbsp; &nbsp; <img class="tooltip_attach"
-                                                                           src="https://ananas.vn/wp-content/themes/ananas/fe-assets/images/svg/icon_cham_hoi.svg">
-                                &nbsp; &nbsp; <img
-                                    src="https://ananas.vn/wp-content/themes/ananas/fe-assets/images/svg/icon momo-01.svg">
-                            </div>
-                            <div class="tooltip-container" hidden>
-                                Phương thức dành cho khách hàng có tài khoản và lựa chọn thanh toán qua ví điện tử MoMo.
-                                Vui lòng đọc kĩ các cam kết về phương thức này trước khi quyết định.
                             </div>
                         </div>
                     </div>
@@ -341,20 +255,6 @@
                             <span class="current-price" <c:out value="${totalPrice}"/>>
                             </span> VND</span>
                         </li>
-                        <li class="list-group-item text-2-2">
-                            <span class="title-3">Giảm</span>
-                            <span class="title-4-1">- <span
-                                    class="discount">0</span> VND</span>
-                        </li>
-                        <li class="list-group-item text-2-3">
-                            <span class="title-21">Phí vận chuyển</span>
-                            <span class="title-22"><span class="shipping-fee">0</span> VND</span>
-                        </li>
-                        <li class="list-group-item text-2-3 payment-fee-input">
-                            <span class="title-21">Phí thanh toán</span>
-                            <span class="title-22"><span class="card-fee">0</span> VND</span>
-                        </li>
-
                         <li class="list-group-item divider-1"></li>
                         <li class="list-group-item">
                             <span class="title-5">TỔNG CỘNG</span>

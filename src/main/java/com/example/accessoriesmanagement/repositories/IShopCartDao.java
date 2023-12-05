@@ -7,4 +7,7 @@ import java.util.List;
 public interface IShopCartDao {
     void deleteShoppingCartByUserId(Long userId);
     List<ShopOrder> getAllShopOrders();
+    List<ShopOrder> getAllShopItem();
+    List<ShopOrder> getAllInvoiceByID(Long id);
+    List<ShopOrder> getAllShopItemWithProducts();
 }

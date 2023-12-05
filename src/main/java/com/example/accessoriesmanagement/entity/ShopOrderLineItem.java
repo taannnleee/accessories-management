@@ -15,6 +15,17 @@ public class ShopOrderLineItem {
     @Column(name = "size")
     private String size;
 
+    public Long getProduct() {
+        return product;
+    }
+
+    public void setProduct(Long product) {
+        this.product = product;
+    }
+
+    @Column(name = "product_id")
+    private Long product;
+
     @ManyToOne
     @JoinColumn(name = "shop_order_id")
     private ShopOrder shopOrder;

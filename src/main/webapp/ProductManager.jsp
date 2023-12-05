@@ -158,20 +158,6 @@
               </tbody>
             </table>
 
-            <div class="clearfix">
-              <ul class="pagination">
-                <c:if test="${tag != 1}">
-                  <li class="page-item"><a href="manager?index=${tag-1 }">Previous</a></li>
-                </c:if>
-                <c:forEach begin="1" end="${endPage }" var="i">
-                  <li class="${tag==i?"page-item active":"" }"><a href="manager?index=${i }" class="page-link">${i }</a></li>
-                </c:forEach>
-                <c:if test="${tag != endPage}">
-                  <li class="page-item"><a href="manager?index=${tag+1 }" class="page-link">Next</a></li>
-                </c:if>
-              </ul>
-            </div>
-
           </div>
         </div>
       </div>

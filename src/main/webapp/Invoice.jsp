@@ -127,6 +127,7 @@
                                 <th scope="col">Mã Hóa Đơn</th>
                                 <th scope="col">Account</th>
                                 <th scope="col">Địa chỉ</th>
+                                <th scope="col">ID sản phẩm</th>
                                 <th scope="col">Tổng Giá($)</th>
                                 <th scope="col">Ngày Xuất</th>
                             </tr>
@@ -134,14 +135,17 @@
 
                             <tbody>
                             <c:forEach items="${listAllInvoice}" var="o">
+                                <c:forEach var="lineItem" items="${o.shopOrderLineItems}">
                                 <tr>
                                     <td></td>
                                     <td>${o.shopOrderId}</td>
                                     <td>${o.user.userID}</td>
                                     <td>${o.addressShipping}</td>
+                                    <td>${lineItem.product}</td>
                                     <td>${o.totalPrice}</td>
                                     <td>${o.orderDate}</td>
                                 </tr>
+                                </c:forEach>
                             </c:forEach>
                             </tbody>
                         </table>

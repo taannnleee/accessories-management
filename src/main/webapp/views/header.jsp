@@ -39,9 +39,14 @@
             <a class="nav-link" href="editProfile"><i class="fas fa-edit"></i> Edit Profile</a>
           </li>
         </c:if>
+        <c:if test="${sessionScope.acc != null}">
+          <li class="nav-item">
+            <a class="nav-link" href="history"><i class="fas fa-history"></i> Purchase History</a>
+          </li>
+        </c:if>
         <c:if test="${sessionScope.acc != null and sessionScope.acc.role eq 'admin'}">
           <li class="nav-item">
-            <a class="nav-link" href="statistical.jsp"><i class="fas fa-cogs"></i> Admin</a>
+            <a class="nav-link" href="hoaDon"><i class="fas fa-cogs"></i> Admin</a>
           </li>
         </c:if>
 
