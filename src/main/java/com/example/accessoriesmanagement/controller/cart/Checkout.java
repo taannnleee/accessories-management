@@ -22,6 +22,7 @@ import java.util.List;
 
 @WebServlet("/checkout")
 public class Checkout extends HttpServlet {
+
     IShoppingCartService shoppingCartService = new ShoppingCartServiceImpl();
     IShopOrderService shopOrderService = new ShopOrderServiceImpl();
 
