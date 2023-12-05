@@ -98,7 +98,7 @@ public class Checkout extends HttpServlet {
             for (ShoppingCartItem s : shoppingCartItems) {
                 shoppingCartItemService.deleteShoppingCartItemById(s.getShoppingCartItemId());
             }
-            shoppingCartService.deleteShoppingCartById(shopping_cart_id);
+            //shoppingCartService.deleteShoppingCartById(shopping_cart_id);
             RequestDispatcher dispatcher = req.getRequestDispatcher("/cart.jsp");
             dispatcher.forward(req, resp);
         }
