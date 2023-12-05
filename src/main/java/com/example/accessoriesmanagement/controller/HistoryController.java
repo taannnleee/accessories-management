@@ -32,20 +32,29 @@ public class HistoryController extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
 
         HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("acc");
+        //User user = (User) session.getAttribute("acc");
+        User user = userService.getUserById(1L);
         User user_temp =  userService.getUserById(user.getUserID());
 
         System.out.println("ID user là");
         System.out.println(user_temp.getUserName());
-        System.out.println(user_temp.getShopOders());
-
-        for(ShopOrder a : user_temp.getShopOders()){
-            System.out.println(a.getShopOrderLineItems());
-            System.out.println(a.getCustomerEmail());
-            for(ShopOrderLineItem b : a.getShopOrderLineItems()){
-                System.out.println(b.getQuantity());
-            }
+        //System.out.println(user_temp.getShopOders());
+        if(user.getShopOders()!=null){
+            System.out.println("khac null");
         }
+        else {
+            System.out.println("null");
+        }
+
+       // if(shopOrders!=null){
+
+//        for(ShopOrder a : user_temp.getShopOders()){
+//            System.out.println(a.getShopOrderLineItems());
+//            System.out.println(a.getCustomerEmail());
+//            for(ShopOrderLineItem b : a.getShopOrderLineItems()){
+//                System.out.println(b.getQuantity());
+//            }
+//        }
 
 
 
@@ -55,25 +64,25 @@ public class HistoryController extends HttpServlet {
         //Hibernate.initialize(shopOrderService.getShopOrderById());
 
 
-        List<ShopOrder> shopOrders = new ArrayList<>();
+        //List<ShopOrder> shopOrders = new ArrayList<>();
         //List<ShopOrder> shopOrders = shopOrderService.getShopOrderById(1L);
-        if(shopOrders!=null){
-            System.out.println("khac null");
-        }
-        else {
-            System.out.println("null");
-        }
-
-        if(shopOrders!=null){
+//        if(shopOrders!=null){
+//            System.out.println("khac null");
+//        }
+//        else {
+//            System.out.println("null");
+//        }
+//
+//        if(shopOrders!=null){
 //            for(ShopOrder so:shopOrders){
 //                //ShopOrder shopOrder =  shopOrderService.getShopOrderById(so.getShopOrderId());
 //                //List<ShopOrderLineItem> shopOrderLineItems = shopOrder.getShopOrderLineItems();
 //            }
-            req.setAttribute("shopOrders", shopOrders);
-
-        }else{
-            System.out.println("Ban chưa thực hiện order nào cả");
-        }
+//            req.setAttribute("shopOrders", shopOrders);
+//
+//        }else{
+//            System.out.println("Ban chưa thực hiện order nào cả");
+//        }
 
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/history.jsp");
