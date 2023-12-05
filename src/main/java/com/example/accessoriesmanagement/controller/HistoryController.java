@@ -2,11 +2,13 @@ package com.example.accessoriesmanagement.controller;
 
 import com.example.accessoriesmanagement.entity.ShopOrder;
 import com.example.accessoriesmanagement.entity.ShopOrderLineItem;
+import com.example.accessoriesmanagement.entity.ShoppingCartItem;
 import com.example.accessoriesmanagement.entity.User;
 import com.example.accessoriesmanagement.service.IShopOrderService;
 import com.example.accessoriesmanagement.service.IUserService;
 import com.example.accessoriesmanagement.service.Impl.ShopOrderServiceImpl;
 import com.example.accessoriesmanagement.service.Impl.UserServiceImpl;
+import org.hibernate.Hibernate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/history")
@@ -30,12 +33,30 @@ public class HistoryController extends HttpServlet {
 
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("acc");
+        User user_temp =  userService.getUserById(user.getUserID());
+
+        System.out.println("ID user là");
+        System.out.println(user_temp.getUserName());
+        System.out.println(user_temp.getShopOders());
+
+        for(ShopOrder a : user_temp.getShopOders()){
+            System.out.println(a.getShopOrderLineItems());
+            System.out.println(a.getCustomerEmail());
+            for(ShopOrderLineItem b : a.getShopOrderLineItems()){
+                System.out.println(b.getQuantity());
+            }
+        }
+
+
+
+
 
         //tạo ra list để load dữ liệu lên
+        //Hibernate.initialize(shopOrderService.getShopOrderById());
 
-        User user_temp =  userService.getUserById(user.getUserID());
-        //List<ShopOrder> shopOrders = shopOrderService.getShopOrderById();
-        List<ShopOrder> shopOrders = user_temp.getShopOders();
+
+        List<ShopOrder> shopOrders = new ArrayList<>();
+        //List<ShopOrder> shopOrders = shopOrderService.getShopOrderById(1L);
         if(shopOrders!=null){
             System.out.println("khac null");
         }
@@ -43,16 +64,16 @@ public class HistoryController extends HttpServlet {
             System.out.println("null");
         }
 
-//        if(shopOrders!=null){
+        if(shopOrders!=null){
 //            for(ShopOrder so:shopOrders){
 //                //ShopOrder shopOrder =  shopOrderService.getShopOrderById(so.getShopOrderId());
 //                //List<ShopOrderLineItem> shopOrderLineItems = shopOrder.getShopOrderLineItems();
 //            }
-//            //req.setAttribute("shopOrders", shopOrders);
-//
-//        }else{
-//            System.out.println("Ban chưa thực hiện order nào cả");
-//        }
+            req.setAttribute("shopOrders", shopOrders);
+
+        }else{
+            System.out.println("Ban chưa thực hiện order nào cả");
+        }
 
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/history.jsp");
