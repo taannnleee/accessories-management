@@ -55,7 +55,7 @@ public class LoginController extends HttpServlet {
             User user = userDao.authenticateUser(username, password);
 
             if (user == null) {
-                request.setAttribute("error", "Sai username hoặc password!");
+                request.setAttribute("error", "Username or password incorrect!");
                 request.getRequestDispatcher("views/Login.jsp").forward(request, response);
             } else {
                 HttpSession session = request.getSession();
@@ -99,7 +99,7 @@ public class LoginController extends HttpServlet {
                 response.sendRedirect("home");
             }
         } catch (NoResultException e) {
-            request.setAttribute("error", "Sai username hoặc password!");
+            request.setAttribute("error", "Username or password incorrect!");
             request.getRequestDispatcher("views/Login.jsp").forward(request, response);
         }
 
