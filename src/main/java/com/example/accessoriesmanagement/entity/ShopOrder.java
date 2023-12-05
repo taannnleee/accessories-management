@@ -37,7 +37,7 @@ public class ShopOrder implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "shopOrder",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "shopOrder",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<ShopOrderLineItem> shopOrderLineItems;
 
     public ShopOrder() {

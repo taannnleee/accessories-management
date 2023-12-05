@@ -49,6 +49,9 @@ public class Checkout extends HttpServlet {
         String customerEmail =(req.getParameter("customerEmail"));
         String customerAddress = (req.getParameter("customerAddress"));
 
+        System.out.println(customerLastName);
+        System.out.println(customerFirstName);
+
 
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("acc");
