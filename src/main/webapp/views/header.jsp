@@ -52,8 +52,8 @@
         <a class="btn btn-success btn-sm ml-3" href="view_cart">
           <i class="fa fa-shopping-cart"></i> <span style="font-size: 14px;">Cart</span>
           <b><span id="amountCart" class="badge badge-light" style="color:black; font-size: 12px;"></span></b>
-
         </a>
+
       </form>
     </div>
   </div>

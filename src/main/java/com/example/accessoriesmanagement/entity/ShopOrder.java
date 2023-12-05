@@ -24,6 +24,14 @@ public class ShopOrder implements Serializable {
 
     @Column(name = "address_shipping")
     private String addressShipping;
+    @Column(name = "customer_first_name")
+    private String customerFirstName;
+    @Column(name = "customer_last_name")
+    private String customerLastName;
+    @Column(name = "customer_phone")
+    private String customerPhone;
+    @Column(name = "customer_email")
+    private String customerEmail;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -82,6 +90,38 @@ public class ShopOrder implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getCustomerFirstName() {
+        return customerFirstName;
+    }
+
+    public String getCustomerLastName() {
+        return customerLastName;
+    }
+
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public void setCustomerFirstName(String customerFirstName) {
+        this.customerFirstName = customerFirstName;
+    }
+
+    public void setCustomerLastName(String customerLastName) {
+        this.customerLastName = customerLastName;
+    }
+
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
+    }
+
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
     }
 
     public ShopOrder(Long shopOrderId, Date orderDate, double totalPrice, String orderStatus, String addressShipping, User user) {

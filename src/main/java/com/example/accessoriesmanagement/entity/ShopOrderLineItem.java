@@ -15,7 +15,7 @@ public class ShopOrderLineItem {
     @Column(name = "size")
     private String size;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "shop_order_id")
     private ShopOrder shopOrder;
 

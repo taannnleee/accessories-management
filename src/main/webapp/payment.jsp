@@ -173,29 +173,36 @@
     }</style>
     <!-- END HEADER MOBILE--><!-- CONTENT -->
     <div class="main-cart container-fluid">
-        <div class="row">
+        <form action="checkout" method="post">
+            <div class="row">
 
-            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 main-cart-left">
+                <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 main-cart-left">
 
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 title-1-2" style="display: none">
-                        BẠN CÓ MUỐN TÍCH ĐIỂM ĐỂ NHẬN ƯU ĐÃI &nbsp; &nbsp;
-                        <img class="tooltip_attach"
-                             src="https://ananas.vn/wp-content/themes/ananas/fe-assets/images/svg/icon_cham_hoi.svg">
-                        &nbsp; &nbsp;
-                        <button class="btn btn-login" type="button"
-                                onclick="window.location.href= 'https://ananas.vn/wp-login.php'">ĐĂNG NHẬP
-                        </button>
-                        <div class="tooltip-container" hidden>Rất nhiều ưu đãi đang chờ bạn, đăng nhập ngay để nhận!
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 title-1-2" style="display: none">
+                            BẠN CÓ MUỐN TÍCH ĐIỂM ĐỂ NHẬN ƯU ĐÃI &nbsp; &nbsp;
+                            <img class="tooltip_attach"
+                                 src="https://ananas.vn/wp-content/themes/ananas/fe-assets/images/svg/icon_cham_hoi.svg">
+                            &nbsp; &nbsp;
+                            <button class="btn btn-login" type="button"
+                                    onclick="window.location.href= 'https://ananas.vn/wp-login.php'">ĐĂNG NHẬP
+                            </button>
+                            <div class="tooltip-container" hidden>Rất nhiều ưu đãi đang chờ bạn, đăng nhập ngay để nhận!
+                            </div>
                         </div>
-                    </div>
 
-                    <form id="orderForm">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 title-1-1">THÔNG TIN GIAO HÀNG</div>
                         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group">
                             <div class="has-feedback">
-                                <input type="text" class="form-control" id="inputSuccess2" placeholder="HỌ TÊN"
-                                       name="customerName">
+                                <input type="text" class="form-control" id="inputSuccess2" placeholder="Last Name"
+                                       name="customerLastName">
+                                <span class="" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group">
+                            <div class="has-feedback">
+                                <input type="text" class="form-control" id="inputSuccess2" placeholder="First Name"
+                                       name="customerFirstName">
                                 <span class="" aria-hidden="true"></span>
                             </div>
                         </div>
@@ -223,30 +230,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group">
-                            <div class="has-feedback">
-                                <input type="text" class="form-control" id="inputError2" placeholder="Thành phố/Tỉnh"
-                                       name="customerAddressProvince">
-                                <span class="" aria-hidden="true"></span>
 
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group">
-                            <div class="has-feedback">
-                                <input type="text" class="form-control" id="inputError2" placeholder="Quận/Huyện"
-                                       name="customerAddressDistrict">
-                                <span class="" aria-hidden="true"></span>
-
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group">
-                            <div class="has-feedback">
-                                <input type="text" class="form-control" id="inputError2" placeholder="Phường/Xã"
-                                       name="customerAddressTown">
-                                <span class="" aria-hidden="true"></span>
-
-                            </div>
-                        </div>
                         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 form-group">
                             <div class="ck1">
                                 <input type="checkbox" id="cb2" name="isNotification"/>
@@ -319,127 +303,126 @@
                                 Vui lòng đọc kĩ các cam kết về phương thức này trước khi quyết định.
                             </div>
                         </div>
-                    </form>
+                    </div>
 
                 </div>
 
-            </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 main-cart-right">
+                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 main-cart-right">
 
 
-                <ul class="list-group">
-                    <li class="list-group-item title">ĐƠN HÀNG</li>
-                    <li class="list-group-item divider"></li>
-                    <c:forEach var="item" items="${productBuys}">
-                        <li class="list-group-item text-1">
-                            <span class="title-6"><c:out value='${item.shoppingCartItem.product.productName}'/></span>
-                            <span class="title-6-1"><span><c:out value='${item.itemTotal}'/></span> VND</span>
-                        </li>
-                        <li class="list-group-item text-1-1">
-                            <span class="title-6-2"><c:out value='${item.shoppingCartItem.size}'/></span>
-                            <span class="title-6-3">x
+                    <ul class="list-group">
+                        <li class="list-group-item title">ĐƠN HÀNG</li>
+                        <li class="list-group-item divider"></li>
+                        <c:forEach var="item" items="${productBuys}">
+                            <li class="list-group-item text-1">
+                                <span class="title-6"><c:out
+                                        value='${item.shoppingCartItem.product.productName}'/></span>
+                                <span class="title-6-1"><span><c:out value='${item.itemTotal}'/></span> VND</span>
+                            </li>
+                            <li class="list-group-item text-1-1">
+                                <span class="title-6-2"><c:out value='${item.shoppingCartItem.size}'/></span>
+                                <span class="title-6-3">x
                                 <span>
                                     <c:out value='${item.shoppingCartItem.shoppingCartItemQuantity}'/>
                                 </span>
                             </span>
-                        </li>
-                        <div class="listProductFromCart"
-                             data-id="919442"
-                             data-size="free"
-                             data-quantity="8">
-                        </div>
-                    </c:forEach>
-                    <li class="list-group-item divider-1"></li>
-                    <li class="list-group-item text-1">
-                        <span class="title-3">Đơn hàng</span>
-                        <span class="title-3-1">
+                            </li>
+                            <div class="listProductFromCart"
+                                 data-id="919442"
+                                 data-size="free"
+                                 data-quantity="8">
+                            </div>
+                        </c:forEach>
+                        <li class="list-group-item divider-1"></li>
+                        <li class="list-group-item text-1">
+                            <span class="title-3">Đơn hàng</span>
+                            <span class="title-3-1">
                             <span class="current-price" <c:out value="${totalPrice}"/>>
                             </span> VND</span>
-                    </li>
-                    <li class="list-group-item text-2-2">
-                        <span class="title-3">Giảm</span>
-                        <span class="title-4-1">- <span
-                                class="discount">0</span> VND</span>
-                    </li>
-                    <li class="list-group-item text-2-3">
-                        <span class="title-21">Phí vận chuyển</span>
-                        <span class="title-22"><span class="shipping-fee">0</span> VND</span>
-                    </li>
-                    <li class="list-group-item text-2-3 payment-fee-input">
-                        <span class="title-21">Phí thanh toán</span>
-                        <span class="title-22"><span class="card-fee">0</span> VND</span>
-                    </li>
+                        </li>
+                        <li class="list-group-item text-2-2">
+                            <span class="title-3">Giảm</span>
+                            <span class="title-4-1">- <span
+                                    class="discount">0</span> VND</span>
+                        </li>
+                        <li class="list-group-item text-2-3">
+                            <span class="title-21">Phí vận chuyển</span>
+                            <span class="title-22"><span class="shipping-fee">0</span> VND</span>
+                        </li>
+                        <li class="list-group-item text-2-3 payment-fee-input">
+                            <span class="title-21">Phí thanh toán</span>
+                            <span class="title-22"><span class="card-fee">0</span> VND</span>
+                        </li>
 
-                    <li class="list-group-item divider-1"></li>
-                    <li class="list-group-item">
-                        <span class="title-5">TỔNG CỘNG</span>
-                        <span class="title-5-2">
+                        <li class="list-group-item divider-1"></li>
+                        <li class="list-group-item">
+                            <span class="title-5">TỔNG CỘNG</span>
+                            <span class="title-5-2">
                             <span class="total-price"><c:out value="${totalPrice}"/>
                             </span>
                             VND
                         </span>
-                    </li>
-                    <li class="list-group-item">
-                        <form action="checkout" method="post">
-                            <input type="hidden" name="action" value="payment">
-                            <input type="hidden" name="cpid" value="${shoppingCart.shoppingId}">
-                            <button class="btn btn-cart btn-complete-detail" type="submit"
-                                    data-mdb-ripple-color="dark">
-                                HOÀN TẤT ĐẶT HÀNG
-                            </button>
-                        </form>
-                    </li>
-                </ul>
+                        </li>
+                        <li class="list-group-item">
+                            <form action="checkout" method="post">
+                                <input type="hidden" name="action" value="payment">
+                                <input type="hidden" name="cpid" value="${shoppingCart.shoppingId}">
+                                <button class="btn btn-cart btn-complete-detail" type="submit"
+                                        data-mdb-ripple-color="dark">
+                                    HOÀN TẤT ĐẶT HÀNG
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 main-cart-right error-quantity" style="display: none">
+                    <div class="item-notice">Sản phẩm hiện tại không đủ size / số lượng bạn cần</div>
+                </div>
+
+
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 main-cart-right error-quantity" style="display: none">
-                <div class="item-notice">Sản phẩm hiện tại không đủ size / số lượng bạn cần</div>
-            </div>
+        </form>
+        <input type="hidden" id="ananas_nounce" name="ananas_nounce" value="d5f270e6f6"/><input type="hidden"
+                                                                                                name="_wp_http_referer"
+                                                                                                value="/shipping-infomation/"/>
 
-            <input type="hidden" value="1" class="isYourCart">
+        <script>
+            const ajaxUrl = 'https://ananas.vn/wp-admin/admin-ajax.php';
+        </script>
+        <script type='text/javascript'
+                src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js?ver=20233105'></script>
+        <script type='text/javascript'
+                src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/bootstrap.min.js?ver=20233105'></script>
+        <script type='text/javascript'
+                src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/ie10-viewport-bug-workaround.js?ver=20233105'></script>
+        <script type='text/javascript'
+                src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/slick.js?ver=20233105'></script>
+        <script type='text/javascript'
+                src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/jquery-simple-mobilemenu.js?ver=20233105'></script>
+        <script type='text/javascript'
+                src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/jBox.js?ver=20233105'></script>
+        <script type='text/javascript'
+                src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/babel-polyfill.js?ver=20233105'></script>
+        <script type='text/javascript'
+                src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/lib/fe-controllers/controller.js?ver=20233105'></script>
+        <script type='text/javascript'
+                src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/fe-controllers/trackingController.js?ver=20233105'></script>
+        <script type='text/javascript'
+                src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/bootstrap-select.min.js?ver=20233105'></script>
+        <script type='text/javascript'
+                src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/anascript.js?ver=20233105'></script>
+        <script type='text/javascript'
+                src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/lib/fe-controllers/ananas-validations.js?ver=20233105'></script>
+        <script type='text/javascript'
+                src='//s7.addthis.com/js/300/addthis_widget.js?ver=20233105#pubid=ra-5c45e3051805c44d'></script>
+        <script type='text/javascript'
+                src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/fe-controllers/cartController.js?ver=20233105'></script>
+        <script type='text/javascript'
+                src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/fe-controllers/cartDetailController.js?ver=20233105'></script>
+        <script type='text/javascript' src='https://unpkg.com/sweetalert/dist/sweetalert.min.js?ver=20233105'></script>
+        <script type='text/javascript'
+                src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/lib/fe-controllers/userController.js?ver=20233105'></script>
 
-        </div>
-    </div>
-    <input type="hidden" id="ananas_nounce" name="ananas_nounce" value="d5f270e6f6"/><input type="hidden"
-                                                                                            name="_wp_http_referer"
-                                                                                            value="/shipping-infomation/"/>
-
-    <script>
-        const ajaxUrl = 'https://ananas.vn/wp-admin/admin-ajax.php';
-    </script>
-    <script type='text/javascript'
-            src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js?ver=20233105'></script>
-    <script type='text/javascript'
-            src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/bootstrap.min.js?ver=20233105'></script>
-    <script type='text/javascript'
-            src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/ie10-viewport-bug-workaround.js?ver=20233105'></script>
-    <script type='text/javascript'
-            src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/slick.js?ver=20233105'></script>
-    <script type='text/javascript'
-            src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/jquery-simple-mobilemenu.js?ver=20233105'></script>
-    <script type='text/javascript'
-            src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/jBox.js?ver=20233105'></script>
-    <script type='text/javascript'
-            src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/babel-polyfill.js?ver=20233105'></script>
-    <script type='text/javascript'
-            src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/lib/fe-controllers/controller.js?ver=20233105'></script>
-    <script type='text/javascript'
-            src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/fe-controllers/trackingController.js?ver=20233105'></script>
-    <script type='text/javascript'
-            src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/bootstrap-select.min.js?ver=20233105'></script>
-    <script type='text/javascript'
-            src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/anascript.js?ver=20233105'></script>
-    <script type='text/javascript'
-            src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/lib/fe-controllers/ananas-validations.js?ver=20233105'></script>
-    <script type='text/javascript'
-            src='//s7.addthis.com/js/300/addthis_widget.js?ver=20233105#pubid=ra-5c45e3051805c44d'></script>
-    <script type='text/javascript'
-            src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/fe-controllers/cartController.js?ver=20233105'></script>
-    <script type='text/javascript'
-            src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/fe-controllers/cartDetailController.js?ver=20233105'></script>
-    <script type='text/javascript' src='https://unpkg.com/sweetalert/dist/sweetalert.min.js?ver=20233105'></script>
-    <script type='text/javascript'
-            src='https://ananas.vn/wp-content/themes/ananas/fe-assets/js/lib/fe-controllers/userController.js?ver=20233105'></script>
-
-    </body>
+        </body>
 </html>
