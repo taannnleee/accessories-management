@@ -85,5 +85,6 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>home</finalName>
     </build>
 </project>
