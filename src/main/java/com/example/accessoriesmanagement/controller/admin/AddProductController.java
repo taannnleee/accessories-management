@@ -53,7 +53,7 @@ public class AddProductController extends HttpServlet {
         try {
             ProductDTO productDTO = new ProductDTO(name, description, price, img, quantity, categoryId);
             productService.insertProduct(productDTO);
-            RequestDispatcher rd = req.getRequestDispatcher("/success.jsp");
+            RequestDispatcher rd = req.getRequestDispatcher("/ProductManager.jsp");
             rd.forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace(); // In ra stack trace để ghi nhận lỗi

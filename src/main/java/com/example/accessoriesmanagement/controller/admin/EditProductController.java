@@ -48,7 +48,7 @@ public class EditProductController extends HttpServlet {
         productEdit.setProductCategoryId(idcate);
 
         productService.update(productEdit);
-        RequestDispatcher rd = req.getRequestDispatcher("/success.jsp");
+        RequestDispatcher rd = req.getRequestDispatcher("/ProductManager.jsp");
         rd.forward(req, resp);
     }
     @Override
